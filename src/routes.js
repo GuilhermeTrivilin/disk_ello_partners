@@ -10,6 +10,7 @@ import Start from './pages/Start'
 
 import Login from './pages/Auth/Login'
 import RegisterFirstStep from './pages/Auth/Register/FirstStep'
+import RegisterSecondStep from './pages/Auth/Register/SecondStep'
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,6 +26,7 @@ export default function Routes() {
                     <Stack.Screen name='Start' component={Start} />
                     <Stack.Screen name='Login' component={Login} />
                     <Stack.Screen name='RegisterFirstStep' component={RegisterFirstStep} />
+                    <Stack.Screen name='RegisterSecondStep' component={RegisterSecondStep} />
                 </Stack.Navigator>
             </NavigationContainer>
         </View>
