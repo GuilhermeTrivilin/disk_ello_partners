@@ -22,7 +22,7 @@ export default function Start({navigation}) {
                 <View style={styles.buttons}>
                     <TransparentButton 
                         text='CADASTRAR'
-                        command={() => navigation.navigate('')}
+                        command={() => navigation.navigate('RegisterFirstStep')}
                     />
                     <TransparentButton 
                         text='ENTRAR'
