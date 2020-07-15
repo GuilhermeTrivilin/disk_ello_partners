@@ -8,6 +8,8 @@ import { useSafeArea } from 'react-native-safe-area-context'
 
 import Start from './pages/Start'
 
+import Login from './pages/Auth/Login'
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -20,6 +22,7 @@ export default function Routes() {
             <NavigationContainer>
                 <Stack.Navigator initialRouteName='Start' screenOptions={{ headerShown: false }} >
                     <Stack.Screen name='Start' component={Start} />
+                    <Stack.Screen name='Login' component={Login} />
                 </Stack.Navigator>
             </NavigationContainer>
         </View>

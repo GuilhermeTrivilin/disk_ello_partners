@@ -1,9 +1,57 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 
-export default function Start({}){
+import Background from '~/components/Background'
+import TransparentButton from '~/components/buttons/BigTransparent'
 
-    return <View>
-        <Text>TESTE</Text>
-    </View>
+const path = {
+    logo: require('~/assets/logo-01.png')
 }
+
+export default function Start({navigation}) {
+    return (
+        <Background>
+            <View style={styles.container}>
+                <View style={styles.imageView}>
+                    <Image
+                        source={path.logo}
+                        style={styles.logo}
+                    />
+                </View>
+
+                <View style={styles.buttons}>
+                    <TransparentButton 
+                        text='CADASTRAR'
+                        command={() => navigation.navigate('')}
+                    />
+                    <TransparentButton 
+                        text='ENTRAR'
+                        command={() => navigation.navigate('Login')}
+                    />
+                </View>
+            </View>
+
+        </Background>
+    )
+
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    logo: {
+        width: '100%',
+        resizeMode: 'contain',
+    },
+    imageView: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    buttons: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+})
