@@ -3,23 +3,23 @@ import { View, StyleSheet, Text, TextInput } from 'react-native'
 
 import { TextInputMask } from 'react-native-masked-text'
 
-const TransparentInput = ({ type, label, ...props }) => {
+const TransparentInput = ({ type, styleInput, styleLabel, styleContainer, label, ...props }) => {
 
     const renderInput = !type ?
         <TextInput
-            style={styles.input}
+            style={[styles.input, styleInput]}
             {...props}
         />
         :
         <TextInputMask
             type={type}
-            style={styles.input}
+            style={[styles.input, styleInput]}
             {...props}
         />
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.label}>{label}</Text>
+        <View style={[styles.container, styleContainer]}>
+            <Text style={[styles.label, styleLabel]}>{label}</Text>
 
             {renderInput}
         </View>

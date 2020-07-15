@@ -40,7 +40,7 @@ export default function SecondStep({ navigation }) {
 
                     <TransparentButton
                         text='Próximo'
-                        command={() => navigation.navigate('RegisterSecondStep')}
+                        command={() => navigation.navigate('RegisterThirdStep')}
                         style={styles.button}
                     />
                 </View>
