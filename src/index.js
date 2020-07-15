@@ -1,9 +1,14 @@
-import React from 'react';
+import 'react-native-gesture-handler';
+import React from 'react'
+import Routes from './routes'
 
-import '~/config/ReactotronConfig';
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-import Routes from '~/routes';
 
-const App = () => <Routes />;
-
-export default App;
+export default function App() {
+	return (
+		<SafeAreaProvider>
+			<Routes />
+		</SafeAreaProvider>
+	)
+} 

@@ -1,7 +1,27 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import React from 'react'
+import { View } from 'react-native'
 
-import Main from '~/pages/Main';
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { useSafeArea } from 'react-native-safe-area-context'
 
-const Routes = createAppContainer(createSwitchNavigator({ Main }));
+import Start from './pages/Start'
 
-export default Routes;
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+export default function Routes() {
+
+    const insets = useSafeArea()
+
+    return (
+        <View style={{ paddingTop: insets.top, flex: 1 }}>
+            <NavigationContainer>
+                <Stack.Navigator initialRouteName='Start' screenOptions={{ headerShown: false }} >
+                    <Stack.Screen name='Start' component={Start} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </View>
+    )
+}
