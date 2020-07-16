@@ -1,15 +1,29 @@
 import React from 'react'
-import {View, StyleSheet, Text} from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 
-export default function Home({navigation}){
+import Header from './componentes/Header'
+import Footer from './componentes/Footer'
 
-    return <View>
-        <Text>TESTE</Text>
+export default function Home({ navigation }) {
+
+    return <View style={styles.container}>
+        <Header />
+
+        <View style={styles.content}>
+
+        </View>
+
+        <Footer />
     </View>
 }
 
 const styles = StyleSheet.create({
     container: {
-        
+        flex: 1,
+        backgroundColor: '#e1e1e1',
+        justifyContent: 'space-between'
+    },
+    content: {
+        flex: 1
     }
 })
