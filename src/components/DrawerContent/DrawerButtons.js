@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ImageBackground, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -7,11 +7,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Fontisto from 'react-native-vector-icons/Fontisto'
 
-import { colors } from '~/commons'
-
-const path = {
-    logo: require('~/assets/background.png')
-}
 
 export default function DrawerButtons({ navigation }) {
 
@@ -87,17 +82,14 @@ export default function DrawerButtons({ navigation }) {
     ]
 
     return (
-        <ImageBackground
-            style={styles.background}
-            source={path.logo}
-        >
+        <>
             {sectionsButtons.map((item, index) => <Button
                 icon={item.icon}
                 label={item.label}
                 command={item.command}
                 key={index}
             />)}
-        </ImageBackground>
+        </>
     )
 }
 
