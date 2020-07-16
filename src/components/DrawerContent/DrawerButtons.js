@@ -1,68 +1,126 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ImageBackground, TouchableOpacity, Text } from 'react-native';
+
+import Entypo from 'react-native-vector-icons/Entypo'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import Fontisto from 'react-native-vector-icons/Fontisto'
 
 import { colors } from '~/commons'
-import { DrawerItem } from '@react-navigation/drawer';
+
+const path = {
+    logo: require('~/assets/background.png')
+}
 
 export default function DrawerButtons({ navigation }) {
 
-    const DrawerButton = ({ icon, label, command }) => <DrawerItem
-        label={label}
-        onPress={command}
+    Entypo.loadFont()
+    AntDesign.loadFont()
+    Ionicons.loadFont()
+    SimpleLineIcons.loadFont()
+    Fontisto.loadFont()
 
-        icon={() => <>{icon}</>}
-        labelStyle={styles.label}
+    const Button = ({ icon, label, command }) => <TouchableOpacity
         style={styles.button}
-    />
+        onPress={command}
+    >
+        {icon}
+        <Text style={styles.label}>{label}</Text>
+    </TouchableOpacity>
 
     const sectionsButtons = [
         {
             label: 'Serviços',
-            command: () => {},
+            command: () => { },
+            icon: <Entypo
+                name='location-pin'
+                size={25}
+                style={styles.icon}
+            />
         },
         {
             label: 'Meus serviços',
-            command: () => {},
+            command: () => { },
+            icon: <AntDesign
+                name='customerservice'
+                size={25}
+                style={styles.icon}
+            />
         },
         {
             label: 'Meus Dados',
-            command: () => {},
+            command: () => { },
+            icon: <Ionicons
+                name='person'
+                size={25}
+                style={styles.icon}
+            />
         },
         {
             label: 'Meus Cursos',
-            command: () => {},
+            command: () => { },
+            icon: <Entypo
+                name='text-document'
+                size={25}
+                style={styles.icon}
+            />
         },
         {
             label: 'Nossos Produtos',
-            command: () => {},
+            command: () => { },
+            icon: <SimpleLineIcons
+                name='present'
+                size={25}
+                style={styles.icon}
+            />
         },
         {
             label: 'Fale Conosco',
-            command: () => {},
+            command: () => { },
+            icon: <Fontisto
+                name='persons'
+                size={25}
+                style={styles.icon}
+            />
         },
     ]
 
     return (
-        <>
-            {sectionsButtons.map((item, index) => <DrawerButton
+        <ImageBackground
+            style={styles.background}
+            source={path.logo}
+        >
+            {sectionsButtons.map((item, index) => <Button
                 icon={item.icon}
                 label={item.label}
                 command={item.command}
                 key={index}
             />)}
-        </>
+        </ImageBackground>
     )
 }
 
 const styles = StyleSheet.create({
+    background: {
+        flex: 1
+    },
     label: {
         fontSize: 18,
-        color: colors.blue,
-        marginLeft: -10
+        flex: 1,
+        marginLeft: 10
     },
     icon: {
-        width: 40,
-        height: 40,
-        resizeMode: 'contain'
+        marginHorizontal: 10
+    },
+    button: {
+        backgroundColor: '#FFF',
+        borderWidth: 1,
+        borderColor: 'gray',
+        flexDirection: 'row',
+        padding: 5,
+        marginVertical: 5,
+        marginHorizontal: 15,
+        borderRadius: 20
     }
 })
