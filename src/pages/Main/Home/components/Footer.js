@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
 import { shadow } from '~/commons'
-import { Switch } from 'react-native-switch'
+import SwitchButton from '~/components/buttons/Switch'
 
 const Footer = () => {
 
@@ -11,17 +11,9 @@ const Footer = () => {
     const SwitchView = () => <View style={styles.switchView}>
         <Text style={styles.text}>Atendendo</Text>
 
-        <Switch
-            value={attending}
-            onValueChange={setAttending}
-            circleSize={20}
-            backgroundActive={'green'}
-            backgroundInactive={'red'}
-            circleActiveColor={'#fff'}
-            circleInActiveColor={'#fff'}
-            innerCircleStyle={styles.switchButton} // style for inner animated circle for what you (may) be rendering inside the circle
-            renderActiveText={false}
-            renderInActiveText={false}
+        <SwitchButton 
+            isActive={attending}
+            onChange={setAttending}
         />
     </View>
 
@@ -50,12 +42,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20
-    },
-    switchButton: {
-        alignItems: "center",
-        justifyContent: "center",
-        borderWidth: 1,
-        borderColor: '#e1e1e1'
     },
     divider: {
         width: 1,

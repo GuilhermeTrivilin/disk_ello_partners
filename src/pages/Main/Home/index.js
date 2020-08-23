@@ -3,14 +3,14 @@ import { View, StyleSheet, Text } from 'react-native'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ServiceCard from './components/ServiceCard'
 
 export default function Home({ navigation }) {
-
     return <View style={styles.container}>
         <Header openDrawer={() => navigation.toggleDrawer()} />
 
         <View style={styles.content}>
-
+            <ServiceCard />
         </View>
 
         <Footer />
