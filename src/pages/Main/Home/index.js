@@ -1,13 +1,17 @@
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
-import Header from './components/Header'
+import Header from '../../../components/Header'
 import Footer from './components/Footer'
 import ServiceCard from './components/ServiceCard'
 
-export default function Home({ navigation }) {
+export default function Home({ navigation, route }) {
     return <View style={styles.container}>
-        <Header openDrawer={() => navigation.toggleDrawer()} />
+        <Header
+            route={route}
+            navigation={navigation}
+            title='Meus serviços'
+        />
 
         <View style={styles.content}>
             <ServiceCard />

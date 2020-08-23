@@ -7,7 +7,13 @@ import NewServiceModal from '~/components/modals/NewService'
 
 import { colors, shadow } from '~/commons'
 
-const Header = ({ openDrawer }) => {
+const Header = ({ 
+    navigation,
+    route,
+    title
+ }) => {
+
+    console.log(route.name)
 
     const [modalAddService, setModalAddService] = useState(false)
 
@@ -18,10 +24,10 @@ const Header = ({ openDrawer }) => {
         <Entypo
             name='menu'
             size={25}
-            onPress={openDrawer}
+            onPress={() => navigation.toggleDrawer()}
         />
 
-        <Text style={styles.title}>Meus Serviços</Text>
+        <Text style={styles.title}>{title}</Text>
 
         <AntDesign
             name='pluscircle'
