@@ -6,6 +6,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Fontisto from 'react-native-vector-icons/Fontisto'
+import Octicons from 'react-native-vector-icons/Octicons'
 
 export default function DrawerButtons({ navigation }) {
 
@@ -14,6 +15,7 @@ export default function DrawerButtons({ navigation }) {
     Ionicons.loadFont()
     SimpleLineIcons.loadFont()
     Fontisto.loadFont()
+    Octicons.loadFont()
 
     const Button = ({ icon, label, command }) => <TouchableOpacity
         style={styles.button}
@@ -38,6 +40,15 @@ export default function DrawerButtons({ navigation }) {
             command: () => navigation.navigate("OrdersWaiting"),
             icon: <Entypo
                 name='location-pin'
+                size={25}
+                style={styles.icon}
+            />
+        },
+        {
+            label: 'Pedidos Finalizados',
+            command: () => navigation.navigate("OrdersFinalized"),
+            icon: <Octicons
+                name='checklist'
                 size={25}
                 style={styles.icon}
             />
