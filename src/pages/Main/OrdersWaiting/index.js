@@ -2,6 +2,7 @@ import React from 'react'
 import {View, StyleSheet, Text} from 'react-native'
 
 import Header from '~/components/Header'
+import WaitingOrderCard from './components/WaitingOrderCard'
 
 export default function OrdersWaiting({navigation, route}){
 
@@ -11,5 +12,15 @@ export default function OrdersWaiting({navigation, route}){
             title="Pedidos aguardando"
             navigation={navigation}
         />
+
+        <View style={styles.container}>
+            <WaitingOrderCard />
+        </View>
     </>
 }
+
+const styles = StyleSheet.create({
+    container: {
+
+    }
+})
