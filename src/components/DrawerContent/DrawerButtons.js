@@ -26,19 +26,19 @@ export default function DrawerButtons({ navigation }) {
 
     const sectionsButtons = [
         {
-            label: 'Serviços',
-            command: () => { },
-            icon: <Entypo
-                name='location-pin'
+            label: 'Meus serviços',
+            command: () => navigation.navigate("Home"),
+            icon: <AntDesign
+                name='customerservice'
                 size={25}
                 style={styles.icon}
             />
         },
         {
-            label: 'Meus serviços',
+            label: 'Serviços',
             command: () => { },
-            icon: <AntDesign
-                name='customerservice'
+            icon: <Entypo
+                name='location-pin'
                 size={25}
                 style={styles.icon}
             />
@@ -72,7 +72,7 @@ export default function DrawerButtons({ navigation }) {
         },
         {
             label: 'Fale Conosco',
-            command: () => { },
+            command: () => navigation.navigate("ContactUs"),
             icon: <Fontisto
                 name='persons'
                 size={25}
