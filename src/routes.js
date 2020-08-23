@@ -20,6 +20,7 @@ import RegisterSixthStep from './pages/Auth/Register/SixthStep'
 
 import Home from './pages/Main/Home'
 import ContactUs from './pages/Main/ContactUs'
+import OrdersWaiting from './pages/Main/OrdersWaiting'
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -31,6 +32,7 @@ const Connected = () => {
         >
             <Drawer.Screen name='Home' component={Home} />
             <Drawer.Screen name='ContactUs' component={ContactUs} />
+            <Drawer.Screen name='OrdersWaiting' component={OrdersWaiting} />
         </Drawer.Navigator>
     )
 }

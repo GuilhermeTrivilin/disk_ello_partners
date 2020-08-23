@@ -7,7 +7,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Fontisto from 'react-native-vector-icons/Fontisto'
 
-
 export default function DrawerButtons({ navigation }) {
 
     Entypo.loadFont()
@@ -35,8 +34,8 @@ export default function DrawerButtons({ navigation }) {
             />
         },
         {
-            label: 'Serviços',
-            command: () => { },
+            label: 'Pedidos aguardando',
+            command: () => navigation.navigate("OrdersWaiting"),
             icon: <Entypo
                 name='location-pin'
                 size={25}
