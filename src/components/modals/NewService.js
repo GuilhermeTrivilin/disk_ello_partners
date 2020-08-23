@@ -6,6 +6,7 @@ import Divider from '../Divider'
 import RoundedInput from '../inputs/Rounded'
 import RoundedButton from '../buttons/Rounded'
 import { colors } from '~/commons'
+import PickerInput from '../inputs/Picker'
 
 const NewServiceModal = ({ visible, closeModal }) => {
 
@@ -24,10 +25,11 @@ const NewServiceModal = ({ visible, closeModal }) => {
         </Text>
 
         <View style={styles.inputsWrapper}>
+            <PickerInput />
+            
             <RoundedInput
                 label="Valor do serviço (R$)"
             />
-            
         </View>
 
         <Divider marginVertical={20} />
