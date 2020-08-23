@@ -1,17 +1,18 @@
 import React from 'react'
 
 import DefaultModal from './DefaultModal'
-import { View, StyleSheet, Text } from 'react-native'
 import Divider from '../Divider'
 import RoundedInput from '../inputs/Rounded'
 import RoundedButton from '../buttons/Rounded'
-import { colors } from '~/commons'
 import PickerInput from '../inputs/Picker'
+
+import { View, StyleSheet, Text } from 'react-native'
+import { colors } from '~/commons'
 
 const NewServiceModal = ({ visible, closeModal }) => {
 
     return <DefaultModal
-        visible={true}
+        visible={visible}
         closeModal={closeModal}
         styleContainer={styles.container}
     >
@@ -25,20 +26,35 @@ const NewServiceModal = ({ visible, closeModal }) => {
         </Text>
 
         <View style={styles.inputsWrapper}>
-            <PickerInput />
-            
-            <RoundedInput
-                label="Valor do serviço (R$)"
+            <PickerInput
+                placeholder='Selecione uma categoria'
+                items={[{ label: 'ITEM TESTE', value: 'ITEM TESTE' }]}
+                onChange={console.log}
             />
+
+            <PickerInput
+                placeholder='Selecione um serviço'
+                items={[{ label: 'ITEM TESTE', value: 'ITEM TESTE' }]}
+                onChange={console.log}
+            />
+
+            <View style={{ marginTop: 10 }}>
+                <RoundedInput
+                    label="Valor do serviço (R$)"
+                    keyboardType="numeric"
+                />
+            </View>
+
+            <Divider marginVertical={20} />
         </View>
 
-        <Divider marginVertical={20} />
 
         <View style={styles.buttonsWrapper}>
             <RoundedButton
                 text="CANCELAR"
                 styleContainer={{ width: '45%' }}
                 backgroundColor={colors.red}
+                command={closeModal}
             />
 
             <RoundedButton
@@ -51,9 +67,11 @@ const NewServiceModal = ({ visible, closeModal }) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: '95%',
         backgroundColor: '#FFF',
-        padding: 10
+        padding: 20,
+        borderRadius: 10,
+        borderTopWidth: 7,
+        borderTopColor: colors.green
     },
     title: {
         fontSize: 20,

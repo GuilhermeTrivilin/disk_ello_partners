@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
 import Entypo from 'react-native-vector-icons/Entypo'
@@ -8,6 +8,8 @@ import NewServiceModal from '~/components/modals/NewService'
 import { colors, shadow } from '~/commons'
 
 const Header = ({ openDrawer }) => {
+
+    const [modalAddService, setModalAddService] = useState(false)
 
     Entypo.loadFont()
     AntDesign.loadFont()
@@ -25,9 +27,13 @@ const Header = ({ openDrawer }) => {
             name='pluscircle'
             size={22}
             color={colors.orange}
+            onPress={() => setModalAddService(true)}
         />
 
-        <NewServiceModal />
+        <NewServiceModal
+            visible={modalAddService}
+            closeModal={() => setModalAddService(false)}
+        />
     </View>
 }
 
