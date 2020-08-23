@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
-import Header from './componentes/Header'
-import Footer from './componentes/Footer'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 export default function Home({ navigation }) {
 
