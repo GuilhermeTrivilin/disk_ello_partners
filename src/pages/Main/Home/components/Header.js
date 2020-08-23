@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native'
 
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import NewServiceModal from '~/components/modals/NewService'
 
 import { colors, shadow } from '~/commons'
 
@@ -25,6 +26,8 @@ const Header = ({ openDrawer }) => {
             size={22}
             color={colors.orange}
         />
+
+        <NewServiceModal />
     </View>
 }
 

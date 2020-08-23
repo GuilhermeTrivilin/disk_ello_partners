@@ -24,10 +24,11 @@ const ServiceCard = () => {
     </View>
 
     return <View style={[styles.container, shadow]}>
-        <Image
-            source={require("~/assets/services_images/massage.png")}
-            style={styles.image}
-        />
+        <View style={styles.imageWrapper}>
+            <Image
+                source={require("~/assets/services_images/massage.png")}
+            />
+        </View>
 
         <View style={styles.informationsView}>
             <View>
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     text: {
         textAlign: 'center'
     },
-    image: {
+    imageWrapper: {
         flex: 1,
         overflow: "hidden",
         borderTopStartRadius: 10,

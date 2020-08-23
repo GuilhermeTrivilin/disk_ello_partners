@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { TouchableWithoutFeedback, Keyboard, StyleSheet, View } from 'react-native'
 
 import Modal from 'react-native-modal';
 
@@ -7,6 +7,7 @@ const DefaultModal = ({
     visible,
     closeModal,
     children,
+    styleContainer
 }) => {
 
     return (
@@ -22,10 +23,19 @@ const DefaultModal = ({
             useNativeDriver
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                {children}
+                <View style={[styles.container, styleContainer]}>
+                    {children}
+                </View>
             </TouchableWithoutFeedback>
         </Modal>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        alignSelf: 'center',
+        zIndex: 999
+    },
+})
 
 export default DefaultModal
