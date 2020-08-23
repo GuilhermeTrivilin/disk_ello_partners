@@ -62,7 +62,7 @@ const ServiceCard = () => {
                 </EncircleIcon>
 
                 <SwitchButton
-                    active={attendingService}
+                    isActive={attendingService}
                     onChange={setAttendingService}
                 />
             </View>
