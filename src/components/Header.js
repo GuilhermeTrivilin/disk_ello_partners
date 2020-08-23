@@ -3,22 +3,35 @@ import { View, StyleSheet, Text } from 'react-native'
 
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+
 import NewServiceModal from '~/components/modals/NewService'
 
 import { colors, shadow } from '~/commons'
 
-const Header = ({ 
+const Header = ({
     navigation,
     route,
     title
- }) => {
-
-    console.log(route.name)
+}) => {
 
     const [modalAddService, setModalAddService] = useState(false)
 
     Entypo.loadFont()
     AntDesign.loadFont()
+
+    const renderIcon = route.name === 'Home' ?
+        <AntDesign
+            name='pluscircle'
+            size={22}
+            color={colors.orange}
+            onPress={() => setModalAddService(true)}
+        />
+        :
+        <AntDesign
+            name='home'
+            size={22}
+            onPress={() => navigation.navigate('Home')}
+        />
 
     return <View style={[styles.container, shadow]}>
         <Entypo
@@ -29,12 +42,7 @@ const Header = ({
 
         <Text style={styles.title}>{title}</Text>
 
-        <AntDesign
-            name='pluscircle'
-            size={22}
-            color={colors.orange}
-            onPress={() => setModalAddService(true)}
-        />
+        {renderIcon}
 
         <NewServiceModal
             visible={modalAddService}
