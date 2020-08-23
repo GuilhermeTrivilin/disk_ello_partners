@@ -7,7 +7,7 @@ import Footer from './componentes/Footer'
 export default function Home({ navigation }) {
 
     return <View style={styles.container}>
-        <Header />
+        <Header openDrawer={() => navigation.toggleDrawer()} />
 
         <View style={styles.content}>
 

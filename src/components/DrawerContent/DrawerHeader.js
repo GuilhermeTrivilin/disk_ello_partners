@@ -15,7 +15,7 @@ const DrawerHeader = () => {
             marginTop: 15
         }} />
 
-        <Text style={styles.text}>João Valdevite</Text>
+        <Text style={styles.text}>Cláudio Disk Ello</Text>
     </View>
 }
 

@@ -6,13 +6,17 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { colors, shadow } from '~/commons'
 
-const Header = () => {
+const Header = ({ openDrawer }) => {
 
     Entypo.loadFont()
     AntDesign.loadFont()
 
     return <View style={[styles.container, shadow]}>
-        <Entypo name='menu' size={25} />
+        <Entypo
+            name='menu'
+            size={25}
+            onPress={openDrawer}
+        />
 
         <Text style={styles.title}>Meus Serviços</Text>
 
