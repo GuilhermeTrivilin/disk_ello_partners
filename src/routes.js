@@ -22,6 +22,7 @@ import Home from './pages/Main/Home'
 import ContactUs from './pages/Main/ContactUs'
 import OrdersWaiting from './pages/Main/OrdersWaiting'
 import OrdersFinalized from './pages/Main/OrdersFinalized'
+import Profile from './pages/Main/Profile'
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -35,6 +36,7 @@ const Connected = () => {
             <Drawer.Screen name='ContactUs' component={ContactUs} />
             <Drawer.Screen name='OrdersWaiting' component={OrdersWaiting} />
             <Drawer.Screen name='OrdersFinalized' component={OrdersFinalized} />
+            <Drawer.Screen name='Profile' component={Profile} />
         </Drawer.Navigator>
     )
 }

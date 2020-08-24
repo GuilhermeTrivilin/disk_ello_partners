@@ -54,8 +54,8 @@ export default function DrawerButtons({ navigation }) {
             />
         },
         {
-            label: 'Meus Dados',
-            command: () => { },
+            label: 'Meu Perfil',
+            command: () => navigation.navigate("Profile"),
             icon: <Ionicons
                 name='person'
                 size={25}
