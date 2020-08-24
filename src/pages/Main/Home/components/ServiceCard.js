@@ -5,9 +5,10 @@ import SwitchButton from '~/components/buttons/Switch'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import Divider from '~/components/Divider'
+import ServiceInfoModal from '~/components/modals/ServiceInfoModal'
 
 import { shadow } from '~/commons'
-import Divider from '~/components/Divider'
 
 const ServiceCard = () => {
 
@@ -16,6 +17,7 @@ const ServiceCard = () => {
     MaterialIcons.loadFont()
 
     const [attendingService, setAttendingService] = useState(false)
+    const [infoModal, setInfoModal] = useState(false)
 
     const EncircleIcon = ({ children, color }) => <View
         style={[styles.encircleIcon, { backgroundColor: color }]}
@@ -51,6 +53,7 @@ const ServiceCard = () => {
                     name='infocirlce'
                     size={22}
                     color='#198de6'
+                    onPress={() => setInfoModal(true)}
                 />
 
                 <EncircleIcon color="darkgreen">
@@ -66,9 +69,12 @@ const ServiceCard = () => {
                     onChange={setAttendingService}
                 />
             </View>
-
         </View>
 
+        <ServiceInfoModal
+            visible={infoModal}
+            closeModal={() => setInfoModal(false)}
+        />
     </View>
 }
 

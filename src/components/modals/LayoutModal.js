@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 10,
         borderTopWidth: 7,
-        borderTopColor: colors.green
+        borderTopColor: colors.green,
+        width: '100%'
     },
     title: {
         fontSize: 20,
