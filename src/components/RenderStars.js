@@ -31,7 +31,6 @@ const RenderStars = ({ stars_length, size = 10 }) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        height: 10,
     },
     star: {
         marginHorizontal: 2

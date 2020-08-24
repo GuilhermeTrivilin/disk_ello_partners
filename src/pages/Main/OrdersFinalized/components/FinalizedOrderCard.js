@@ -1,30 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native'
 
-import { shadow, colors } from '~/commons'
 import AvaliationWrapper from './AvaliationWrapper'
 import RoundedButton from '~/components/buttons/Rounded'
+import ClientAvaliationModal from '~/components/modals/ClientAvaliation'
+
+import { shadow, colors } from '~/commons'
 import { formatBRL } from '~/components/helpers/formatCurrency'
 
-const FinalizedOrderCard = ({ 
+const FinalizedOrderCard = ({
     status,
     client,
     service,
     address,
     date,
     value
- }) => {
+}) => {
 
     const path = {
         logo: require("~/assets/logo-02.png")
     }
 
+    const [clientAvaliationModal, setClientAvaliationModal] = useState(false)
+
     const renderAvaliation = status === "finished" && <AvaliationWrapper />
 
     const renderProgressCircle = status === 'in_progress' && <View style={styles.progressCircle} />
+
     const renderFinishButton = status === "in_progress" && <RoundedButton
         text="FINALIZAR"
         styleContainer={{ width: '50%', alignSelf: 'center' }}
+        command={() => setClientAvaliationModal(true)}
     />
 
     return <View style={[styles.container, shadow]}>
@@ -85,6 +91,11 @@ const FinalizedOrderCard = ({
         <Image
             source={path.logo}
             style={styles.logo}
+        />
+
+        <ClientAvaliationModal
+            visible={clientAvaliationModal}
+            closeModal={() => setClientAvaliationModal(false)}
         />
     </View>
 }
