@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 
 import Header from '~/components/Header'
 import BasicInfos from './components/BasicInfos'
+import ChangePassword from './components/ChangePassword'
 
 export default function Profile({ navigation, route }) {
 
@@ -13,28 +14,9 @@ export default function Profile({ navigation, route }) {
             title="Meu perfil"
         />
 
-        <BasicInfos />
+        <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
+            <BasicInfos />
+            <ChangePassword />
+        </ScrollView>
     </>
 }
-
-const styles = StyleSheet.create({
-    container: {
-        margin: 10,
-        backgroundColor: "#FFF",
-        padding: 10,
-        borderRadius: 10
-    },
-    doubleInput: {
-        flexDirection: "row",
-        justifyContent: 'space-between',
-    },
-    saveButton: {
-        width: '40%',
-        marginTop: 20,
-        alignSelf: 'flex-end'
-    },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 18
-    }
-})
