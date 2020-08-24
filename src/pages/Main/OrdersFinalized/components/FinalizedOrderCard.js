@@ -27,11 +27,19 @@ const FinalizedOrderCard = ({
 
     const renderProgressCircle = status === 'in_progress' && <View style={styles.progressCircle} />
 
-    const renderFinishButton = status === "in_progress" && <RoundedButton
-        text="FINALIZAR"
-        styleContainer={{ width: '50%', alignSelf: 'center' }}
-        command={() => setClientAvaliationModal(true)}
-    />
+    const renderFinishButton = status === "in_progress" && <>
+        <RoundedButton
+            text="FINALIZAR"
+            styleContainer={styles.button}
+            command={() => setClientAvaliationModal(true)}
+        />
+
+        <RoundedButton
+            text="CANCELAR"
+            styleContainer={styles.button}
+            backgroundColor={colors.red}
+        />
+    </>
 
     return <View style={[styles.container, shadow]}>
         <View style={styles.infosWrapper}>
@@ -142,6 +150,11 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: -5,
         right: -5
+    },
+    button: {
+        width: '50%', 
+        alignSelf: 'center',
+        marginVertical: 5
     }
 })
 
