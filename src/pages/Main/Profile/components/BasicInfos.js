@@ -3,17 +3,11 @@ import { View, StyleSheet, Text } from 'react-native'
 
 import RoundedInput from '~/components/inputs/Rounded'
 import RoundedButton from '~/components/buttons/Rounded'
-import Divider from '~/components/Divider'
-
-import { shadow } from '~/commons'
+import Layout from './Layout'
 
 const BasicInfos = () => {
 
-    return <View style={[styles.container, shadow]}>
-        <Text style={styles.title}>Dados básicos</Text>
-
-        <Divider />
-
+    return <Layout title="Informações básicas">
         <View>
             <View style={{
                 backgroundColor: '#FFF',
@@ -61,16 +55,10 @@ const BasicInfos = () => {
             text='Salvar'
             styleContainer={styles.saveButton}
         />
-    </View>
+    </Layout>
 }
 
 const styles = StyleSheet.create({
-    container: {
-        margin: 10,
-        backgroundColor: "#FFF",
-        padding: 10,
-        borderRadius: 10
-    },
     doubleInput: {
         flexDirection: "row",
         justifyContent: 'space-between',
@@ -80,12 +68,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
         alignSelf: 'flex-end'
     },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 18,
-        alignSelf: 'center',
-        marginTop: 10
-    }
 })
 
 export default BasicInfos
