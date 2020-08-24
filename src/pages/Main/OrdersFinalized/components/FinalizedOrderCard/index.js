@@ -7,6 +7,7 @@ import ClientAvaliationModal from '~/components/modals/ClientAvaliation'
 import CardTable from './CardTable'
 
 import { shadow, colors } from '~/commons'
+import CancelServiceModal from '~/components/modals/CancelServiceModal'
 
 const FinalizedOrderCard = ({ status, ...props }) => {
 
@@ -15,6 +16,7 @@ const FinalizedOrderCard = ({ status, ...props }) => {
     }
 
     const [clientAvaliationModal, setClientAvaliationModal] = useState(false)
+    const [cancelServiceModal, setCancelServiceModal] = useState(false)
 
     const renderAvaliation = status === "finished" && <AvaliationWrapper />
     
@@ -30,6 +32,7 @@ const FinalizedOrderCard = ({ status, ...props }) => {
             text="CANCELAR"
             styleContainer={styles.button}
             backgroundColor={colors.red}
+            command={() => setCancelServiceModal(true)}
         />
     </>
 
@@ -52,6 +55,11 @@ const FinalizedOrderCard = ({ status, ...props }) => {
         <ClientAvaliationModal
             visible={clientAvaliationModal}
             closeModal={() => setClientAvaliationModal(false)}
+        />
+
+        <CancelServiceModal 
+            visible={cancelServiceModal}
+            closeModal={() => setCancelServiceModal(false)}
         />
     </View>
 }
