@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
 import RoundedInput from '~/components/inputs/Rounded'
 import RoundedButton from '~/components/buttons/Rounded'
 import Layout from './Layout'
 
+import { maskOptions } from '~/values/maskOptions'
+
 const BasicInfos = () => {
+
+    const [name, setName] = useState("Guilherme Pimentel Trivilin")
+    const [phone, setPhone] = useState("27992573600")
+    const [birthDate, setBirthDate] = useState("00000000")
+    const [email, setEmail] = useState("trivilin.dev@hotmail.com")
+    const [cpf, setCpf] = useState("00000000000")
 
     return <Layout title="Informações básicas">
         <View>
@@ -23,32 +31,43 @@ const BasicInfos = () => {
 
         <RoundedInput
             label="Nome"
-            value="Guilherme Pimentel Trivilin"
+            value={name}
         />
 
         <View style={styles.doubleInput}>
             <RoundedInput
                 label="Telefone"
-                value="(27) 992573600"
+                type="cel-phone"
+                options={maskOptions.phone}
+                value={phone}
+                onChangeText={setPhone}
                 style={{ width: '46%' }}
+                hasMask
             />
             <RoundedInput
                 label="Data de aniversário"
-                value="00/00/0000"
+                type="datetime"
+                options={maskOptions.date}
+                value={birthDate}
+                onChangeText={setBirthDate}
                 style={{ width: '46%' }}
+                hasMask
             />
         </View>
 
         <RoundedInput
             label="Email"
-            value="trivilin.dev@hotmail.com"
+            value={email}
             disabled
         />
 
         <RoundedInput
             label="CPF"
-            value="000.000.000-00"
+            type='cpf'
+            onChangeText={setCpf}
+            value={cpf}
             disabled
+            hasMask
         />
 
         <RoundedButton

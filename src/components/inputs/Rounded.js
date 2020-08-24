@@ -2,19 +2,31 @@ import React from 'react'
 import { View, StyleSheet, TextInput, Text } from 'react-native'
 
 import { colors } from '~/commons'
+import { TextInputMask } from 'react-native-masked-text'
 
-const RoundedInput = ({ label, style, disabled, ...props }) => {
+const RoundedInput = ({ hasMask, label, style, disabled, ...props }) => {
 
     const renderLabel = label && <Text style={styles.label}>{label}</Text>
 
+    const renderInput = hasMask ?
+        <TextInputMask
+            style={styles.input}
+            placeholderTextColor={colors.gray}
+            {...props}
+        />
+        :
+        <TextInput
+        style={styles.input}
+        placeholderTextColor={colors.gray}
+        {...props}
+    />
+
     return (
-        <View style={[style, {opacity: disabled ? 0.5 : 1}]}>
+        <View style={[style, { opacity: disabled ? 0.5 : 1 }]}>
+
             {renderLabel}
-            <TextInput
-                style={styles.input}
-                placeholderTextColor={colors.gray}
-                {...props}
-            />
+            {renderInput}
+
         </View>
     )
 }
