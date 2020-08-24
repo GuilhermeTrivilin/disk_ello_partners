@@ -3,15 +3,15 @@ import { View, StyleSheet, TextInput, Text } from 'react-native'
 
 import { colors } from '~/commons'
 
-const RoundedInput = ({ label, style, ...props }) => {
+const RoundedInput = ({ label, style, disabled, ...props }) => {
 
     const renderLabel = label && <Text style={styles.label}>{label}</Text>
 
     return (
-        <View>
+        <View style={[style, {opacity: disabled ? 0.5 : 1}]}>
             {renderLabel}
             <TextInput
-                style={[styles.input, style]}
+                style={styles.input}
                 placeholderTextColor={colors.gray}
                 {...props}
             />
@@ -20,9 +20,6 @@ const RoundedInput = ({ label, style, ...props }) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-
-    },
     input: {
         borderWidth: 1,
         borderColor: '#e1e1e1',
