@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Image } from 'react-native'
 
 import { shadow, colors } from '~/commons'
 import RoundedButton from '~/components/buttons/Rounded'
+import RenderStars from '~/components/RenderStars'
 
 const FinalizedOrderCard = () => {
 
@@ -61,16 +62,18 @@ const FinalizedOrderCard = () => {
             </View>
         </View>
 
-        <View style={styles.buttonsWrapper}>
-            <RoundedButton
-                text="Aceitar"
-                styleContainer={{ width: "30%" }}
-            />
-            <RoundedButton
-                text="Recusar"
-                backgroundColor={colors.red}
-                styleContainer={{ width: "30%" }}
-            />
+        <View style={styles.avaliationWrapper}>
+            <View style={styles.starsRow}>
+                <Text style={styles.label}>Avaliação</Text>
+                <RenderStars
+                    stars_length={3}
+                    size={12}
+                />
+            </View>
+
+            <Text>
+                Gostei muito dos serviços prestados, voltaria a contratar neste aplicativo!
+            </Text>
         </View>
 
         <Image
@@ -99,9 +102,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 20
     },
-    buttonsWrapper: {
+    avaliationWrapper: {
+        alignItems: 'center'
+    },
+    starsRow: {
         flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
         justifyContent: 'space-around',
+        marginBottom: 10
     },
     label: {
         fontWeight: 'bold',
@@ -115,7 +124,7 @@ const styles = StyleSheet.create({
         width: 25,
         height: 25,
         position: 'absolute',
-        top: 10,
+        bottom: 10,
         right: 10
     }
 })

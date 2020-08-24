@@ -2,19 +2,19 @@ import React from 'react'
 import {View, StyleSheet, Text} from 'react-native'
 
 import Header from '~/components/Header'
-import WaitingOrderCard from './components/FinalizedOrderCard'
+import FinalizedOrderCard from './components/FinalizedOrderCard'
 
 export default function OrdersFinalized({navigation, route}){
 
     return <>
         <Header 
             route={route}
-            title="Pedidos aguardando"
+            title="Pedidos finalizados"
             navigation={navigation}
         />
 
         <View style={styles.container}>
-            <WaitingOrderCard />
+            <FinalizedOrderCard />
         </View>
     </>
 }
