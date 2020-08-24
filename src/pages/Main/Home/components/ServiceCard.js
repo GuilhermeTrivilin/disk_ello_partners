@@ -9,6 +9,7 @@ import Divider from '~/components/Divider'
 import ServiceInfoModal from '~/components/modals/ServiceInfoModal'
 
 import { shadow } from '~/commons'
+import EncircleIcon from './EncircleIcon'
 
 const ServiceCard = () => {
 
@@ -18,12 +19,6 @@ const ServiceCard = () => {
 
     const [attendingService, setAttendingService] = useState(false)
     const [infoModal, setInfoModal] = useState(false)
-
-    const EncircleIcon = ({ children, color }) => <View
-        style={[styles.encircleIcon, { backgroundColor: color }]}
-    >
-        {children}
-    </View>
 
     return <View style={[styles.container, shadow]}>
         <View style={styles.imageWrapper}>
@@ -109,12 +104,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
-    encircleIcon: {
-        borderRadius: 30,
-        padding: 2,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
 })
 
 export default ServiceCard
