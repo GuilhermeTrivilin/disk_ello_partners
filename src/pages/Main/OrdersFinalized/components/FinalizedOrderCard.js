@@ -2,14 +2,30 @@ import React from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native'
 
 import { shadow, colors } from '~/commons'
+import AvaliationWrapper from './AvaliationWrapper'
 import RoundedButton from '~/components/buttons/Rounded'
-import RenderStars from '~/components/RenderStars'
+import { formatBRL } from '~/components/helpers/formatCurrency'
 
-const FinalizedOrderCard = () => {
+const FinalizedOrderCard = ({ 
+    status,
+    client,
+    service,
+    address,
+    date,
+    value
+ }) => {
 
     const path = {
         logo: require("~/assets/logo-02.png")
     }
+
+    const renderAvaliation = status === "finished" && <AvaliationWrapper />
+
+    const renderProgressCircle = status === 'in_progress' && <View style={styles.progressCircle} />
+    const renderFinishButton = status === "in_progress" && <RoundedButton
+        text="FINALIZAR"
+        styleContainer={{ width: '50%', alignSelf: 'center' }}
+    />
 
     return <View style={[styles.container, shadow]}>
         <View style={styles.infosWrapper}>
@@ -17,7 +33,7 @@ const FinalizedOrderCard = () => {
                 <Text style={styles.label}>Cliente</Text>
                 <Text style={styles.label}>Serviço</Text>
                 <Text style={styles.label}>Endereço</Text>
-                <Text style={styles.label}>Tempo</Text>
+                <Text style={styles.label}>Data</Text>
                 <Text style={styles.label}>Valor</Text>
             </View>
 
@@ -29,52 +45,42 @@ const FinalizedOrderCard = () => {
                     ellipsizeMode='tail'
                     style={styles.text}
                 >
-                    Claudio
+                    {client}
                 </Text>
                 <Text
                     numberOfLines={1}
                     ellipsizeMode='tail'
                     style={styles.text}
                 >
-                    Corte de cabelo
+                    {service}
                 </Text>
                 <Text
                     numberOfLines={1}
                     ellipsizeMode='tail'
                     style={styles.text}
                 >
-                    Rua Amaro Neto, Itapuaasdasdasdasdasdasdasdasdas
+                    {address}
                 </Text>
                 <Text
                     numberOfLines={1}
                     ellipsizeMode='tail'
                     style={styles.text}
                 >
-                    30 minutos restantes
+                    {status === 'finished' ? date : 'Em andamento'}
                 </Text>
                 <Text
                     numberOfLines={1}
                     ellipsizeMode='tail'
                     style={styles.text}
                 >
-                    R$ 150,00
+                    {formatBRL(value || 0)}
                 </Text>
             </View>
         </View>
 
-        <View style={styles.avaliationWrapper}>
-            <View style={styles.starsRow}>
-                <Text style={styles.label}>Avaliação</Text>
-                <RenderStars
-                    stars_length={3}
-                    size={12}
-                />
-            </View>
-
-            <Text>
-                Gostei muito dos serviços prestados, voltaria a contratar neste aplicativo!
-            </Text>
-        </View>
+        {renderAvaliation}
+        {renderFinishButton}
+        {renderProgressCircle}
 
         <Image
             source={path.logo}
@@ -102,23 +108,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 20
     },
-    avaliationWrapper: {
-        alignItems: 'center'
-    },
-    starsRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: '100%',
-        justifyContent: 'space-around',
-        marginBottom: 10
-    },
     label: {
         fontWeight: 'bold',
         lineHeight: 25
     },
     text: {
         lineHeight: 25,
-        width: '75%'
+        width: '100%'
     },
     logo: {
         width: 25,
@@ -126,6 +122,15 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 10,
         right: 10
+    },
+    progressCircle: {
+        width: 20,
+        height: 20,
+        borderRadius: 20 / 2,
+        backgroundColor: colors.green,
+        position: 'absolute',
+        top: -5,
+        right: -5
     }
 })
 
