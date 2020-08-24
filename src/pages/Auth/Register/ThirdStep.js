@@ -65,6 +65,9 @@ export default function ThirdStep({ navigation }) {
                         styleLabel={{ textAlign: 'left' }}
                     />
 
+                </View>
+
+                <View style={styles.buttonWrapper}>
                     <TransparentButton
                         text='Próximo'
                         command={() => navigation.navigate('RegisterFourthStep')}
@@ -88,22 +91,26 @@ const styles = StyleSheet.create({
     bold: {
         fontWeight: 'bold'
     },
-    textView: {
-        marginVertical: 30,
-        justifyContent: 'center'
-    },
-    inputView: {
-        flex: 1,
-        justifyContent: 'flex-start',
-    },
-    button: {
-        alignSelf: 'center',
-        marginTop: 20
-    },
     doubleInputs: {
         flexDirection: 'row',
         alignSelf: 'center',
         justifyContent: 'space-around',
         width: '100%',
+    },
+    textView: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    inputView: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    button: {
+        alignSelf: 'center',
+        marginTop: 20
+    },
+    buttonWrapper: {
+        flex: 1,
+        justifyContent: 'center'
     }
 })

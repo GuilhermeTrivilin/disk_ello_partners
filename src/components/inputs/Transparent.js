@@ -2,6 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Text, TextInput } from 'react-native'
 
 import { TextInputMask } from 'react-native-masked-text'
+import { colors } from '~/commons'
 
 const TransparentInput = ({ type, styleInput, styleLabel, styleContainer, label, ...props }) => {
 
@@ -34,15 +35,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
     },
     input: {
-        padding: 0,
-        borderBottomWidth: 3,
-        borderColor: '#707070',
+        padding: 5,
+        borderWidth: 1,
+        borderColor: colors.green,
         fontSize: 18,
+        borderRadius: 10
     },
     label: {
         fontSize: 22,
-        textAlign: 'center',
-        marginBottom: 20
     }
 })
 

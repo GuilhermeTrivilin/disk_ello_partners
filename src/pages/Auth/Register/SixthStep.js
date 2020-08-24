@@ -24,7 +24,7 @@ export default function SixthStep({ navigation }) {
                 <View style={styles.inputView}>
                     <TransparentInput
                         label='Número do RG'
-                        styleLabel={{textAlign: 'left', marginBottom: 5}}
+                        styleLabel={{ textAlign: 'left', marginBottom: 5 }}
                     />
 
                     <TransparentInput
@@ -35,24 +35,27 @@ export default function SixthStep({ navigation }) {
                         }}
                         value={expedition}
                         onChangeText={setExpedition}
-                        styleLabel={{textAlign: 'left', marginBottom: 5}}
+                        styleLabel={{ textAlign: 'left', marginBottom: 5 }}
                     />
 
                     <TransparentInput
                         label='Órgão expeditor'
-                        styleLabel={{textAlign: 'left', marginBottom: 5}}
+                        styleLabel={{ textAlign: 'left', marginBottom: 5 }}
                     />
 
                     <TransparentInput
                         label='Nome da mãe'
-                        styleLabel={{textAlign: 'left', marginBottom: 5}}
+                        styleLabel={{ textAlign: 'left', marginBottom: 5 }}
                     />
 
                     <TransparentInput
                         label='Nome do pai'
-                        styleLabel={{textAlign: 'left', marginBottom: 5}}
+                        styleLabel={{ textAlign: 'left', marginBottom: 5 }}
                     />
 
+                </View>
+
+                <View style={styles.buttonWrapper}>
                     <TransparentButton
                         text='Próximo'
                         command={() => navigation.navigate('Connected')}
@@ -77,15 +80,19 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     textView: {
-        marginVertical: 30,
+        flex: 1,
         justifyContent: 'center'
     },
     inputView: {
         flex: 1,
-        justifyContent: 'flex-start'
+        justifyContent: 'center'
     },
     button: {
         alignSelf: 'center',
         marginTop: 20
+    },
+    buttonWrapper: {
+        flex: 1,
+        justifyContent: 'center'
     }
 })

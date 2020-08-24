@@ -30,6 +30,9 @@ export default function FourthStep({ navigation }) {
                         label='Repita a senha:'
                     />
 
+                </View>
+
+                <View style={styles.buttonWrapper}>
                     <Text style={styles.text}>
                         Sua senha poderá ser modificada a qualquer momento na opção "Meus Dados"
                     </Text>
@@ -47,31 +50,35 @@ export default function FourthStep({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
     title: {
         fontSize: 27,
         textAlign: 'center'
-    },
-    bold: {
-        fontWeight: 'bold'
-    },
-    textView: {
-        flex: 0.5,
-        justifyContent: 'center'
-    },
-    inputView: {
-        flex: 1,
-        justifyContent: 'flex-start'
-    },
-    button: {
-        alignSelf: 'center',
-        marginTop: 20
     },
     text: {
         marginHorizontal: 40,
         textAlign: 'center',
         marginVertical: 20
+    },
+    container: {
+        flex: 1
+    },
+    bold: {
+        fontWeight: 'bold'
+    },
+    textView: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    inputView: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    button: {
+        alignSelf: 'center',
+        marginTop: 20
+    },
+    buttonWrapper: {
+        flex: 1,
+        justifyContent: 'center'
     }
 })

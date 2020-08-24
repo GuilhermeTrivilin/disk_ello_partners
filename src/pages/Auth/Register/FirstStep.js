@@ -44,6 +44,9 @@ export default function FirstStep({ navigation }) {
                         onChangeText={setCpf}
                     />
 
+                </View>
+
+                <View style={styles.buttonWrapper}>
                     <TransparentButton
                         text='Próximo'
                         command={() => navigation.navigate('RegisterSecondStep')}
@@ -68,15 +71,19 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     textView: {
-        flex: 0.6,
+        flex: 1,
         justifyContent: 'center'
     },
     inputView: {
         flex: 1,
-        justifyContent: 'flex-start'
+        justifyContent: 'center'
     },
     button: {
         alignSelf: 'center',
         marginTop: 20
+    },
+    buttonWrapper: {
+        flex: 1,
+        justifyContent: 'center'
     }
 })

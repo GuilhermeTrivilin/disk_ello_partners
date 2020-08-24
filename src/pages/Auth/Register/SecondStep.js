@@ -30,14 +30,17 @@ export default function SecondStep({ navigation }) {
                         label='DDD + Celular:'
                         type={'cel-phone'}
                         options={{
-                          maskType: 'BRL',
-                          withDDD: true,
-                          dddMask: '(99) '
+                            maskType: 'BRL',
+                            withDDD: true,
+                            dddMask: '(99) '
                         }}
                         value={phone}
                         onChangeText={setPhone}
                     />
 
+                </View>
+
+                <View style={styles.buttonWrapper}>
                     <TransparentButton
                         text='Próximo'
                         command={() => navigation.navigate('RegisterThirdStep')}
@@ -62,15 +65,19 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     textView: {
-        flex: 0.6,
+        flex: 1,
         justifyContent: 'center'
     },
     inputView: {
         flex: 1,
-        justifyContent: 'flex-start'
+        justifyContent: 'center'
     },
     button: {
         alignSelf: 'center',
         marginTop: 20
+    },
+    buttonWrapper: {
+        flex: 1,
+        justifyContent: 'center'
     }
 })

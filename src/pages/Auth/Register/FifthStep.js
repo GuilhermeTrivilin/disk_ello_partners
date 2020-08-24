@@ -33,16 +33,19 @@ export default function FifthStep({ navigation }) {
                     }}
                     />
 
+                </View>
+
+                <View style={styles.buttonWrapper}>
                     <Text style={styles.text}>
                         A foto deve estar nítica, captar seu rosto e em local bem iluminado. Retire qualquer acessório que cubra seu rosto.
                     </Text>
-                </View>
 
-                <TransparentButton
-                    text='Próximo'
-                    command={() => navigation.navigate('RegisterSixthStep')}
-                    style={styles.button}
-                />
+                    <TransparentButton
+                        text='Próximo'
+                        command={() => navigation.navigate('RegisterSixthStep')}
+                        style={styles.button}
+                    />
+                </View>
 
             </View>
         </Background>
@@ -51,31 +54,35 @@ export default function FifthStep({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
     title: {
         fontSize: 27,
         textAlign: 'center'
-    },
-    bold: {
-        fontWeight: 'bold'
-    },
-    textView: {
-        flex: 0.6,
-        justifyContent: 'center'
-    },
-    inputView: {
-        flex: 1,
-        justifyContent: 'flex-start'
-    },
-    button: {
-        alignSelf: 'center',
-        marginTop: 20
     },
     text: {
         marginHorizontal: 40,
         textAlign: 'center',
         marginVertical: 20
+    },
+    container: {
+        flex: 1
+    },
+    bold: {
+        fontWeight: 'bold'
+    },
+    textView: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    inputView: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    button: {
+        alignSelf: 'center',
+        marginTop: 20
+    },
+    buttonWrapper: {
+        flex: 1,
+        justifyContent: 'center'
     }
 })
