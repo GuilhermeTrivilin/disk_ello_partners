@@ -1,26 +1,21 @@
 import React from 'react'
 
-import DefaultModal from './DefaultModal'
 import Divider from '../Divider'
 import RoundedInput from '../inputs/Rounded'
 import RoundedButton from '../buttons/Rounded'
 import PickerInput from '../inputs/Picker'
+import LayoutModal from './LayoutModal'
 
 import { View, StyleSheet, Text } from 'react-native'
 import { colors } from '~/commons'
 
 const NewServiceModal = ({ visible, closeModal }) => {
 
-    return <DefaultModal
+    return <LayoutModal
         visible={visible}
         closeModal={closeModal}
-        styleContainer={styles.container}
+        title="Novo serviço"
     >
-        <View>
-            <Text style={styles.title}>Novo serviço</Text>
-            <Divider />
-        </View>
-
         <Text style={styles.text}>
             Escolha um dos nossos serviços abaixo para começar a receber chamados!
         </Text>
@@ -62,22 +57,10 @@ const NewServiceModal = ({ visible, closeModal }) => {
                 styleContainer={{ width: '45%' }}
             />
         </View>
-    </DefaultModal>
+    </LayoutModal>
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#FFF',
-        padding: 20,
-        borderRadius: 10,
-        borderTopWidth: 7,
-        borderTopColor: colors.green
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center'
-    },
     text: {
         textAlign: 'center',
         marginVertical: 10

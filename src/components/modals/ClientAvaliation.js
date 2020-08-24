@@ -1,27 +1,21 @@
 import React from 'react'
 
-import DefaultModal from './DefaultModal'
 import Divider from '../Divider'
 import RoundedButton from '../buttons/Rounded'
+import RenderStars from '../RenderStars'
+import LayoutModal from './LayoutModal'
 
 import { View, StyleSheet, Text } from 'react-native'
 import { colors } from '~/commons'
-import RenderStars from '../RenderStars'
 import { TextInput } from 'react-native-gesture-handler'
 
 const ClientAvaliationModal = ({ visible, closeModal }) => {
 
-    return <DefaultModal
+    return <LayoutModal
         visible={visible}
         closeModal={closeModal}
-        styleContainer={styles.container}
+        title="Avaliar cliente"
     >
-        <View>
-            <Text style={styles.title}>Avaliar cliente</Text>
-            <Divider />
-        </View>
-
-
         <View>
             <View style={{
                 backgroundColor: '#FFF',
@@ -69,22 +63,10 @@ const ClientAvaliationModal = ({ visible, closeModal }) => {
                 styleContainer={{ width: '45%' }}
             />
         </View>
-    </DefaultModal>
+    </LayoutModal>
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#FFF',
-        padding: 20,
-        borderRadius: 10,
-        borderTopWidth: 7,
-        borderTopColor: colors.green
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center'
-    },
     text: {
         textAlign: 'center',
         marginVertical: 10
