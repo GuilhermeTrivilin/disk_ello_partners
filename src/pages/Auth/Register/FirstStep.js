@@ -5,10 +5,11 @@ import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
 
+import { useRegisterProvider } from '~/states/RegisterManage'
+
 export default function FirstStep({ navigation }) {
 
-    const [birthDate, setBirthDate] = useState('')
-    const [cpf, setCpf] = useState('')
+    const { name, setName, birth_date, setBirth_date, cpf, setCpf } = useRegisterProvider()
 
     return (
         <Background
@@ -25,6 +26,8 @@ export default function FirstStep({ navigation }) {
                 <View style={styles.inputView}>
                     <TransparentInput
                         label='Nome completo:'
+                        onChangeText={setName}
+                        value={name}
                     />
 
                     <TransparentInput
@@ -33,8 +36,8 @@ export default function FirstStep({ navigation }) {
                         options={{
                             format: 'DD/MM/YYYY'
                         }}
-                        value={birthDate}
-                        onChangeText={setBirthDate}
+                        value={birth_date}
+                        onChangeText={setBirth_date}
                     />
 
                     <TransparentInput

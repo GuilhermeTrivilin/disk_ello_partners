@@ -4,10 +4,21 @@ import { View, StyleSheet, Text } from 'react-native'
 import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
+import { useRegisterProvider } from '~/states/RegisterManage'
+import { maskOptions } from '~/values/maskOptions'
 
 export default function SixthStep({ navigation }) {
 
-    const [expedition, setExpedition] = useState('')
+    const {
+        rg_number,
+        setRg_number,
+        expedition_date,
+        setExpedition_date,
+        dispatching_agency,
+        setDispatching_agency,
+        mother_name,
+        setMother_name
+    } = useRegisterProvider()
 
     return (
         <Background
@@ -25,39 +36,38 @@ export default function SixthStep({ navigation }) {
                     <TransparentInput
                         label='Número do RG'
                         styleLabel={{ textAlign: 'left', marginBottom: 5 }}
+                        value={rg_number}
+                        onChangeText={setRg_number}
                     />
 
                     <TransparentInput
                         label='Data da expedição:'
                         type={'datetime'}
-                        options={{
-                            format: 'DD/MM/YYYY'
-                        }}
-                        value={expedition}
-                        onChangeText={setExpedition}
+                        options={maskOptions.date}
                         styleLabel={{ textAlign: 'left', marginBottom: 5 }}
+                        value={expedition_date}
+                        onChangeText={setExpedition_date}
                     />
 
                     <TransparentInput
                         label='Órgão expeditor'
                         styleLabel={{ textAlign: 'left', marginBottom: 5 }}
+                        value={dispatching_agency}
+                        onChangeText={setDispatching_agency}
                     />
 
                     <TransparentInput
                         label='Nome da mãe'
                         styleLabel={{ textAlign: 'left', marginBottom: 5 }}
-                    />
-
-                    <TransparentInput
-                        label='Nome do pai'
-                        styleLabel={{ textAlign: 'left', marginBottom: 5 }}
+                        value={mother_name}
+                        onChangeText={setMother_name}
                     />
 
                 </View>
 
                 <View style={styles.buttonWrapper}>
                     <TransparentButton
-                        text='Próximo'
+                        text='Concluir'
                         command={() => navigation.navigate('Connected')}
                         style={styles.button}
                     />

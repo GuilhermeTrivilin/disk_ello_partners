@@ -4,10 +4,11 @@ import { View, StyleSheet, Text } from 'react-native'
 import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
+import { useRegisterProvider } from '~/states/RegisterManage'
 
 export default function SecondStep({ navigation }) {
 
-    const [phone, setPhone] = useState('')
+    const { email, setEmail, phone, setPhone } = useRegisterProvider()
 
     return (
         <Background
@@ -24,6 +25,8 @@ export default function SecondStep({ navigation }) {
                 <View style={styles.inputView}>
                     <TransparentInput
                         label='Email:'
+                        onChangeText={setEmail}
+                        value={email}
                     />
 
                     <TransparentInput

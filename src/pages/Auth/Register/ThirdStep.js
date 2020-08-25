@@ -4,10 +4,24 @@ import { View, StyleSheet, Text } from 'react-native'
 import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
+import { useRegisterProvider } from '~/states/RegisterManage'
 
 export default function ThirdStep({ navigation }) {
 
-    const [zipCode, setZipCode] = useState('')
+    const { 
+        zip_code,
+        setZip_code,
+        state,
+        setState,
+        street,
+        setStreet,
+        street_number,
+        setStreet_number,
+        district,
+        setDistrict,
+        city,
+        setCity
+     } = useRegisterProvider()
 
     return (
         <Background
@@ -26,16 +40,18 @@ export default function ThirdStep({ navigation }) {
                         <TransparentInput
                             label='CEP'
                             type={'zip-code'}
-                            value={zipCode}
-                            onChangeText={setZipCode}
                             styleContainer={{ width: '60%' }}
                             styleLabel={{ textAlign: 'left' }}
+                            value={zip_code}
+                            onChangeText={setZip_code}
                         />
 
                         <TransparentInput
                             label='UF'
                             styleContainer={{ width: '25%' }}
                             styleLabel={{ textAlign: 'left' }}
+                            value={state}
+                            onChangeText={setState}
                         />
                     </View>
 
@@ -44,12 +60,16 @@ export default function ThirdStep({ navigation }) {
                             label='Rua'
                             styleContainer={{ width: '60%' }}
                             styleLabel={{ textAlign: 'left' }}
+                            value={street}
+                            onChangeText={setStreet}
                         />
 
                         <TransparentInput
                             label='Nº'
                             styleContainer={{ width: '25%' }}
                             styleLabel={{ textAlign: 'left' }}
+                            value={street_number}
+                            onChangeText={setStreet_number}
                         />
                     </View>
 
@@ -57,12 +77,16 @@ export default function ThirdStep({ navigation }) {
                         label='Bairro'
                         styleContainer={{ width: '93%' }}
                         styleLabel={{ textAlign: 'left' }}
+                        value={district}
+                        onChangeText={setDistrict}
                     />
 
                     <TransparentInput
                         label='Cidade'
                         styleContainer={{ width: '93%' }}
                         styleLabel={{ textAlign: 'left' }}
+                        value={city}
+                        onChangeText={setCity}
                     />
 
                 </View>

@@ -4,11 +4,13 @@ import { View, StyleSheet, Text } from 'react-native'
 import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
+import { useRegisterProvider } from '~/states/RegisterManage'
 
 export default function FourthStep({ navigation }) {
 
-    const [birthDate, setBirthDate] = useState('')
-    const [cpf, setCpf] = useState('')
+    const { password, setPassword } = useRegisterProvider()
+
+    const [confirmPassword, setConfirmPassword] = useState()
 
     return (
         <Background
@@ -25,9 +27,13 @@ export default function FourthStep({ navigation }) {
                 <View style={styles.inputView}>
                     <TransparentInput
                         label='Senha:'
+                        value={password}
+                        onChangeText={setPassword}
                     />
                     <TransparentInput
                         label='Repita a senha:'
+                        value={confirmPassword}
+                        onChangeText={setConfirmPassword}
                     />
 
                 </View>
