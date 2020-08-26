@@ -24,7 +24,7 @@ export default function SixthStep({ navigation }) {
     } = useRegisterProvider()
 
     const handleNext = () => {
-        if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Você precisa tirar a foto.")
+        if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Preencha todos os campos.")
     }
 
     return (

@@ -15,8 +15,22 @@ export default function FourthStep({ navigation }) {
     const [confirmPassword, setConfirmPassword] = useState()
 
     const handleNext = () => {
-        if (isEmpty([password, setPassword])) return showToast("Preencha todos os campos.")
+        if (!validateForm()) return
         navigation.navigate('RegisterFifthStep')
+    }
+
+    const validateForm = () => {
+        if (isEmpty([password, confirmPassword])) {
+            showToast("Preencha todos os campos.")
+            return false
+        }
+
+        if (password !== confirmPassword) {
+            showToast("As senhas precisam ser iguais.")
+            return false
+        }
+
+        return true
     }
 
     return (
