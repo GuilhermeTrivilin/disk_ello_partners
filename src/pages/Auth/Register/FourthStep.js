@@ -5,12 +5,19 @@ import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
 import { useRegisterProvider } from '~/states/RegisterManage'
+import { isEmpty } from '~/helpers/validateFields'
+import { showToast } from '~/helpers/showToast'
 
 export default function FourthStep({ navigation }) {
 
     const { password, setPassword } = useRegisterProvider()
 
     const [confirmPassword, setConfirmPassword] = useState()
+
+    const handleNext = () => {
+        if (isEmpty([password, setPassword])) return showToast("Preencha todos os campos.")
+        navigation.navigate('RegisterFifthStep')
+    }
 
     return (
         <Background
@@ -45,7 +52,7 @@ export default function FourthStep({ navigation }) {
 
                     <TransparentButton
                         text='Próximo'
-                        command={() => navigation.navigate('RegisterFifthStep')}
+                        command={handleNext}
                         style={styles.button}
                     />
                 </View>

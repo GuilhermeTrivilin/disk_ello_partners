@@ -5,10 +5,12 @@ import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
 import { useRegisterProvider } from '~/states/RegisterManage'
+import { isEmpty } from '~/helpers/validateFields'
+import { showToast } from '~/helpers/showToast'
 
 export default function ThirdStep({ navigation }) {
 
-    const { 
+    const {
         zip_code,
         setZip_code,
         state,
@@ -21,7 +23,12 @@ export default function ThirdStep({ navigation }) {
         setDistrict,
         city,
         setCity
-     } = useRegisterProvider()
+    } = useRegisterProvider()
+
+    const handleNext = () => {
+        if (isEmpty([zip_code, state, street, street_number, district, city])) return showToast("Preencha todos os campos.")
+        navigation.navigate('RegisterFourthStep')
+    }
 
     return (
         <Background
@@ -94,7 +101,7 @@ export default function ThirdStep({ navigation }) {
                 <View style={styles.buttonWrapper}>
                     <TransparentButton
                         text='Próximo'
-                        command={() => navigation.navigate('RegisterFourthStep')}
+                        command={handleNext}
                         style={styles.button}
                     />
                 </View>

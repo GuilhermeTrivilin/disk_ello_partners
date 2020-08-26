@@ -6,6 +6,7 @@ import TransparentButton from '~/components/buttons/BigTransparent'
 import { imagePicker } from '~/helpers/imagePicker'
 import { useRegisterProvider } from '~/states/RegisterManage'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { isEmpty } from '~/helpers/validateFields'
 
 export default function FifthStep({ navigation }) {
 
@@ -13,6 +14,11 @@ export default function FifthStep({ navigation }) {
     const [source, setSource] = useState(() => photo)
 
     const selectedImage = photo ? {uri: source} : require("~/assets/default_image.jpg")
+
+    const handleNext = () => {
+        if (isEmpty([photo])) return showToast("Você precisa tirar a foto.")
+        navigation.navigate('RegisterSixthStep')
+    }
 
     return (
         <Background logoPosition={{ right: 0, bottom: 0 }} hasLogo>
@@ -41,7 +47,7 @@ export default function FifthStep({ navigation }) {
 
                     <TransparentButton
                         text='Próximo'
-                        command={() => navigation.navigate('RegisterSixthStep')}
+                        command={handleNext}
                         style={styles.button}
                     />
                 </View>

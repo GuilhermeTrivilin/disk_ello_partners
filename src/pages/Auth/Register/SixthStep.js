@@ -4,8 +4,11 @@ import { View, StyleSheet, Text } from 'react-native'
 import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
+
 import { useRegisterProvider } from '~/states/RegisterManage'
 import { maskOptions } from '~/values/maskOptions'
+import { isEmpty } from '~/helpers/validateFields'
+import { showToast } from '~/helpers/showToast'
 
 export default function SixthStep({ navigation }) {
 
@@ -19,6 +22,10 @@ export default function SixthStep({ navigation }) {
         mother_name,
         setMother_name
     } = useRegisterProvider()
+
+    const handleNext = () => {
+        if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Você precisa tirar a foto.")
+    }
 
     return (
         <Background
@@ -68,7 +75,7 @@ export default function SixthStep({ navigation }) {
                 <View style={styles.buttonWrapper}>
                     <TransparentButton
                         text='Concluir'
-                        command={() => navigation.navigate('Connected')}
+                        command={handleNext}
                         style={styles.button}
                     />
                 </View>

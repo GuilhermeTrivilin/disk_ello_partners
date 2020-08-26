@@ -4,11 +4,19 @@ import { View, StyleSheet, Text } from 'react-native'
 import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
+
 import { useRegisterProvider } from '~/states/RegisterManage'
+import { isEmpty } from '~/helpers/validateFields'
+import { showToast } from '~/helpers/showToast'
 
 export default function SecondStep({ navigation }) {
 
     const { email, setEmail, phone, setPhone } = useRegisterProvider()
+
+    const handleNext = () => {
+        if(isEmpty([email, phone])) return showToast("Preencha todos os campos.")
+        navigation.navigate('RegisterThirdStep')
+    }
 
     return (
         <Background
@@ -46,7 +54,7 @@ export default function SecondStep({ navigation }) {
                 <View style={styles.buttonWrapper}>
                     <TransparentButton
                         text='Próximo'
-                        command={() => navigation.navigate('RegisterThirdStep')}
+                        command={handleNext}
                         style={styles.button}
                     />
                 </View>
