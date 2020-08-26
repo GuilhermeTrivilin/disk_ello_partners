@@ -15,10 +15,7 @@ export default function FifthStep({ navigation }) {
     const selectedImage = photo ? {uri: source} : require("~/assets/default_image.jpg")
 
     return (
-        <Background
-            logoPosition={{ right: 0, bottom: 0 }}
-            hasLogo
-        >
+        <Background logoPosition={{ right: 0, bottom: 0 }} hasLogo>
             <View style={styles.container}>
 
                 <View style={styles.textView}>
@@ -26,12 +23,8 @@ export default function FifthStep({ navigation }) {
                     <Text style={styles.title}>de uma foto sua!</Text>
                 </View>
 
-                <View
-                    style={styles.imageWrapper}
-                >
-                    <TouchableOpacity
-                        onPress={() => imagePicker(setSource, setPhoto)}
-                    >
+                <View style={styles.imageWrapper}>
+                    <TouchableOpacity onPress={() => imagePicker(setSource, setPhoto)}>
                         <Image
                             style={styles.image}
                             source={selectedImage}
