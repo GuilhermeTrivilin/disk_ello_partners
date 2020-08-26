@@ -9,22 +9,60 @@ import { useRegisterProvider } from '~/states/RegisterManage'
 import { maskOptions } from '~/values/maskOptions'
 import { isEmpty } from '~/helpers/validateFields'
 import { showToast } from '~/helpers/showToast'
+import { registerPartner } from '~/services/register'
+import { useGlobalState } from '~/states/ContextProvider'
 
 export default function SixthStep({ navigation }) {
 
     const {
+        name,
+        birth_date,
+        cpf,
+        email,
+        phone,
+        password,
+        photo,
+        city,
+        district,
+        state,
+        street,
+        street_number,
+        zip_code,
         rg_number,
-        setRg_number,
         expedition_date,
-        setExpedition_date,
         dispatching_agency,
-        setDispatching_agency,
         mother_name,
-        setMother_name
+
+        setRg_number,
+        setExpedition_date,
+        setDispatching_agency,
+        setMother_name,
     } = useRegisterProvider()
 
-    const handleNext = () => {
+    const { setLoading } = useGlobalState()
+
+    const handleNext = async () => {
         if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Preencha todos os campos.")
+
+        setLoading(true)
+        const response = await registerPartner({
+            name,
+            birth_date,
+            cpf,
+            email,
+            phone,
+            password,
+            photo,
+            city,
+            district,
+            state,
+            street,
+            street_number,
+            zip_code
+        })
+        setLoading(false)
+
+        console.log(response)
     }
 
     return (

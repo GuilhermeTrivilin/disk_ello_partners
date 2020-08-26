@@ -14,7 +14,7 @@ export default function FifthStep({ navigation }) {
     const { photo, setPhoto } = useRegisterProvider()
     const [source, setSource] = useState(() => photo)
 
-    const selectedImage = photo ? {uri: source} : require("~/assets/default_image.jpg")
+    const selectedImage = photo ? source : require("~/assets/default_image.jpg")
 
     const handleNext = () => {
         if (isEmpty([photo])) return showToast("Você precisa tirar a foto.")

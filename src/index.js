@@ -4,13 +4,16 @@ import Routes from './routes'
 
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { RegisterProvider } from '~/states/RegisterManage'
+import { GlobalState } from '~/states/ContextProvider'
 
 export default function App() {
 	return (
 		<SafeAreaProvider>
-			<RegisterProvider>
-				<Routes />
-			</RegisterProvider>
+			<GlobalState>
+				<RegisterProvider>
+					<Routes />
+				</RegisterProvider>
+			</GlobalState>
 		</SafeAreaProvider>
 	)
 } 
