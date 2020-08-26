@@ -38,6 +38,11 @@ export default function ThirdStep({ navigation }) {
         setLoading(true)
         const response = await getAddress(zip_code)
         setLoading(false)
+     
+        setState(response.uf)
+        setStreet(response.logradouro)
+        setDistrict(response.bairro)
+        setCity(response.localidade)
     }
 
     return (
