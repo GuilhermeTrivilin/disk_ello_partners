@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, Image } from 'react-native'
 
 import Background from '~/components/Background'
 import TransparentButton from '~/components/buttons/BigTransparent'
 import { imagePicker } from '~/helpers/imagePicker'
+import { useRegisterProvider } from '~/states/RegisterManage'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default function FifthStep({ navigation }) {
 
-    const [source, setSource] = useState(null)
-    const [photo, setPhoto] = useState(null)
+    const { photo, setPhoto } = useRegisterProvider()
+    const [source, setSource] = useState(() => photo)
 
-    // () => imagePicker(setSource, setPhoto)
+    const selectedImage = photo ? {uri: source} : require("~/assets/default_image.jpg")
 
     return (
         <Background
@@ -24,17 +26,19 @@ export default function FifthStep({ navigation }) {
                     <Text style={styles.title}>de uma foto sua!</Text>
                 </View>
 
-                <View>
-                    <View style={{
-                        width: '75%',
-                        height: 250,
-                        borderWidth: 1,
-                        borderColor: 'gray',
-                        alignSelf: 'center',
-                        backgroundColor: '#fff'
-                    }}
-                    />
+                <View
+                    style={styles.imageWrapper}
+                >
+                    <TouchableOpacity
+                        onPress={() => imagePicker(setSource, setPhoto)}
+                    >
+                        <Image
+                            style={styles.image}
+                            source={selectedImage}
+                        />
+                    </TouchableOpacity>
 
+                    <Text style={styles.text}>Clique na imagem para tirar uma foto!</Text>
                 </View>
 
                 <View style={styles.buttonWrapper}>
@@ -75,10 +79,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center'
     },
-    inputView: {
-        flex: 1,
-        justifyContent: 'center'
-    },
     button: {
         alignSelf: 'center',
         marginTop: 20
@@ -86,5 +86,14 @@ const styles = StyleSheet.create({
     buttonWrapper: {
         flex: 1,
         justifyContent: 'center'
+    },
+    imageWrapper: {
+        flex: 1,
+    },
+    image: {
+        height: '100%',
+        width: '90%',
+        alignSelf: 'center',
+        resizeMode: 'contain'
     }
 })
