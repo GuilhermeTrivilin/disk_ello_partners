@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
 import Background from '~/components/Background'
-import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
+import { imagePicker } from '~/helpers/imagePicker'
 
 export default function FifthStep({ navigation }) {
 
-    const [birthDate, setBirthDate] = useState('')
-    const [cpf, setCpf] = useState('')
+    const [source, setSource] = useState(null)
+    const [photo, setPhoto] = useState(null)
+
+    // () => imagePicker(setSource, setPhoto)
 
     return (
         <Background
