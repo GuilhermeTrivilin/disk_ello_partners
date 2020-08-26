@@ -7,6 +7,8 @@ import TransparentButton from '~/components/buttons/BigTransparent'
 import { useRegisterProvider } from '~/states/RegisterManage'
 import { isEmpty } from '~/helpers/validateFields'
 import { showToast } from '~/helpers/showToast'
+import { useGlobalState } from '~/states/ContextProvider'
+import { getAddress } from '~/services/zipCode'
 
 export default function ThirdStep({ navigation }) {
 
@@ -25,9 +27,17 @@ export default function ThirdStep({ navigation }) {
         setCity
     } = useRegisterProvider()
 
+    const { setLoading } = useGlobalState()
+
     const handleNext = () => {
         if (isEmpty([zip_code, state, street, street_number, district, city])) return showToast("Preencha todos os campos.")
         navigation.navigate('RegisterFourthStep')
+    }
+
+    const getAddressByZipCode = async () => {
+        setLoading(true)
+        const response = await getAddress(zip_code)
+        setLoading(false)
     }
 
     return (
@@ -50,7 +60,9 @@ export default function ThirdStep({ navigation }) {
                             styleContainer={{ width: '60%' }}
                             styleLabel={{ textAlign: 'left' }}
                             value={zip_code}
-                            onChangeText={setZip_code}
+                            onChangeText={(maskedText, rawText) => setZip_code(rawText)}
+                            onBlur={getAddressByZipCode}
+                            includeRawValueInChangeText
                         />
 
                         <TransparentInput
