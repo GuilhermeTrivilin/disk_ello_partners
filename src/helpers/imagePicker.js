@@ -24,14 +24,14 @@ export const imagePicker = (setSource, setPhoto) => {
 		} else if (response.customButton) {
 			console.log('User tapped custom button: ', response.customButton);
 		} else {
-			setSource(response.uri)
+			setSource({uri: response.uri})
 
 			const uploadImage = Platform.OS === 'ios' ?
 				response.uri
 				:
 				response.path
 
-			setPhoto ? setPhoto(uploadImage) : false
+			setPhoto ? setPhoto({uri: uploadImage, name: 'image.jpg', type: 'image/jpeg'}) : false
 		}
 	});
 }
