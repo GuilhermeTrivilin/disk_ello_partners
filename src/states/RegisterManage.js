@@ -4,25 +4,25 @@ const RegisterContext = createContext()
 
 export const RegisterProvider = ({ children }) => {
 
-    const [name, setName] = useState(null)
-    const [birth_date, setBirth_date] = useState(null)
-    const [cpf, setCpf] = useState(null)
-    const [email, setEmail] = useState(null)
-    const [phone, setPhone] = useState(null)
-    const [password, setPassword] = useState(null)
-    const [photo, setPhoto] = useState(null)
+    const [name, setName] = useState("teste")
+    const [birth_date, setBirth_date] = useState("")
+    const [cpf, setCpf] = useState("")
+    const [email, setEmail] = useState("")
+    const [phone, setPhone] = useState("")
+    const [password, setPassword] = useState("")
+    const [photo, setPhoto] = useState("")
 
-    const [city, setCity] = useState(null)
-    const [district, setDistrict] = useState(null)
-    const [state, setState] = useState(null)
-    const [street, setStreet] = useState(null)
-    const [street_number, setStreet_number] = useState(null)
-    const [zip_code, setZip_code] = useState(null)
+    const [city, setCity] = useState("")
+    const [district, setDistrict] = useState("")
+    const [state, setState] = useState("")
+    const [street, setStreet] = useState("")
+    const [street_number, setStreet_number] = useState("")
+    const [zip_code, setZip_code] = useState("")
 
-    const [rg_number, setRg_number] = useState(null)
-    const [expedition_date, setExpedition_date] = useState(null)
-    const [dispatching_agency, setDispatching_agency] = useState(null)
-    const [mother_name, setMother_name] = useState(null)
+    const [rg_number, setRg_number] = useState("")
+    const [expedition_date, setExpedition_date] = useState("")
+    const [dispatching_agency, setDispatching_agency] = useState("")
+    const [mother_name, setMother_name] = useState("")
 
     return <RegisterContext.Provider value={{
         name,

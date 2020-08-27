@@ -45,7 +45,7 @@ export default function SixthStep({ navigation }) {
     const { setLoading, setUser } = useGlobalState()
 
     const handleNext = async () => {
-        if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Preencha todos os campos.")
+        // if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Preencha todos os campos.")
 
         setLoading(true)
         const response = await registerPartner({
@@ -69,6 +69,8 @@ export default function SixthStep({ navigation }) {
         })
         setLoading(false)
 
+        if (response.errors) return showResponseErrors(response.errors)
+
         if(response.data) {
             await saveToken(response.data.token)
             await setDefaultHeaders(response.data.token)
@@ -81,8 +83,18 @@ export default function SixthStep({ navigation }) {
                 })
             );
         }
+    }
 
-        alert('deu problema mano')
+    const showResponseErrors = (errors) => {
+        let displayedError = false
+        const arrayKeys = Object.keys(errors)
+
+        arrayKeys.forEach(item => {
+            if(displayedError) return
+
+            showToast(errors[item][0])
+            displayedError = true
+        })
     }
 
     return (
