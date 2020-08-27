@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import Octicons from 'react-native-vector-icons/Octicons'
+import { signOut } from '~/services/auth';
 
 export default function DrawerButtons({ navigation }) {
 
@@ -85,6 +86,18 @@ export default function DrawerButtons({ navigation }) {
             command: () => navigation.navigate("ContactUs"),
             icon: <Fontisto
                 name='persons'
+                size={25}
+                style={styles.icon}
+            />
+        },
+        {
+            label: 'Sair',
+            command: async () => {
+                await signOut()
+                navigation.navigate('Preload')
+            },
+            icon: <Ionicons
+                name='exit'
                 size={25}
                 style={styles.icon}
             />
