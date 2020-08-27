@@ -3,7 +3,7 @@ import { getToken, deleteToken } from './manageToken'
 
 export const registerPartner = async (data) => {
     const response = await postFormData(`partners`, buildPartnerFormData(data))
-    if (response.success) return response
+    return response
 }
 
 const buildPartnerFormData = (data) => {
@@ -46,11 +46,9 @@ export const login = async (email, password) => {
 export const checkPartnerToken = async () => {
     const token = await getToken()
     if (!token) return false
-
     setDefaultHeaders(token)
 
     const response = await get(`auto_login`)
-
     if (response.success) return response.data
 }
 

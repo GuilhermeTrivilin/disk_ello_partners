@@ -26,6 +26,7 @@ export default function Preload({ navigation }) {
 
     const verifyPartner = async () => {
         const user = await checkPartnerToken()
+        console.log(user)
 
         if (user) {
             setUser(user)

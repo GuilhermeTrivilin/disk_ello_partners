@@ -11,6 +11,9 @@ import { isEmpty } from '~/helpers/validateFields'
 import { showToast } from '~/helpers/showToast'
 import { registerPartner } from '~/services/auth'
 import { useGlobalState } from '~/states/ContextProvider'
+import { saveToken } from '~/services/manageToken'
+import { setDefaultHeaders } from '~/services/http'
+import { CommonActions } from '@react-navigation/native'
 
 export default function SixthStep({ navigation }) {
 
@@ -39,13 +42,12 @@ export default function SixthStep({ navigation }) {
         setMother_name,
     } = useRegisterProvider()
 
-    const { setLoading } = useGlobalState()
+    const { setLoading, setUser } = useGlobalState()
 
     const handleNext = async () => {
         if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Preencha todos os campos.")
 
         setLoading(true)
-        console.log(photo)
         const response = await registerPartner({
             name,
             birth_date,
@@ -67,7 +69,20 @@ export default function SixthStep({ navigation }) {
         })
         setLoading(false)
 
-        console.log(response)
+        if(response.data) {
+            await saveToken(response.data.token)
+            await setDefaultHeaders(response.data.token)
+            setUser(response.data.partner)
+
+            return navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{ name: 'Preload' }],
+                })
+            );
+        }
+
+        alert('deu problema mano')
     }
 
     return (
