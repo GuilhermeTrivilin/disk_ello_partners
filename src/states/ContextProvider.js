@@ -6,8 +6,9 @@ const StateContext = createContext()
 export const GlobalState = ({ children }) => {
 
     const [loading, setLoading] = useState(false)
+    const [user, setUser] = useState(null)
 
-    return <StateContext.Provider value={{ loading, setLoading }}>
+    return <StateContext.Provider value={{ loading, setLoading, user, setUser }}>
         <Loading visible={loading} /> 
         {children}
     </StateContext.Provider>
@@ -15,7 +16,7 @@ export const GlobalState = ({ children }) => {
 
 export const useGlobalState = () => {
     const context = useContext(StateContext)
-    const { loading, setLoading } = context
+    const { loading, setLoading, user, setUser } = context
 
-    return { loading, setLoading }
+    return { loading, setLoading, user, setUser }
 }

@@ -9,6 +9,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import { useSafeArea } from 'react-native-safe-area-context'
 
 import Start from './pages/Start'
+import Preload from './pages/Preload'
 
 import Login from './pages/Auth/Login'
 import RegisterFirstStep from './pages/Auth/Register/FirstStep'
@@ -48,7 +49,8 @@ export default function Routes() {
     return (
         <View style={{ paddingTop: insets.top, flex: 1 }}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName='Start' screenOptions={{ headerShown: false }} >
+                <Stack.Navigator initialRouteName='Preload' screenOptions={{ headerShown: false }} >
+                    <Stack.Screen name='Preload' component={Preload} />
                     <Stack.Screen name='Start' component={Start} />
                     <Stack.Screen name='Login' component={Login} />
                     <Stack.Screen name='RegisterFirstStep' component={RegisterFirstStep} />

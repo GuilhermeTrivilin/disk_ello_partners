@@ -9,7 +9,7 @@ import { useRegisterProvider } from '~/states/RegisterManage'
 import { maskOptions } from '~/values/maskOptions'
 import { isEmpty } from '~/helpers/validateFields'
 import { showToast } from '~/helpers/showToast'
-import { registerPartner } from '~/services/register'
+import { registerPartner } from '~/services/auth'
 import { useGlobalState } from '~/states/ContextProvider'
 
 export default function SixthStep({ navigation }) {

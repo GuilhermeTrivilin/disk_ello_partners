@@ -1,4 +1,5 @@
-import { postFormData } from '~/services/http'
+import { post, get, postFormData, setDefaultHeaders } from '~/services/http'
+import { getToken, deleteToken } from './manageToken'
 
 export const registerPartner = async (data) => {
     const response = await postFormData(`partners`, buildPartnerFormData(data))
@@ -29,4 +30,31 @@ const buildPartnerFormData = (data) => {
     if(data?.mother_name) formData.append("partner[partner_document_attributes][mother_name]", data.mother_name)
     
     return formData
+}
+
+export const login = async (email, password) => {
+    const response = await post(`login`, {
+        partner: {
+            email,
+            password
+        },
+    });
+
+    if (response.success) return response
+}
+
+export const checkPartnerToken = async () => {
+    const token = await getToken()
+    if (!token) return false
+
+    setDefaultHeaders(token)
+
+    const response = await get(`auto_login`)
+
+    if (response.success) return response.data
+}
+
+export const signOut = async () => {
+    setDefaultHeaders('')
+    await deleteToken()
 }
