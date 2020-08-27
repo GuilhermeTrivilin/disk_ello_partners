@@ -6,5 +6,8 @@ export const maskOptions = {
     },
     date: {
         format: 'DD/MM/YYYY'
-    }
+    },
+    rg: {
+        mask: '99.999.999-9'
+      }
 }

@@ -45,6 +45,7 @@ export default function SixthStep({ navigation }) {
         if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Preencha todos os campos.")
 
         setLoading(true)
+        console.log(photo)
         const response = await registerPartner({
             name,
             birth_date,
@@ -58,7 +59,11 @@ export default function SixthStep({ navigation }) {
             state,
             street,
             street_number,
-            zip_code
+            zip_code,
+            rg_number,
+            expedition_date,
+            dispatching_agency,
+            mother_name,
         })
         setLoading(false)
 
@@ -83,6 +88,8 @@ export default function SixthStep({ navigation }) {
                         styleLabel={{ textAlign: 'left', marginBottom: 5 }}
                         value={rg_number}
                         onChangeText={setRg_number}
+                        type={'custom'}
+                        options={maskOptions.rg}
                     />
 
                     <TransparentInput

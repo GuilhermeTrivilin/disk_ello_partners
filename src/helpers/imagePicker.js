@@ -31,7 +31,7 @@ export const imagePicker = (setSource, setPhoto) => {
 				:
 				response.path
 
-			setPhoto ? setPhoto({uri: uploadImage, name: 'image.jpg', type: 'image/jpeg'}) : false
+			setPhoto ? setPhoto({uri: uploadImage, name: 'image.jpg', type: 'image/jpg'}) : false
 		}
 	});
 }
