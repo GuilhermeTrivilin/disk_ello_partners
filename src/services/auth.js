@@ -15,7 +15,7 @@ const buildPartnerFormData = (data) => {
     if(data?.email) formData.append("partner[email]", data.email)
     if(data?.phone) formData.append("partner[phone]", data.phone)
     if(data?.password) formData.append("partner[password]", data.password)
-    // if(data?.photo) formData.append("partner[photo]", data.photo)
+    if(data?.image) formData.append("partner[image]", data.image)
     
     if(data?.city) formData.append("partner[partner_address_attributes][city]", data.city)
     if(data?.district) formData.append("partner[partner_address_attributes][district]", data.district)

@@ -15,7 +15,7 @@ const Background = ({ children, hasLogo = false, logoPosition }) => {
 
     return (
         <ImageBackground
-            source={path.background}
+        source={{uri: 'https://reactjs.org/logo-og.png'}}
             style={styles.container}
         >
             {children}

@@ -14,22 +14,24 @@ const options = {
 	maxHeight: 800
 };
 
-export const imagePicker = (setDisplayImage, setRequestImage) => {
-	ImagePicker.showImagePicker(options, response => {
+export const imagePicker = (setSource, setPhoto) => {
+	ImagePicker.showImagePicker(options, (response) => {
+
 		if (response.didCancel) {
 			console.log('User cancelled image picker');
 		} else if (response.error) {
 			console.log('ImagePicker Error: ', response.error);
+		} else if (response.customButton) {
+			console.log('User tapped custom button: ', response.customButton);
 		} else {
-			const uri = Platform.OS === 'ios' ? response.uri : response.path
-			const name = `upload.${response.type.split('/').pop()}`
+			setSource({uri: response.uri})
 
-			setRequestImage ?
-				setRequestImage({ uri, name, type: response.type, fileName: name })
+			const uploadImage = Platform.OS === 'ios' ?
+				response.uri
 				:
-				false
+				response.path
 
-			setDisplayImage({ uri: response.uri })
+			setPhoto ? setPhoto({uri: uploadImage, name: 'image.jpg', type: 'image/jpg'}) : false
 		}
 	});
 }
