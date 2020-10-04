@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
-import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
+import RegisterLayout from '~/components/RegisterLayout'
+
 import { useRegisterProvider } from '~/states/RegisterManage'
 import { isEmpty } from '~/helpers/validateFields'
 import { showToast } from '~/helpers/showToast'
@@ -34,44 +35,38 @@ export default function FourthStep({ navigation }) {
     }
 
     return (
-        <Background
-            logoPosition={{ right: 0, bottom: 0 }}
-            hasLogo
-        >
-            <View style={styles.container}>
+        <RegisterLayout>
+            <View style={styles.textView}>
+                <Text style={styles.title}>Cadastre uma senha</Text>
+                <Text style={styles.title}>de acesso.</Text>
+            </View>
 
-                <View style={styles.textView}>
-                    <Text style={styles.title}>Cadastre uma senha</Text>
-                    <Text style={styles.title}>de acesso.</Text>
-                </View>
+            <View style={styles.inputView}>
+                <TransparentInput
+                    label='Senha:'
+                    value={password}
+                    onChangeText={setPassword}
+                />
+                <TransparentInput
+                    label='Repita a senha:'
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                />
 
-                <View style={styles.inputView}>
-                    <TransparentInput
-                        label='Senha:'
-                        value={password}
-                        onChangeText={setPassword}
-                    />
-                    <TransparentInput
-                        label='Repita a senha:'
-                        value={confirmPassword}
-                        onChangeText={setConfirmPassword}
-                    />
+            </View>
 
-                </View>
-
-                <View style={styles.buttonWrapper}>
-                    <Text style={styles.text}>
-                        Sua senha poderá ser modificada a qualquer momento na opção "Meus Dados"
+            <View style={styles.buttonWrapper}>
+                <Text style={styles.text}>
+                    Sua senha poderá ser modificada a qualquer momento na opção "Meus Dados"
                     </Text>
 
-                    <TransparentButton
-                        text='Próximo'
-                        command={handleNext}
-                        style={styles.button}
-                    />
-                </View>
+                <TransparentButton
+                    text='Próximo'
+                    command={handleNext}
+                    style={styles.button}
+                />
             </View>
-        </Background>
+        </RegisterLayout>
     )
 
 }

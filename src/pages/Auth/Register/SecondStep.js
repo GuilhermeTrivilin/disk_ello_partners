@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
-import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
+import RegisterLayout from '~/components/RegisterLayout'
 
 import { useRegisterProvider } from '~/states/RegisterManage'
 import { isEmpty } from '~/helpers/validateFields'
@@ -14,52 +14,46 @@ export default function SecondStep({ navigation }) {
     const { email, setEmail, phone, setPhone } = useRegisterProvider()
 
     const handleNext = () => {
-        if(isEmpty([email, phone])) return showToast("Preencha todos os campos.")
+        if (isEmpty([email, phone])) return showToast("Preencha todos os campos.")
         navigation.navigate('RegisterThirdStep')
     }
 
     return (
-        <Background
-            logoPosition={{ right: 0, bottom: 0 }}
-            hasLogo
-        >
-            <View style={styles.container}>
-
-                <View style={styles.textView}>
-                    <Text style={styles.text}>Hora de inserir seus</Text>
-                    <Text style={styles.text}>dados para contato!</Text>
-                </View>
-
-                <View style={styles.inputView}>
-                    <TransparentInput
-                        label='Email:'
-                        onChangeText={setEmail}
-                        value={email}
-                    />
-
-                    <TransparentInput
-                        label='DDD + Celular:'
-                        type={'cel-phone'}
-                        options={{
-                            maskType: 'BRL',
-                            withDDD: true,
-                            dddMask: '(99) '
-                        }}
-                        value={phone}
-                        onChangeText={setPhone}
-                    />
-
-                </View>
-
-                <View style={styles.buttonWrapper}>
-                    <TransparentButton
-                        text='Próximo'
-                        command={handleNext}
-                        style={styles.button}
-                    />
-                </View>
+        <RegisterLayout>
+            <View style={styles.textView}>
+                <Text style={styles.text}>Hora de inserir seus</Text>
+                <Text style={styles.text}>dados para contato!</Text>
             </View>
-        </Background>
+
+            <View style={styles.inputView}>
+                <TransparentInput
+                    label='Email:'
+                    onChangeText={setEmail}
+                    value={email}
+                />
+
+                <TransparentInput
+                    label='DDD + Celular:'
+                    type={'cel-phone'}
+                    options={{
+                        maskType: 'BRL',
+                        withDDD: true,
+                        dddMask: '(99) '
+                    }}
+                    value={phone}
+                    onChangeText={setPhone}
+                />
+
+            </View>
+
+            <View style={styles.buttonWrapper}>
+                <TransparentButton
+                    text='Próximo'
+                    command={handleNext}
+                    style={styles.button}
+                />
+            </View>
+        </RegisterLayout>
     )
 
 }

@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
-import Background from '~/components/Background'
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
+import RegisterLayout from '~/components/RegisterLayout'
+
 import { useRegisterProvider } from '~/states/RegisterManage'
 import { isEmpty } from '~/helpers/validateFields'
 import { showToast } from '~/helpers/showToast'
@@ -38,7 +39,7 @@ export default function ThirdStep({ navigation }) {
         setLoading(true)
         const response = await getAddress(zip_code)
         setLoading(false)
-     
+
         setState(response.uf)
         setStreet(response.logradouro)
         setDistrict(response.bairro)
@@ -46,84 +47,78 @@ export default function ThirdStep({ navigation }) {
     }
 
     return (
-        <Background
-            logoPosition={{ right: 0, bottom: 0 }}
-            hasLogo
-        >
-            <View style={styles.container}>
-
-                <View style={styles.textView}>
-                    <Text style={styles.text}>Hora de inserir seus</Text>
-                    <Text style={styles.text}>dados residenciais!</Text>
-                </View>
-
-                <View style={styles.inputView}>
-                    <View style={styles.doubleInputs}>
-                        <TransparentInput
-                            label='CEP'
-                            type={'zip-code'}
-                            styleContainer={{ width: '60%' }}
-                            styleLabel={{ textAlign: 'left' }}
-                            value={zip_code}
-                            onChangeText={(maskedText, rawText) => setZip_code(rawText)}
-                            onBlur={getAddressByZipCode}
-                            includeRawValueInChangeText
-                        />
-
-                        <TransparentInput
-                            label='UF'
-                            styleContainer={{ width: '25%' }}
-                            styleLabel={{ textAlign: 'left' }}
-                            value={state}
-                            onChangeText={setState}
-                        />
-                    </View>
-
-                    <View style={styles.doubleInputs}>
-                        <TransparentInput
-                            label='Rua'
-                            styleContainer={{ width: '60%' }}
-                            styleLabel={{ textAlign: 'left' }}
-                            value={street}
-                            onChangeText={setStreet}
-                        />
-
-                        <TransparentInput
-                            label='Nº'
-                            styleContainer={{ width: '25%' }}
-                            styleLabel={{ textAlign: 'left' }}
-                            value={street_number}
-                            onChangeText={setStreet_number}
-                        />
-                    </View>
-
-                    <TransparentInput
-                        label='Bairro'
-                        styleContainer={{ width: '93%' }}
-                        styleLabel={{ textAlign: 'left' }}
-                        value={district}
-                        onChangeText={setDistrict}
-                    />
-
-                    <TransparentInput
-                        label='Cidade'
-                        styleContainer={{ width: '93%' }}
-                        styleLabel={{ textAlign: 'left' }}
-                        value={city}
-                        onChangeText={setCity}
-                    />
-
-                </View>
-
-                <View style={styles.buttonWrapper}>
-                    <TransparentButton
-                        text='Próximo'
-                        command={handleNext}
-                        style={styles.button}
-                    />
-                </View>
+        <RegisterLayout>
+            <View style={styles.textView}>
+                <Text style={styles.text}>Hora de inserir seus</Text>
+                <Text style={styles.text}>dados residenciais!</Text>
             </View>
-        </Background>
+
+            <View style={styles.inputView}>
+                <View style={styles.doubleInputs}>
+                    <TransparentInput
+                        label='CEP'
+                        type={'zip-code'}
+                        styleContainer={{ width: '60%' }}
+                        styleLabel={{ textAlign: 'left' }}
+                        value={zip_code}
+                        onChangeText={(maskedText, rawText) => setZip_code(rawText)}
+                        // onBlur={getAddressByZipCode}
+                        includeRawValueInChangeText
+                    />
+
+                    <TransparentInput
+                        label='UF'
+                        styleContainer={{ width: '25%' }}
+                        styleLabel={{ textAlign: 'left' }}
+                        value={state}
+                        onChangeText={setState}
+                    />
+                </View>
+
+                <View style={styles.doubleInputs}>
+                    <TransparentInput
+                        label='Rua'
+                        styleContainer={{ width: '60%' }}
+                        styleLabel={{ textAlign: 'left' }}
+                        value={street}
+                        onChangeText={setStreet}
+                    />
+
+                    <TransparentInput
+                        label='Nº'
+                        styleContainer={{ width: '25%' }}
+                        styleLabel={{ textAlign: 'left' }}
+                        value={street_number}
+                        onChangeText={setStreet_number}
+                    />
+                </View>
+
+                <TransparentInput
+                    label='Bairro'
+                    styleContainer={{ width: '93%' }}
+                    styleLabel={{ textAlign: 'left' }}
+                    value={district}
+                    onChangeText={setDistrict}
+                />
+
+                <TransparentInput
+                    label='Cidade'
+                    styleContainer={{ width: '93%' }}
+                    styleLabel={{ textAlign: 'left' }}
+                    value={city}
+                    onChangeText={setCity}
+                />
+
+            </View>
+
+            <View style={styles.buttonWrapper}>
+                <TransparentButton
+                    text='Próximo'
+                    command={handleNext}
+                    style={styles.button}
+                />
+            </View>
+        </RegisterLayout>
     )
 
 }

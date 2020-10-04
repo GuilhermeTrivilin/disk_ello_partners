@@ -53,5 +53,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>$(PRODUCT_NAME) está pedindo permissão para acessar sua galeria.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>$(PRODUCT_NAME) está pedindo permissão para acessar sua câmera.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>$(PRODUCT_NAME) está pedindo permissão para salvar fotos em sua galeria.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>$(PRODUCT_NAME) está pedindo para usar seu microfone (para vídeos).</string>
 </dict>
 </plist>

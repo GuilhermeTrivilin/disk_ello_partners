@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native'
 
-import Background from '~/components/Background'
 import TransparentButton from '~/components/buttons/BigTransparent'
+import RegisterLayout from '~/components/RegisterLayout'
+
 import { imagePicker } from '~/helpers/imagePicker'
 import { useRegisterProvider } from '~/states/RegisterManage'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -22,39 +23,35 @@ export default function FifthStep({ navigation }) {
     }
 
     return (
-        <Background logoPosition={{ right: 0, bottom: 0 }} hasLogo>
-            <View style={styles.container}>
+        <RegisterLayout>
+            <View style={styles.textView}>
+                <Text style={styles.title}>Agora precisamos</Text>
+                <Text style={styles.title}>de uma foto sua!</Text>
+            </View>
 
-                <View style={styles.textView}>
-                    <Text style={styles.title}>Agora precisamos</Text>
-                    <Text style={styles.title}>de uma foto sua!</Text>
-                </View>
+            <View style={styles.imageWrapper}>
+                <TouchableOpacity onPress={() => imagePicker(setSource, setImage)}>
+                    <Image
+                        style={styles.image}
+                        source={selectedImage}
+                    />
+                </TouchableOpacity>
 
-                <View style={styles.imageWrapper}>
-                    <TouchableOpacity onPress={() => imagePicker(setSource, setImage)}>
-                        <Image
-                            style={styles.image}
-                            source={selectedImage}
-                        />
-                    </TouchableOpacity>
+                <Text style={styles.text}>Clique na imagem para tirar uma foto!</Text>
+            </View>
 
-                    <Text style={styles.text}>Clique na imagem para tirar uma foto!</Text>
-                </View>
-
-                <View style={styles.buttonWrapper}>
-                    <Text style={styles.text}>
-                        A foto deve estar nítica, captar seu rosto e em local bem iluminado. Retire qualquer acessório que cubra seu rosto.
+            <View style={styles.buttonWrapper}>
+                <Text style={styles.text}>
+                    A foto deve estar nítica, captar seu rosto e em local bem iluminado. Retire qualquer acessório que cubra seu rosto.
                     </Text>
 
-                    <TransparentButton
-                        text='Próximo'
-                        command={handleNext}
-                        style={styles.button}
-                    />
-                </View>
-
+                <TransparentButton
+                    text='Próximo'
+                    command={handleNext}
+                    style={styles.button}
+                />
             </View>
-        </Background>
+        </RegisterLayout>
     )
 
 }
