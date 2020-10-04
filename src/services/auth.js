@@ -3,7 +3,6 @@ import { getToken, deleteToken } from './manageToken'
 
 export const registerPartner = async (data) => {
     const response = await post(`partners`, buildPartnerFormData(data))
-    console.log(response)
     if(response.success) return response.data
 }
 

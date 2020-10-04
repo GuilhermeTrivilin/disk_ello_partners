@@ -6,7 +6,11 @@ import { shadow, colors } from '~/commons'
 
 const ProductCard = ({ item, buttonText, buttonCommand, hasButton = true }) => {
 
-    const { price, image, name } = item
+    const { 
+        price, 
+        name, 
+        avatar: { url } 
+    } = item
 
     const formatPrice = (value) => {
         var value = value.toFixed(2).split('.');
@@ -17,7 +21,7 @@ const ProductCard = ({ item, buttonText, buttonCommand, hasButton = true }) => {
     const renderRemoveButton = hasButton && <OrangeButton text={buttonText} command={buttonCommand} />
 
     return <View style={[styles.container, shadow]}>
-        <Image style={styles.image} source={image} />
+        <Image style={styles.image} source={url} />
 
         <View style={{ flex: 1, marginLeft: 15 }}>
             <Text style={styles.name}>{name}</Text>

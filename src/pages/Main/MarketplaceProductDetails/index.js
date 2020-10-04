@@ -6,18 +6,18 @@ import RenderStars from '~/components/RenderStars'
 import ActionCard from './components/ActionCard'
 import Button from './components/Button'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import AvaliationModal from './components/AvaliationModal'
 
 import { colors } from '~/commons'
-import AvaliationModal from './components/AvaliationModal'
 
 export default function MarketplaceProductDetails({ navigation, route }) {
 
     const {
         name,
-        image,
         price,
-        stars,
-        product_info
+        rating,
+        description,
+        avatar: { url }
     } = route.params.item
 
     const [amount, setAmount] = useState(0)
@@ -36,11 +36,11 @@ export default function MarketplaceProductDetails({ navigation, route }) {
             >
                 <Text style={styles.title}>{name}</Text>
 
-                <Image source={image} style={styles.image} />
+                <Image source={url} style={styles.image} />
 
                 <View style={styles.starsView}>
                     <Text style={styles.bold}>NOTA DO PRODUTO: </Text>
-                    <RenderStars stars_length={stars} />
+                    <RenderStars stars_length={rating} />
                 </View>
 
                 <ActionCard
@@ -50,7 +50,7 @@ export default function MarketplaceProductDetails({ navigation, route }) {
                 />
 
                 <Text style={styles.bold}>INFORMAÇÕES DO PRODUTO:</Text>
-                <Text style={styles.text}>{product_info}</Text>
+                <Text style={styles.text}>{description}</Text>
 
                 <Button
                     icon={<FontAwesome name='comment' size={25} color={colors.orange} />}

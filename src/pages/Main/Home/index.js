@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import ServiceCard from './components/ServiceCard'
 
 export default function Home({ navigation, route }) {
+
     return <View style={styles.container}>
         <Header
             route={route}

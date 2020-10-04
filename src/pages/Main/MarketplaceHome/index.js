@@ -4,16 +4,43 @@ import { View, StyleSheet, Text, TouchableOpacity, FlatList, Image } from 'react
 import InitialModal from './components/InitialModal'
 import MarketplaceLayout from '~/components/MarketplaceLayout'
 
-const path = [
-    require('~/assets/marketplace/app_credits.png'),
-    require('~/assets/marketplace/plans.png'),
-    require('~/assets/marketplace/hair_stylist.png'),
-    require('~/assets/marketplace/manicure.png'),
-    require('~/assets/marketplace/appliques.png'),
-    require('~/assets/marketplace/braids.png'),
-    require('~/assets/marketplace/podiatrist.png'),
-    require('~/assets/marketplace/eyebrow.png'),
-    require('~/assets/marketplace/aesthetic.png'),
+const optionsList = [
+    {
+        category: "creditos",
+        image: require('~/assets/marketplace/app_credits.png')
+    },
+    {
+        category: "planos",
+        image: require('~/assets/marketplace/plans.png')
+    },
+    {
+        category: "cabelereiro",
+        image: require('~/assets/marketplace/hair_stylist.png')
+    },
+    {
+        category: "manicure",
+        image: require('~/assets/marketplace/manicure.png')
+    },
+    {
+        category: "aplique",
+        image: require('~/assets/marketplace/appliques.png')
+    },
+    {
+        category: "trancas",
+        image: require('~/assets/marketplace/braids.png')
+    },
+    {
+        category: "podologo",
+        image: require('~/assets/marketplace/podiatrist.png')
+    },
+    {
+        category: "sobranchela",
+        image: require('~/assets/marketplace/eyebrow.png')
+    },
+    {
+        category: "estetica",
+        image: require('~/assets/marketplace/aesthetic.png')
+    },
 ]
 
 export default function MarketplaceHome({ navigation }) {
@@ -28,12 +55,12 @@ export default function MarketplaceHome({ navigation }) {
                 <Text style={styles.text}>Escolha os produtos nas seções abaixo!</Text>
 
                 <FlatList
-                    data={path}
+                    data={optionsList}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) => <TouchableOpacity
-                        onPress={() => navigation.navigate('MarketplaceProducts')}
+                        onPress={() => navigation.navigate('MarketplaceProducts', { category: item.category })}
                     >
-                        <Image source={item} style={styles.image} />
+                        <Image source={item.image} style={styles.image} />
                     </TouchableOpacity>}
                     showsVerticalScrollIndicator={false}
                     style={{ marginBottom: 70 }}

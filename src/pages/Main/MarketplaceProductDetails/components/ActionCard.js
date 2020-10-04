@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import OrangeButton from '~/components/buttons/Orange'
 
 import { shadow } from '~/commons'
 import { formatBRL } from '~/helpers/formatCurrency'
-import OrangeButton from '~/components/buttons/Orange'
 
 const ActionCard = ({ price, amount, setAmount }) => {
-
+    
     AntDesign.loadFont()
 
     const [favorited, setFavorited] = useState(false)
