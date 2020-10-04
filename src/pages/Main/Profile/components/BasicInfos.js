@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 
 import RoundedInput from '~/components/inputs/Rounded'
 import RoundedButton from '~/components/buttons/Rounded'
@@ -9,6 +9,7 @@ import { maskOptions } from '~/values/maskOptions'
 import { useGlobalState } from '~/states/ContextProvider'
 import { updatePartner } from '~/services/partner'
 import { showToast } from '~/helpers/showToast'
+import { baseURL } from '~/commons'
 
 const BasicInfos = () => {
 
@@ -19,6 +20,7 @@ const BasicInfos = () => {
     const [birth_date, setBirth_date] = useState(() => user.birth_date)
     const [email, setEmail] = useState(() => user.email)
     const [cpf, setCpf] = useState(() => user.cpf)
+    const [avatar, setAvatar] = useState(() => `${baseURL}${user.avatar.url}`)
 
     const [loading, setLoading] = useState(false)
 
@@ -30,7 +32,7 @@ const BasicInfos = () => {
         if (response?.errors) return showResponseErrors(response.errors)
         if (!response) return showToast("Houve um erro ao completar sua solicitação.")
 
-        if(response) {
+        if (response) {
             showToast("Informações alteradas com sucesso.")
             setUser(response)
         }
@@ -50,16 +52,10 @@ const BasicInfos = () => {
 
     return <Layout title="Informações básicas">
         <View>
-            <View style={{
-                backgroundColor: '#FFF',
-                width: 140,
-                height: 140,
-                borderRadius: 140 / 2,
-                borderWidth: 1,
-                borderColor: 'gray',
-                alignSelf: 'center',
-                marginVertical: 15
-            }} />
+            <Image
+                style={styles.image}
+                source={{ uri: avatar }}
+            />
         </View>
 
         <RoundedInput
@@ -122,6 +118,16 @@ const styles = StyleSheet.create({
         marginTop: 20,
         alignSelf: 'flex-end'
     },
+    image: {
+        backgroundColor: '#FFF',
+        width: 140,
+        height: 140,
+        borderRadius: 140 / 2,
+        borderWidth: 1,
+        borderColor: 'gray',
+        alignSelf: 'center',
+        marginVertical: 15
+    }
 })
 
 export default BasicInfos
