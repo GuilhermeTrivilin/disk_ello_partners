@@ -25,6 +25,15 @@ import OrdersWaiting from './pages/Main/OrdersWaiting'
 import OrdersFinalized from './pages/Main/OrdersFinalized'
 import Profile from './pages/Main/Profile'
 
+import MarketplaceHome from './pages/Main/MarketplaceHome'
+import MarketplaceCart from './pages/Main/MarketplaceCart'
+import MarketplaceFavorites from './pages/Main/MarketplaceFavorites'
+import MarketplaceHistory from './pages/Main/MarketplaceHistory'
+import MarketplaceRequest from './pages/Main/MarketplaceRequest'
+import MarketplaceProducts from './pages/Main/MarketplaceProducts'
+import MarketplaceProductDetails from './pages/Main/MarketplaceProductDetails'
+import MarketplaceProductsComments from './pages/Main/MarketplaceProductsComments'
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -38,6 +47,7 @@ const Connected = () => {
             <Drawer.Screen name='OrdersWaiting' component={OrdersWaiting} />
             <Drawer.Screen name='OrdersFinalized' component={OrdersFinalized} />
             <Drawer.Screen name='Profile' component={Profile} />
+            <Drawer.Screen name='MarketplaceHome' component={MarketplaceHome} />
         </Drawer.Navigator>
     )
 }
@@ -60,6 +70,13 @@ export default function Routes() {
                     <Stack.Screen name='RegisterFifthStep' component={RegisterFifthStep} />
                     <Stack.Screen name='RegisterSixthStep' component={RegisterSixthStep} />
                     <Stack.Screen name='Connected' component={Connected} />
+                    <Stack.Screen name='MarketplaceCart' component={MarketplaceCart} />
+                    <Stack.Screen name='MarketplaceFavorites' component={MarketplaceFavorites} />
+                    <Stack.Screen name='MarketplaceHistory' component={MarketplaceHistory} />
+                    <Stack.Screen name='MarketplaceRequest' component={MarketplaceRequest} />
+                    <Stack.Screen name='MarketplaceProducts' component={MarketplaceProducts} />
+                    <Stack.Screen name='MarketplaceProductDetails' component={MarketplaceProductDetails} />
+                    <Stack.Screen name='MarketplaceProductsComments' component={MarketplaceProductsComments} />
                 </Stack.Navigator>
             </NavigationContainer>
         </View>

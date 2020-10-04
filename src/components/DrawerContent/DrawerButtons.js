@@ -63,18 +63,18 @@ export default function DrawerButtons({ navigation }) {
                 style={styles.icon}
             />
         },
-        {
-            label: 'Meus Cursos',
-            command: () => { },
-            icon: <Entypo
-                name='text-document'
-                size={25}
-                style={styles.icon}
-            />
-        },
+        // {
+        //     label: 'Meus Cursos',
+        //     command: () => { },
+        //     icon: <Entypo
+        //         name='text-document'
+        //         size={25}
+        //         style={styles.icon}
+        //     />
+        // },
         {
             label: 'Nossos Produtos',
-            command: () => { },
+            command: () => navigation.navigate("MarketplaceHome"),
             icon: <SimpleLineIcons
                 name='present'
                 size={25}
