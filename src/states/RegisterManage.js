@@ -5,19 +5,19 @@ const RegisterContext = createContext()
 export const RegisterProvider = ({ children }) => {
 
     const [name, setName] = useState("teste")
-    const [birth_date, setBirth_date] = useState("")
-    const [cpf, setCpf] = useState("")
-    const [email, setEmail] = useState("")
-    const [phone, setPhone] = useState("")
-    const [password, setPassword] = useState("")
-    const [photo, setPhoto] = useState("")
+    const [birth_date, setBirth_date] = useState("08/05/2002")
+    const [cpf, setCpf] = useState("167.632.907-21")
+    const [email, setEmail] = useState("teste@teste.com")
+    const [phone, setPhone] = useState("(27) 99257-3600")
+    const [password, setPassword] = useState("123456")
+    const [image, setImage] = useState("")
 
-    const [city, setCity] = useState("")
-    const [district, setDistrict] = useState("")
-    const [state, setState] = useState("")
-    const [street, setStreet] = useState("")
-    const [street_number, setStreet_number] = useState("")
-    const [zip_code, setZip_code] = useState("")
+    const [city, setCity] = useState("Teste")
+    const [neighborhood, setneighborhood] = useState("Teste")
+    const [state, setState] = useState("Teste")
+    const [street, setStreet] = useState("Teste")
+    const [street_number, setStreet_number] = useState("740")
+    const [zipcode, setZipcode] = useState("29101700")
 
     const [rg_number, setRg_number] = useState("")
     const [expedition_date, setExpedition_date] = useState("")
@@ -31,13 +31,13 @@ export const RegisterProvider = ({ children }) => {
         email,
         phone,
         password,
-        photo,
+        image,
         city,
-        district,
+        neighborhood,
         state,
         street,
         street_number,
-        zip_code,
+        zipcode,
         rg_number,
         expedition_date,
         dispatching_agency,
@@ -48,13 +48,13 @@ export const RegisterProvider = ({ children }) => {
         setEmail,
         setPhone,
         setPassword,
-        setPhoto,
+        setImage,
         setCity,
-        setDistrict,
+        setneighborhood,
         setState,
         setStreet,
         setStreet_number,
-        setZip_code,
+        setZipcode,
         setRg_number,
         setExpedition_date,
         setDispatching_agency,
@@ -73,13 +73,13 @@ export const useRegisterProvider = () => {
         email,
         phone,
         password,
-        photo,
+        image,
         city,
-        district,
+        neighborhood,
         state,
         street,
         street_number,
-        zip_code,
+        zipcode,
         rg_number,
         expedition_date,
         dispatching_agency,
@@ -90,13 +90,13 @@ export const useRegisterProvider = () => {
         setEmail,
         setPhone,
         setPassword,
-        setPhoto,
+        setImage,
         setCity,
-        setDistrict,
+        setneighborhood,
         setState,
         setStreet,
         setStreet_number,
-        setZip_code,
+        setZipcode,
         setRg_number,
         setExpedition_date,
         setDispatching_agency,
@@ -110,13 +110,13 @@ export const useRegisterProvider = () => {
         email,
         phone,
         password,
-        photo,
+        image,
         city,
-        district,
+        neighborhood,
         state,
         street,
         street_number,
-        zip_code,
+        zipcode,
         rg_number,
         expedition_date,
         dispatching_agency,
@@ -127,13 +127,13 @@ export const useRegisterProvider = () => {
         setEmail,
         setPhone,
         setPassword,
-        setPhoto,
+        setImage,
         setCity,
-        setDistrict,
+        setneighborhood,
         setState,
         setStreet,
         setStreet_number,
-        setZip_code,
+        setZipcode,
         setRg_number,
         setExpedition_date,
         setDispatching_agency,

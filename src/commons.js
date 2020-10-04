@@ -18,4 +18,4 @@ export const shadow = {
     elevation: 3,
 }
 
-export const server = 'http://localhost:3000/api/v1/partner/'
+export const server = 'https://disk-ello-homolog.herokuapp.com/api/v1/partner'

@@ -1,9 +1,9 @@
-import { post, get, postFormData, setDefaultHeaders } from '~/services/http'
+import { post, get, setDefaultHeaders } from '~/services/http'
 import { getToken, deleteToken } from './manageToken'
 
 export const registerPartner = async (data) => {
-    const response = await postFormData(`partners`, buildPartnerFormData(data))
-    return response
+    const response = await post(`partners`, buildPartnerFormData(data))
+    if(response.success) return response
 }
 
 const buildPartnerFormData = (data) => {
@@ -18,11 +18,11 @@ const buildPartnerFormData = (data) => {
     if(data?.image) formData.append("partner[image]", data.image)
     
     if(data?.city) formData.append("partner[partner_address_attributes][city]", data.city)
-    if(data?.district) formData.append("partner[partner_address_attributes][district]", data.district)
+    if(data?.neighborhood) formData.append("partner[partner_address_attributes][neighborhood]", data.neighborhood)
     if(data?.state) formData.append("partner[partner_address_attributes][state]", data.state)
     if(data?.street) formData.append("partner[partner_address_attributes][street]", data.street)
     if(data?.street_number) formData.append("partner[partner_address_attributes][street_number]", data.street_number)
-    if(data?.zip_code) formData.append("partner[partner_address_attributes][zip_code]", data.zip_code)
+    if(data?.zipcode) formData.append("partner[partner_address_attributes][zipcode]", data.zipcode)
     
     if(data?.rg_number) formData.append("partner[partner_document_attributes][rg_number]", data.rg_number)
     if(data?.expedition_date) formData.append("partner[partner_document_attributes][expedition_date]", data.expedition_date)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native'
 
 import TransparentButton from '~/components/buttons/BigTransparent'
@@ -13,9 +13,9 @@ import { showToast } from '~/helpers/showToast'
 export default function FifthStep({ navigation }) {
 
     const { image, setImage } = useRegisterProvider()
-    const [source, setSource] = useState(() => image)
+    const [source, setSource] = useState(require("~/assets/default_image.jpg"))
 
-    const selectedImage = image ? source : require("~/assets/default_image.jpg")
+    useEffect(() => { image && setSource({uri: image.uri}) }, [])
 
     const handleNext = () => {
         if (isEmpty([image])) return showToast("Você precisa tirar a foto.")
@@ -33,7 +33,7 @@ export default function FifthStep({ navigation }) {
                 <TouchableOpacity onPress={() => imagePicker(setSource, setImage)}>
                     <Image
                         style={styles.image}
-                        source={selectedImage}
+                        source={source}
                     />
                 </TouchableOpacity>
 

@@ -19,27 +19,9 @@ export const post = async (endpoint = "", body = {}) => {
   }
 };
 
-export const postFormData = async (endpoint = "", body = {}) => {
-  try {
-    const response = await axios.post(`${server}/${endpoint}`, body, { headers: {'Content-Type': 'multipart/form-data'} });
-    return successObject(response);
-  } catch (error) {
-    return errorObject(error);
-  }
-};
-
 export const put = async (endpoint = "", body = {}) => {
   try {
     const response = await axios.put(`${server}/${endpoint}`, body);
-    return successObject(response);
-  } catch (error) {
-    return errorObject(error);
-  }
-};
-
-export const putFormData = async (endpoint = "", body = {}) => {
-  try {
-    const response = await axios.put(`${server}/${endpoint}`, body, { headers: {'Content-Type': 'multipart/form-data'} });
     return successObject(response);
   } catch (error) {
     return errorObject(error);

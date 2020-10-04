@@ -14,16 +14,16 @@ import { getAddress } from '~/services/zipCode'
 export default function ThirdStep({ navigation }) {
 
     const {
-        zip_code,
-        setZip_code,
+        zipcode,
+        setZipcode,
         state,
         setState,
         street,
         setStreet,
         street_number,
         setStreet_number,
-        district,
-        setDistrict,
+        neighborhood,
+        setneighborhood,
         city,
         setCity
     } = useRegisterProvider()
@@ -31,18 +31,18 @@ export default function ThirdStep({ navigation }) {
     const { setLoading } = useGlobalState()
 
     const handleNext = () => {
-        if (isEmpty([zip_code, state, street, street_number, district, city])) return showToast("Preencha todos os campos.")
+        if (isEmpty([zipcode, state, street, street_number, neighborhood, city])) return showToast("Preencha todos os campos.")
         navigation.navigate('RegisterFourthStep')
     }
 
     const getAddressByZipCode = async () => {
         setLoading(true)
-        const response = await getAddress(zip_code)
+        const response = await getAddress(zipcode)
         setLoading(false)
 
         setState(response.uf)
         setStreet(response.logradouro)
-        setDistrict(response.bairro)
+        setneighborhood(response.bairro)
         setCity(response.localidade)
     }
 
@@ -60,8 +60,8 @@ export default function ThirdStep({ navigation }) {
                         type={'zip-code'}
                         styleContainer={{ width: '60%' }}
                         styleLabel={{ textAlign: 'left' }}
-                        value={zip_code}
-                        onChangeText={(maskedText, rawText) => setZip_code(rawText)}
+                        value={zipcode}
+                        onChangeText={(maskedText, rawText) => setZipcode(rawText)}
                         onBlur={getAddressByZipCode}
                         includeRawValueInChangeText
                     />
@@ -97,8 +97,8 @@ export default function ThirdStep({ navigation }) {
                     label='Bairro'
                     styleContainer={{ width: '93%' }}
                     styleLabel={{ textAlign: 'left' }}
-                    value={district}
-                    onChangeText={setDistrict}
+                    value={neighborhood}
+                    onChangeText={setneighborhood}
                 />
 
                 <TransparentInput

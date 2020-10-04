@@ -21,11 +21,11 @@ export const imagePicker = (setDisplayImage, setRequestImage) => {
 		} else if (response.error) {
 			console.log('ImagePicker Error: ', response.error);
 		} else {
-			const uri = Platform.OS === 'ios' ? response.uri : response.path
+			const uri = Platform.OS === 'ios' ? response.uri : response.uri
 			const name = `upload.${response.type.split('/').pop()}`
 
 			setRequestImage ?
-				setRequestImage({ uri, name, type: response.type, fileName: name })
+				setRequestImage({ uri, name, type: response.type })
 				:
 				false
 

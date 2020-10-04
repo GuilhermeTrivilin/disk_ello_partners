@@ -23,13 +23,13 @@ export default function SixthStep({ navigation }) {
         email,
         phone,
         password,
-        photo,
+        image,
         city,
-        district,
+        neighborhood,
         state,
         street,
         street_number,
-        zip_code,
+        zipcode,
         rg_number,
         expedition_date,
         dispatching_agency,
@@ -46,7 +46,7 @@ export default function SixthStep({ navigation }) {
     const handleNext = async () => {
         // if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Preencha todos os campos.")
 
-        setLoading(true)
+        // setLoading(true)
         const response = await registerPartner({
             name,
             birth_date,
@@ -54,23 +54,24 @@ export default function SixthStep({ navigation }) {
             email,
             phone,
             password,
-            photo,
+            image,
             city,
-            district,
+            neighborhood,
             state,
             street,
             street_number,
-            zip_code,
+            zipcode,
             rg_number,
             expedition_date,
             dispatching_agency,
             mother_name,
         })
-        setLoading(false)
+        // setLoading(false)
 
-        if (response.errors) return showResponseErrors(response.errors)
+        if (response?.errors) return showResponseErrors(response.errors)
+        if (!response) return showToast("Houve um erro ao completar sua solicitação.")
 
-        if (response.data) {
+        if (response?.data) {
             await saveToken(response.data.token)
             await setDefaultHeaders(response.data.token)
             setUser(response.data.partner)
