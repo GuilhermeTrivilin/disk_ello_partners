@@ -10,7 +10,7 @@ export const RegisterProvider = ({ children }) => {
     const [email, setEmail] = useState("teste@teste.com")
     const [phone, setPhone] = useState("(27) 99257-3600")
     const [password, setPassword] = useState("123456")
-    const [image, setImage] = useState("")
+    const [avatar, setAvatar] = useState("")
 
     const [city, setCity] = useState("Teste")
     const [neighborhood, setneighborhood] = useState("Teste")
@@ -31,7 +31,7 @@ export const RegisterProvider = ({ children }) => {
         email,
         phone,
         password,
-        image,
+        avatar,
         city,
         neighborhood,
         state,
@@ -48,7 +48,7 @@ export const RegisterProvider = ({ children }) => {
         setEmail,
         setPhone,
         setPassword,
-        setImage,
+        setAvatar,
         setCity,
         setneighborhood,
         setState,
@@ -73,7 +73,7 @@ export const useRegisterProvider = () => {
         email,
         phone,
         password,
-        image,
+        avatar,
         city,
         neighborhood,
         state,
@@ -90,7 +90,7 @@ export const useRegisterProvider = () => {
         setEmail,
         setPhone,
         setPassword,
-        setImage,
+        setAvatar,
         setCity,
         setneighborhood,
         setState,
@@ -110,7 +110,7 @@ export const useRegisterProvider = () => {
         email,
         phone,
         password,
-        image,
+        avatar,
         city,
         neighborhood,
         state,
@@ -127,7 +127,7 @@ export const useRegisterProvider = () => {
         setEmail,
         setPhone,
         setPassword,
-        setImage,
+        setAvatar,
         setCity,
         setneighborhood,
         setState,

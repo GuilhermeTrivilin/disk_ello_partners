@@ -12,13 +12,13 @@ import { showToast } from '~/helpers/showToast'
 
 export default function FifthStep({ navigation }) {
 
-    const { image, setImage } = useRegisterProvider()
+    const { avatar, setAvatar } = useRegisterProvider()
     const [source, setSource] = useState(require("~/assets/default_image.jpg"))
 
-    useEffect(() => { image && setSource({uri: image.uri}) }, [])
+    useEffect(() => { avatar && setSource({uri: avatar.uri}) }, [])
 
     const handleNext = () => {
-        if (isEmpty([image])) return showToast("Você precisa tirar a foto.")
+        if (isEmpty([avatar])) return showToast("Você precisa tirar a foto.")
         navigation.navigate('RegisterSixthStep')
     }
 
@@ -30,7 +30,7 @@ export default function FifthStep({ navigation }) {
             </View>
 
             <View style={styles.imageWrapper}>
-                <TouchableOpacity onPress={() => imagePicker(setSource, setImage)}>
+                <TouchableOpacity onPress={() => imagePicker(setSource, setAvatar)}>
                     <Image
                         style={styles.image}
                         source={source}
