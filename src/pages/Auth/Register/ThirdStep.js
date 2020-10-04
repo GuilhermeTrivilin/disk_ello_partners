@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
 import TransparentInput from '~/components/inputs/Transparent'
@@ -8,7 +8,6 @@ import RegisterLayout from '~/components/RegisterLayout'
 import { useRegisterProvider } from '~/states/RegisterManage'
 import { isEmpty } from '~/helpers/validateFields'
 import { showToast } from '~/helpers/showToast'
-import { useGlobalState } from '~/states/ContextProvider'
 import { getAddress } from '~/services/zipCode'
 
 export default function ThirdStep({ navigation }) {
@@ -28,7 +27,7 @@ export default function ThirdStep({ navigation }) {
         setCity
     } = useRegisterProvider()
 
-    const { setLoading } = useGlobalState()
+    const [loading, setLoading] = useState(false)
 
     const handleNext = () => {
         if (isEmpty([zipcode, state, street, street_number, neighborhood, city])) return showToast("Preencha todos os campos.")
@@ -67,11 +66,11 @@ export default function ThirdStep({ navigation }) {
                     />
 
                     <TransparentInput
-                        label='UF'
+                        label='Nº'
                         styleContainer={{ width: '25%' }}
                         styleLabel={{ textAlign: 'left' }}
-                        value={state}
-                        onChangeText={setState}
+                        value={street_number}
+                        onChangeText={setStreet_number}
                     />
                 </View>
 
@@ -82,15 +81,18 @@ export default function ThirdStep({ navigation }) {
                         styleLabel={{ textAlign: 'left' }}
                         value={street}
                         onChangeText={setStreet}
+                        disabled
                     />
 
                     <TransparentInput
-                        label='Nº'
+                        label='UF'
                         styleContainer={{ width: '25%' }}
                         styleLabel={{ textAlign: 'left' }}
-                        value={street_number}
-                        onChangeText={setStreet_number}
+                        value={state}
+                        onChangeText={setState}
+                        disabled
                     />
+
                 </View>
 
                 <TransparentInput
@@ -99,6 +101,7 @@ export default function ThirdStep({ navigation }) {
                     styleLabel={{ textAlign: 'left' }}
                     value={neighborhood}
                     onChangeText={setneighborhood}
+                    disabled
                 />
 
                 <TransparentInput
@@ -107,6 +110,7 @@ export default function ThirdStep({ navigation }) {
                     styleLabel={{ textAlign: 'left' }}
                     value={city}
                     onChangeText={setCity}
+                    disabled
                 />
 
             </View>
@@ -116,6 +120,7 @@ export default function ThirdStep({ navigation }) {
                     text='Próximo'
                     command={handleNext}
                     style={styles.button}
+                    loading={loading}
                 />
             </View>
         </RegisterLayout>

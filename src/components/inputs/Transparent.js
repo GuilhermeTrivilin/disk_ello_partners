@@ -4,7 +4,15 @@ import { View, StyleSheet, Text, TextInput } from 'react-native'
 import { TextInputMask } from 'react-native-masked-text'
 import { colors } from '~/commons'
 
-const TransparentInput = ({ type, styleInput, styleLabel, styleContainer, label, ...props }) => {
+const TransparentInput = ({
+    type,
+    styleInput,
+    styleLabel,
+    styleContainer,
+    label,
+    disabled,
+    ...props
+}) => {
 
     const renderInput = !type ?
         <TextInput
@@ -19,7 +27,7 @@ const TransparentInput = ({ type, styleInput, styleLabel, styleContainer, label,
         />
 
     return (
-        <View style={[styles.container, styleContainer]}>
+        <View style={[styles.container, styleContainer, { opacity: disabled ? 0.5 : 1 }]}>
             <Text style={[styles.label, styleLabel]}>{label}</Text>
 
             {renderInput}
