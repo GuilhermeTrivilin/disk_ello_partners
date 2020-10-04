@@ -1,19 +1,52 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 import RoundedInput from '~/components/inputs/Rounded'
 import RoundedButton from '~/components/buttons/Rounded'
 import Layout from './Layout'
 
 import { maskOptions } from '~/values/maskOptions'
+import { useGlobalState } from '~/states/ContextProvider'
+import { updatePartner } from '~/services/partner'
+import { showToast } from '~/helpers/showToast'
 
 const BasicInfos = () => {
 
-    const [name, setName] = useState("Guilherme Pimentel Trivilin")
-    const [phone, setPhone] = useState("27992573600")
-    const [birthDate, setBirthDate] = useState("00000000")
-    const [email, setEmail] = useState("trivilin.dev@hotmail.com")
-    const [cpf, setCpf] = useState("00000000000")
+    const { user, setUser } = useGlobalState()
+
+    const [name, setName] = useState(() => user.name)
+    const [phone, setPhone] = useState(() => user.phone)
+    const [birth_date, setBirth_date] = useState(() => user.birth_date)
+    const [email, setEmail] = useState(() => user.email)
+    const [cpf, setCpf] = useState(() => user.cpf)
+
+    const [loading, setLoading] = useState(false)
+
+    const handleSave = async () => {
+        setLoading(true)
+        const response = await updatePartner(user.id, { name, phone, birth_date, email, cpf })
+        setLoading(false)
+
+        if (response?.errors) return showResponseErrors(response.errors)
+        if (!response) return showToast("Houve um erro ao completar sua solicitação.")
+
+        if(response) {
+            showToast("Informações alteradas com sucesso.")
+            setUser(response)
+        }
+    }
+
+    const showResponseErrors = (errors) => {
+        let displayedError = false
+        const arrayKeys = Object.keys(errors)
+
+        arrayKeys.forEach(item => {
+            if (displayedError) return
+
+            showToast(errors[item][0])
+            displayedError = true
+        })
+    }
 
     return <Layout title="Informações básicas">
         <View>
@@ -31,6 +64,7 @@ const BasicInfos = () => {
 
         <RoundedInput
             label="Nome"
+            onChangeText={setName}
             value={name}
         />
 
@@ -48,8 +82,8 @@ const BasicInfos = () => {
                 label="Data de aniversário"
                 type="datetime"
                 options={maskOptions.date}
-                value={birthDate}
-                onChangeText={setBirthDate}
+                value={birth_date}
+                onChangeText={setBirth_date}
                 style={{ width: '46%' }}
                 hasMask
             />
@@ -64,7 +98,6 @@ const BasicInfos = () => {
         <RoundedInput
             label="CPF"
             type='cpf'
-            onChangeText={setCpf}
             value={cpf}
             disabled
             hasMask
@@ -73,6 +106,8 @@ const BasicInfos = () => {
         <RoundedButton
             text='Salvar'
             styleContainer={styles.saveButton}
+            loading={loading}
+            command={handleSave}
         />
     </Layout>
 }

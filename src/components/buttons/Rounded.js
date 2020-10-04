@@ -1,22 +1,28 @@
 import React from 'react'
-import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
+import { TouchableOpacity, StyleSheet, Text, ActivityIndicator } from 'react-native'
 import { colors } from '~/commons'
 
 const RoundedButton = ({
     text,
     styleContainer,
     command,
+    loading,
     backgroundColor = colors.green,
-    fontColor = 'white'
+    fontColor = 'white',
 }) => {
+
+    const renderContent = loading ?
+        <ActivityIndicator size="small" color="#FFF" />
+        :
+        <Text style={[styles.text, { color: fontColor }]}>
+            {text}
+        </Text>
 
     return <TouchableOpacity
         style={[styles.container, styleContainer, { backgroundColor }]}
         onPress={command}
     >
-        <Text style={[styles.text, { color: fontColor }]}>
-            {text}
-        </Text>
+        {renderContent}
     </TouchableOpacity>
 }
 

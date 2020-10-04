@@ -19,3 +19,4 @@ export const shadow = {
 }
 
 export const server = 'https://disk-ello-homolog.herokuapp.com/api/v1/partner'
+export const baseURL = 'https://disk-ello-homolog.herokuapp.com'

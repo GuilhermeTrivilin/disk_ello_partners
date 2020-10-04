@@ -1,21 +1,21 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, Image } from 'react-native'
+import { baseURL } from '~/commons'
+
+import { useGlobalState } from '~/states/ContextProvider'
 
 const DrawerHeader = () => {
 
-    return <View style={styles.container}>
-        <View style={{
-            backgroundColor: '#FFF',
-            width: 170,
-            height: 170,
-            borderRadius: 170 / 2,
-            borderWidth: 1,
-            borderColor: 'gray',
-            alignSelf: 'center',
-            marginTop: 15
-        }} />
+    const { user } = useGlobalState()
+    const userImage = user.avatar ? { uri: `${baseURL}${user.avatar.url}` } : null
 
-        <Text style={styles.text}>Cláudio Disk Ello</Text>
+    return <View style={styles.container}>
+        <Image
+            style={styles.image}
+            source={userImage}
+        />
+
+        <Text style={styles.text}>{user.name}</Text>
     </View>
 }
 
@@ -28,6 +28,16 @@ const styles = StyleSheet.create({
         marginVertical: 15,
         fontSize: 16,
         fontWeight: 'bold'
+    },
+    image: {
+        backgroundColor: '#FFF',
+        width: 170,
+        height: 170,
+        borderRadius: 170 / 2,
+        borderWidth: 1,
+        borderColor: 'gray',
+        alignSelf: 'center',
+        marginTop: 15
     }
 })
 
