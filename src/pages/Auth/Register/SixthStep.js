@@ -13,6 +13,7 @@ import { useGlobalState } from '~/states/ContextProvider'
 import { saveToken } from '~/services/manageToken'
 import { setDefaultHeaders } from '~/services/http'
 import { CommonActions } from '@react-navigation/native'
+import { isEmpty } from '~/helpers/validateFields'
 
 export default function SixthStep({ navigation }) {
 
@@ -44,9 +45,9 @@ export default function SixthStep({ navigation }) {
     const { setLoading, setUser } = useGlobalState()
 
     const handleNext = async () => {
-        // if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Preencha todos os campos.")
+        if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Preencha todos os campos.")
 
-        // setLoading(true)
+        setLoading(true)
         const response = await registerPartner({
             name,
             birth_date,
@@ -66,15 +67,15 @@ export default function SixthStep({ navigation }) {
             dispatching_agency,
             mother_name,
         })
-        // setLoading(false)
+        setLoading(false)
 
         if (response?.errors) return showResponseErrors(response.errors)
         if (!response) return showToast("Houve um erro ao completar sua solicitação.")
 
-        if (response?.data) {
-            await saveToken(response.data.token)
-            await setDefaultHeaders(response.data.token)
-            setUser(response.data.partner)
+        if (response) {
+            await saveToken(response.token)
+            await setDefaultHeaders(response.token)
+            setUser(response.partner)
 
             return navigation.dispatch(
                 CommonActions.reset({

@@ -3,7 +3,8 @@ import { getToken, deleteToken } from './manageToken'
 
 export const registerPartner = async (data) => {
     const response = await post(`partners`, buildPartnerFormData(data))
-    if(response.success) return response
+    console.log(response)
+    if(response.success) return response.data
 }
 
 const buildPartnerFormData = (data) => {
@@ -15,7 +16,7 @@ const buildPartnerFormData = (data) => {
     if(data?.email) formData.append("partner[email]", data.email)
     if(data?.phone) formData.append("partner[phone]", data.phone)
     if(data?.password) formData.append("partner[password]", data.password)
-    if(data?.image) formData.append("partner[image]", data.image)
+    if(data?.avatar) formData.append("partner[avatar]", data.avatar)
     
     if(data?.city) formData.append("partner[partner_address_attributes][city]", data.city)
     if(data?.neighborhood) formData.append("partner[partner_address_attributes][neighborhood]", data.neighborhood)
