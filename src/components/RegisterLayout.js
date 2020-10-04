@@ -25,7 +25,7 @@ const RegisterLayout = ({ children }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height: Dimensions.get('window').height * 0.95
+        height: Dimensions.get('window').height
     }
 })
 

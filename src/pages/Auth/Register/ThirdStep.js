@@ -62,7 +62,7 @@ export default function ThirdStep({ navigation }) {
                         styleLabel={{ textAlign: 'left' }}
                         value={zip_code}
                         onChangeText={(maskedText, rawText) => setZip_code(rawText)}
-                        // onBlur={getAddressByZipCode}
+                        onBlur={getAddressByZipCode}
                         includeRawValueInChangeText
                     />
 
