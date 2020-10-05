@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native'
 
 import TransparentButton from '~/components/buttons/BigTransparent'
-import RegisterLayout from '~/components/RegisterLayout'
+import RegisterLayout from '~/components/FormLayout'
 
 import { imagePicker } from '~/helpers/imagePicker'
 import { useRegisterProvider } from '~/states/RegisterManage'

@@ -1,10 +1,11 @@
 import React from 'react'
+import { ActivityIndicator } from 'react-native'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { colors } from '~/commons'
 
-const TransparentButton = ({ text, style, command, arrowIcon = true }) => {
+const TransparentButton = ({ text, style, command, loading, arrowIcon = true }) => {
 
     AntDesign.loadFont()
 
@@ -14,13 +15,20 @@ const TransparentButton = ({ text, style, command, arrowIcon = true }) => {
         color={colors.green}
     />
 
+    const renderContent = loading ?
+        <ActivityIndicator size="large" color={colors.green} />
+        :
+        <>
+            <Text style={styles.text}>{text}</Text>
+            {renderIcon}
+        </>
+
     return (
         <TouchableOpacity
             style={[styles.container, style]}
             onPress={command}
         >
-            <Text style={styles.text}>{text}</Text>
-            {renderIcon}
+            {renderContent}
         </TouchableOpacity>
     )
 }

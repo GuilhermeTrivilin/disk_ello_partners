@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native'
 
 import TransparentInput from '~/components/inputs/Transparent'
 import TransparentButton from '~/components/buttons/BigTransparent'
-import RegisterLayout from '~/components/RegisterLayout'
+import RegisterLayout from '~/components/FormLayout'
 
 import { useRegisterProvider } from '~/states/RegisterManage'
 import { isEmpty } from '~/helpers/validateFields'

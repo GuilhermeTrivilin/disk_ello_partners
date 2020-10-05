@@ -1,27 +1,30 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Image } from 'react-native'
 
-import Background from '~/components/Background'
 import TransparentButton from '~/components/buttons/BigTransparent'
 import TransparentInput from '~/components/inputs/Transparent'
+import FormLayout from '~/components/FormLayout'
 
 import { isEmpty } from '~/helpers/validateFields'
 import { login } from '~/services/auth'
-import { useGlobalState } from '~/states/ContextProvider'
 import { saveToken } from '~/services/manageToken'
 import { setDefaultHeaders } from '~/services/http'
 import { CommonActions } from '@react-navigation/native'
 import { showToast } from '~/helpers/showToast'
+import { useGlobalState } from '~/states/ContextProvider'
 
 const path = {
     logo: require('~/assets/logo-01.png')
 }
 
 export default function Login({ navigation }) {
-    const { setUser, setLoading } = useGlobalState()
+
+    const { setUser } = useGlobalState()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const [loading, setLoading] = useState(false)
 
     const handleConfirm = async () => {
         if (isEmpty([email, password])) return showToast('Preencha todos os campos')
@@ -51,7 +54,7 @@ export default function Login({ navigation }) {
     }
 
     return (
-        <Background>
+        <FormLayout>
             <View style={styles.container}>
                 <View style={styles.imageView}>
                     <Image
@@ -65,7 +68,7 @@ export default function Login({ navigation }) {
                         label='Email:'
                         onChangeText={setEmail}
                         value={email}
-                        />
+                    />
 
                     <TransparentInput
                         label='Senha'
@@ -80,11 +83,12 @@ export default function Login({ navigation }) {
                     <TransparentButton
                         text='ENTRAR'
                         command={handleConfirm}
+                        loading={loading}
                     />
                 </View>
             </View>
 
-        </Background>
+        </FormLayout>
     )
 
 }

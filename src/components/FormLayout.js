@@ -3,7 +3,7 @@ import { View, StyleSheet, FlatList, Dimensions } from 'react-native'
 
 import Background from './Background'
 
-const RegisterLayout = ({ children }) => {
+const FormLayout = ({ children }) => {
 
     const renderContent = <Background
         logoPosition={{ right: 0, bottom: 0 }}
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default RegisterLayout
+export default FormLayout
