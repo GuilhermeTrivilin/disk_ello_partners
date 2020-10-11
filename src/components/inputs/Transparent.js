@@ -14,23 +14,18 @@ const TransparentInput = ({
     ...props
 }) => {
 
-    const renderInput = !type ?
-        <TextInput
-            style={[styles.input, styleInput]}
-            {...props}
-        />
-        :
-        <TextInputMask
-            type={type}
-            style={[styles.input, styleInput]}
-            {...props}
-        />
+    const InputComponent = type ? TextInputMask : TextInput
 
     return (
-        <View style={[styles.container, styleContainer, { opacity: disabled ? 0.5 : 1 }]}>
+        <View style={[styles.container, styleContainer, { opacity: disabled ? 0.6 : 1 }]}>
             <Text style={[styles.label, styleLabel]}>{label}</Text>
 
-            {renderInput}
+            <InputComponent
+                type={type}
+                style={[styles.input, styleInput]}
+                editable={!disabled}
+                {...props}
+            />
         </View>
     )
 }

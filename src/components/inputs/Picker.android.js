@@ -7,19 +7,19 @@ import RNPickerSelect from 'react-native-picker-select';
 const PickerInput = ({
     placeholder,
     onChange,
-    items
+    items,
+    value
 }) => {
     return (
         <RNPickerSelect
             onValueChange={onChange}
             style={styles}
-            useNativeAndroidPickerStyle={false}
+            items={items}
             placeholder={{
                 label: placeholder,
                 value: null,
                 color: '#ACADA8'
               }}
-            items={items}
         />
     )
 }
