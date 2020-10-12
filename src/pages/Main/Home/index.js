@@ -21,11 +21,19 @@ export default function Home({ navigation, route }) {
         setServicesList(servicesList)
     }
 
+    const removeFromServices = (id) => {
+        const newList = servicesList.filter(item => item.id !== id)
+        setServicesList(newList)
+    }
+
     const renderContent = <View style={styles.content}>
         <FlatList
             data={servicesList}
             keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => <ServiceCard service={item} />}
+            renderItem={({ item }) => <ServiceCard
+                service={item}
+                removeFromServices={removeFromServices}
+            />}
         />
     </View>
 

@@ -1,4 +1,4 @@
-import { get, post, put } from './http'
+import { destroy, get, post, put } from './http'
 
 export const getServices = async () => {
     const response = await get('services')
@@ -17,7 +17,11 @@ export const getUserServices = async (user_id) => {
 
 export const updateUserService = async (sub_service_id, body) => {
     const response = await put(`services/${sub_service_id}`, buildUpdateServiceBody(body))
-    console.log(response)
+    if (response.success) return response.data
+}
+
+export const destroyUserService = async (sub_service_id) => {
+    const response = await destroy(`services/${sub_service_id}`)
     if (response.success) return response.data
 }
 

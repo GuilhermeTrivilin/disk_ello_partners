@@ -11,10 +11,10 @@ import ChangePriceModal from '~/components/modals/ChangePriceModal'
 import EncircleIcon from './EncircleIcon'
 
 import { shadow } from '~/commons'
-import { updateUserService } from '~/services/services'
+import { destroyUserService, updateUserService } from '~/services/services'
 import { showToast } from '~/helpers/showToast'
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, removeFromServices }) => {
 
     const {
         id,
@@ -43,6 +43,16 @@ const ServiceCard = ({ service }) => {
         if (response) return setServiceStatus(response.status === 'active')
         showToast("Houve um erro ao completar sua solicitação.")
     }
+    
+    const handleDeleteService = async() => {
+        const response = await destroyUserService(id)
+
+        if(!response || response?.errors) return showToast('Houve um erro ao completar sua solicitação.')
+        if(response) {
+            removeFromServices(id)
+            showToast("Serviço removido com sucesso.")
+        }
+    }
 
     return <View style={[styles.container, shadow]}>
         <View style={styles.imageWrapper}>
@@ -63,6 +73,7 @@ const ServiceCard = ({ service }) => {
                         name='trash'
                         size={20}
                         color='#FFF'
+                        onPress={handleDeleteService}
                     />
                 </EncircleIcon>
 
