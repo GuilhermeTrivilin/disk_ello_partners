@@ -20,7 +20,7 @@ const BasicInfos = () => {
     const [birth_date, setBirth_date] = useState(() => user.birth_date)
     const [email, setEmail] = useState(() => user.email)
     const [cpf, setCpf] = useState(() => user.cpf)
-    const [avatar, setAvatar] = useState(() => `${baseURL}${user.avatar.url}`)
+    const [avatar, setAvatar] = useState(() => user.avatar.url)
 
     const [loading, setLoading] = useState(false)
 

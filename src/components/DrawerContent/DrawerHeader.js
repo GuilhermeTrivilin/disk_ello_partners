@@ -7,7 +7,7 @@ import { useGlobalState } from '~/states/ContextProvider'
 const DrawerHeader = () => {
 
     const { user } = useGlobalState()
-    const userImage = user.avatar ? { uri: `${baseURL}${user.avatar.url}` } : null
+    const userImage = user.avatar ? { uri: user.avatar.url } : null
 
     return <View style={styles.container}>
         <Image
