@@ -3,20 +3,55 @@ import { View, StyleSheet, Text, Image } from 'react-native'
 
 import { shadow, colors } from '~/commons'
 import RoundedButton from '~/components/buttons/Rounded'
+import { formatHourFromTimezone, formatToLocalModel } from '~/helpers/formatTime'
+import { orderStatus } from '~/values/orderStatus'
 
-const WaitingOrderCard = () => {
+const OrderCard = ({ order, handleAcceptOrder, handleRejectOrder }) => {
+
+    const {
+        id,
+        date,
+        time,
+        amount_clients,
+        city,
+        neighborhood,
+        street,
+        street_number,
+        zipcode,
+        sub_service,
+        status,
+        client
+    } = order
 
     const path = {
         logo: require("~/assets/logo-02.png")
     }
 
+    const renderButtons = status === 'awaiting_approval' && <View style={styles.buttonsWrapper}>
+        <RoundedButton
+            text="Aceitar"
+            styleContainer={{ width: "30%" }}
+            command={() => handleAcceptOrder(id)}
+            />
+        <RoundedButton
+            text="Recusar"
+            backgroundColor={colors.red}
+            styleContainer={{ width: "30%" }}
+            command={() => handleRejectOrder(id)}
+        />
+    </View>
+
     return <View style={[styles.container, shadow]}>
         <View style={styles.infosWrapper}>
             <View style={styles}>
-                <Text style={styles.label}>Cliente</Text>
+                <Text style={styles.label}>Cliente pagador</Text>
                 <Text style={styles.label}>Serviço</Text>
+                <Text style={styles.label}>Qntd. Clientes</Text>
+                <Text style={styles.label}>Status</Text>
                 <Text style={styles.label}>Endereço</Text>
-                <Text style={styles.label}>Tempo</Text>
+                <Text style={styles.label}></Text>
+                <Text style={styles.label}>Data</Text>
+                <Text style={styles.label}>Horário</Text>
                 <Text style={styles.label}>Valor</Text>
             </View>
 
@@ -28,28 +63,49 @@ const WaitingOrderCard = () => {
                     ellipsizeMode='tail'
                     style={styles.text}
                 >
-                    Claudio
+                    {client.name}
                 </Text>
                 <Text
                     numberOfLines={1}
                     ellipsizeMode='tail'
                     style={styles.text}
                 >
-                    Corte de cabelo
+                    {sub_service.name}
                 </Text>
                 <Text
                     numberOfLines={1}
                     ellipsizeMode='tail'
                     style={styles.text}
                 >
-                    Rua Amaro Neto, Itapuaasdasdasdasdasdasdasdasdas
+                    {amount_clients}
                 </Text>
                 <Text
                     numberOfLines={1}
                     ellipsizeMode='tail'
                     style={styles.text}
                 >
-                    30 minutos restantes
+                    {orderStatus[status]}
+                </Text>
+                <Text
+                    numberOfLines={2}
+                    ellipsizeMode='tail'
+                    style={styles.text}
+                >
+                    {`${street}, ${street_number}, ${neighborhood}, ${city} - ${zipcode}`}
+                </Text>
+                <Text
+                    numberOfLines={1}
+                    ellipsizeMode='tail'
+                    style={styles.text}
+                >
+                    {formatToLocalModel(date)}
+                </Text>
+                <Text
+                    numberOfLines={1}
+                    ellipsizeMode='tail'
+                    style={styles.text}
+                >
+                    {formatHourFromTimezone(time)}
                 </Text>
                 <Text
                     numberOfLines={1}
@@ -61,17 +117,7 @@ const WaitingOrderCard = () => {
             </View>
         </View>
 
-        <View style={styles.buttonsWrapper}>
-            <RoundedButton
-                text="Aceitar"
-                styleContainer={{ width: "30%" }}
-            />
-            <RoundedButton
-                text="Recusar"
-                backgroundColor={colors.red}
-                styleContainer={{ width: "30%" }}
-            />
-        </View>
+        {renderButtons}
 
         <Image
             source={path.logo}
@@ -120,4 +166,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default WaitingOrderCard
+export default OrderCard

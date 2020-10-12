@@ -1,16 +1,37 @@
-import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, StyleSheet, Text, FlatList } from 'react-native'
 
 import Header from '~/components/Header'
-import FinalizedOrderCard from './components/FinalizedOrderCard'
 import RenderStars from '~/components/RenderStars'
+import OrderCard from '~/components/cards/OrderCard'
 
 import { shadow } from '~/commons'
 import { useSafeArea } from 'react-native-safe-area-context'
+import { getFinishedOrders } from '~/services/order'
+import { useGlobalState } from '~/states/ContextProvider'
 
 
 export default function OrdersFinalized({ navigation, route }) {
     const insets = useSafeArea()
+    const { user } = useGlobalState()
+    console.log(user)
+
+    const [finishedOrdersList, setFinishedOrdersList] = useState([])
+
+    useEffect(() => { orders() }, [])
+
+    const orders = async () => {
+        const response = await getFinishedOrders()
+        setFinishedOrdersList(response)
+    }
+
+    const renderContent = <View style={styles.container}>
+        <FlatList
+            data={finishedOrdersList}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => <OrderCard order={item} />}
+        />
+    </View>
 
     return <>
         <Header
@@ -19,28 +40,12 @@ export default function OrdersFinalized({ navigation, route }) {
             navigation={navigation}
         />
 
-        <View style={styles.container}>
-            <FinalizedOrderCard
-                status="in_progress"
-                client="Guilherme Trivilin"
-                service="Cabelo e barba"
-                address="Rua Marcos Antonio, Itapua, Vitória"
-                value={150}
-            />
-            <FinalizedOrderCard
-                status="finished"
-                client="Claudio Disk Ello"
-                service="Massagem"
-                address="Rua Antonio Flavion, Marcilio, Cariacica"
-                date='08/05/2020'
-                value={100}
-            />
-        </View>
+        {renderContent}
 
         <View style={[styles.footer, shadow, { paddingBottom: insets.bottom }]}>
             <Text style={styles.footerText}>Média nos atendimentos</Text>
             <View style={styles.verticalDivider} />
-            <RenderStars stars_length={3} />
+            <RenderStars stars_length={user.rating || 0} />
         </View>
     </>
 }

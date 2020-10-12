@@ -1,21 +1,83 @@
-import React from 'react'
-import {View, StyleSheet, Text} from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, StyleSheet, Text, FlatList } from 'react-native'
 
 import Header from '~/components/Header'
-import WaitingOrderCard from './components/WaitingOrderCard'
+import OrderCard from '~/components/cards/OrderCard'
 
-export default function OrdersWaiting({navigation, route}){
+import { showToast } from '~/helpers/showToast'
+import { acceptOrder, getWaitingOrders, rejectOrder } from '~/services/order'
+
+export default function OrdersWaiting({ navigation, route }) {
+
+    const [waitingOrdersList, setWaitingOrdersList] = useState([])
+
+    useEffect(() => { orders() }, [])
+
+    const orders = async () => {
+        const response = await getWaitingOrders()
+        setWaitingOrdersList(response)
+    }
+
+    const handleAcceptOrder = async (order_id) => {
+        const response = await acceptOrder(order_id)
+
+        if (!response || response?.errors) return showToast("Houve um erro ao completar sua solicitação.")
+
+        if (response) {
+            changeStatus(order_id)
+            showToast("Serviço aceito com sucesso.")
+        }
+    }
+
+    const handleRejectOrder = async (order_id) => {
+        const response = await rejectOrder(order_id)
+
+        if (!response || response?.errors) return showToast("Houve um erro ao completar sua solicitação.")
+
+        if (response) {
+            removeFromList(order_id)
+            showToast("Serviço rejeitado com sucesso.")
+        }
+    }
+
+    const changeStatus = (order_id) => {
+        const newList = waitingOrdersList.map(item => {
+            if (item.id === order_id) {
+                return { ...item, status: "accepted" }
+            } else {
+                return item
+            }
+        })
+
+        setWaitingOrdersList(newList)
+    }
+
+    const removeFromList = (order_id) => {
+        const newList = waitingOrdersList.filter(item => item.id !== order_id)
+
+        setWaitingOrdersList(newList)
+    }
+
+    const renderContent = <View style={styles.container}>
+        <FlatList
+            data={waitingOrdersList}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => <OrderCard
+                order={item}
+                handleAcceptOrder={handleAcceptOrder}
+                handleRejectOrder={handleRejectOrder}
+            />}
+        />
+    </View>
 
     return <>
-        <Header 
+        <Header
             route={route}
             title="Pedidos aguardando"
             navigation={navigation}
         />
 
-        <View style={styles.container}>
-            <WaitingOrderCard />
-        </View>
+        {renderContent}
     </>
 }
 
