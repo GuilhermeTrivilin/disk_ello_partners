@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Divider from '../Divider'
 import RoundedInput from '../inputs/Rounded'
 import RoundedButton from '../buttons/Rounded'
-import PickerInput from '../inputs/Picker'
 import LayoutModal from './LayoutModal'
+import ModalSelector from 'react-native-modal-selector'
 
 import { View, StyleSheet, Text } from 'react-native'
 import { colors } from '~/commons'
@@ -13,17 +13,18 @@ import { useGlobalState } from '~/states/ContextProvider'
 import { showToast } from '~/helpers/showToast'
 
 const NewServiceModal = ({ visible, closeModal }) => {
-    const {user} = useGlobalState()
+    const { user } = useGlobalState()
 
     const [selectedSubService, setSelectedSubService] = useState(null)
     const [price, setPrice] = useState(null)
-    
+
+    const [servicesSelectModal, setServicesSelectModal] = useState(false)
     const [subServicesList, setSubServicesList] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => { getAllServices() }, [])
 
-    const getAllServices = async() => {
+    const getAllServices = async () => {
         const response = await getServices()
         setSubServicesList(buildPickerOptions(onlySubServices(response)))
     }
@@ -34,17 +35,13 @@ const NewServiceModal = ({ visible, closeModal }) => {
         return onlySubServicesArray
     }
 
-    const buildPickerOptions = (sub_services) => sub_services.map(item => ({label: item.name, value: item.id}))
+    const buildPickerOptions = (sub_services) => sub_services.map(item => ({ label: item.name, key: item.id }))
 
-    const handleAdd = async() => {
-        if(!validateForm()) return showToast("Preencha todos os campos.")
+    const handleAdd = async () => {
+        if (!validateForm()) return showToast("Preencha todos os campos.")
 
         setLoading(true)
-        const response = await registerService({
-            partner_id: user.id, 
-            sub_service_id: selectedSubService, 
-            price
-        })
+        const response = await registerService({user, selectedSubService, price})
         setLoading(false)
 
 
@@ -71,6 +68,10 @@ const NewServiceModal = ({ visible, closeModal }) => {
 
     const validateForm = () => (selectedSubService && price)
 
+    const renderButtonText = selectedSubService
+        ? selectedSubService.label
+        : "Selecionar serviço"
+
     return <LayoutModal
         visible={visible}
         closeModal={closeModal}
@@ -81,16 +82,9 @@ const NewServiceModal = ({ visible, closeModal }) => {
         </Text>
 
         <View style={styles.inputsWrapper}>
-            {/* <PickerInput
-                placeholder='Selecione uma categoria'
-                items={[{ label: 'ITEM TESTE', value: 'ITEM TESTE' }]}
-                onChange={console.log}
-            /> */}
-
-            <PickerInput
-                placeholder='Selecione um serviço'
-                items={subServicesList}
-                onChange={setSelectedSubService}
+            <RoundedButton
+                text={renderButtonText}
+                command={() => setServicesSelectModal(true)}
             />
 
             <View style={{ marginTop: 10 }}>
@@ -121,6 +115,18 @@ const NewServiceModal = ({ visible, closeModal }) => {
                 command={handleAdd}
             />
         </View>
+
+        <ModalSelector
+            data={subServicesList}
+            visible={servicesSelectModal}
+            onModalClose={() => setServicesSelectModal(false)}
+            cancelText="Cancelar"
+            animationType="fade"
+            touchableStyle={{ display: 'none' }}
+            onChange={(option) => setSelectedSubService({
+                label: option.label, key: option.key
+            })}
+        />
     </LayoutModal>
 }
 

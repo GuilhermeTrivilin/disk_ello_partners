@@ -7,15 +7,15 @@ export const getServices = async () => {
 
 export const registerService = async (body) => {
     const response = await post('services', buildRegisterServiceBody(body))
-    console.log(response)
+    console.log(response.data)
     if (response.success) return response.data
 }
 
-const buildRegisterServiceBody = ({ partner_id, sub_service_id, price }) => (
+const buildRegisterServiceBody = ({ user, selectedSubService, price }) => (
     {
         partner_service: {
-            partner_id,
-            sub_service_id,
+            partner_id: user.id,
+            sub_service_id: selectedSubService.key,
             price
         }
     }
