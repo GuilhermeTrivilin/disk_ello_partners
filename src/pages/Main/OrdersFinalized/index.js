@@ -14,7 +14,6 @@ import { useGlobalState } from '~/states/ContextProvider'
 export default function OrdersFinalized({ navigation, route }) {
     const insets = useSafeArea()
     const { user } = useGlobalState()
-    console.log(user)
 
     const [finishedOrdersList, setFinishedOrdersList] = useState([])
 

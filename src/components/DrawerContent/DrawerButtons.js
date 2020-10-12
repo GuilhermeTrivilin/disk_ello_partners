@@ -72,15 +72,15 @@ export default function DrawerButtons({ navigation }) {
         //         style={styles.icon}
         //     />
         // },
-        {
-            label: 'Nossos Produtos',
-            command: () => navigation.navigate("MarketplaceHome"),
-            icon: <SimpleLineIcons
-                name='present'
-                size={25}
-                style={styles.icon}
-            />
-        },
+        // {
+        //     label: 'Nossos Produtos',
+        //     command: () => navigation.navigate("MarketplaceHome"),
+        //     icon: <SimpleLineIcons
+        //         name='present'
+        //         size={25}
+        //         style={styles.icon}
+        //     />
+        // },
         {
             label: 'Fale Conosco',
             command: () => navigation.navigate("ContactUs"),
