@@ -5,6 +5,7 @@ import { shadow, colors } from '~/commons'
 import RoundedButton from '~/components/buttons/Rounded'
 import { formatHourFromTimezone, formatToLocalModel } from '~/helpers/formatTime'
 import { orderStatus } from '~/values/orderStatus'
+import { formatBRL } from '../helpers/formatCurrency'
 
 const OrderCard = ({ order, handleAcceptOrder, handleRejectOrder }) => {
 
@@ -20,6 +21,7 @@ const OrderCard = ({ order, handleAcceptOrder, handleRejectOrder }) => {
         zipcode,
         sub_service,
         status,
+        total_value,
         client
     } = order
 
@@ -112,7 +114,7 @@ const OrderCard = ({ order, handleAcceptOrder, handleRejectOrder }) => {
                     ellipsizeMode='tail'
                     style={styles.text}
                 >
-                    R$ 150,00
+                    {formatBRL(total_value)}
                 </Text>
             </View>
         </View>

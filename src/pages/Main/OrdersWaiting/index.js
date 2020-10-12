@@ -62,6 +62,11 @@ export default function OrdersWaiting({ navigation, route }) {
         <FlatList
             data={waitingOrdersList}
             keyExtractor={item => item.id.toString()}
+            ListHeaderComponent={<Header
+                route={route}
+                title="Pedidos aguardando"
+                navigation={navigation}
+            />}
             renderItem={({ item }) => <OrderCard
                 order={item}
                 handleAcceptOrder={handleAcceptOrder}
@@ -71,11 +76,7 @@ export default function OrdersWaiting({ navigation, route }) {
     </View>
 
     return <>
-        <Header
-            route={route}
-            title="Pedidos aguardando"
-            navigation={navigation}
-        />
+
 
         {renderContent}
     </>

@@ -29,23 +29,25 @@ export default function OrdersFinalized({ navigation, route }) {
             data={finishedOrdersList}
             keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => <OrderCard order={item} />}
+            ListHeaderComponent={<Header
+                route={route}
+                title="Pedidos finalizados"
+                navigation={navigation}
+            />}
+            ListFooterComponent={<View style={[styles.footer, shadow, { paddingBottom: insets.bottom }]}>
+                <Text style={styles.footerText}>Média nos atendimentos</Text>
+                <View style={styles.verticalDivider} />
+                <RenderStars stars_length={user.rating || 0} />
+            </View>}
         />
     </View>
 
     return <>
-        <Header
-            route={route}
-            title="Pedidos finalizados"
-            navigation={navigation}
-        />
+
 
         {renderContent}
 
-        <View style={[styles.footer, shadow, { paddingBottom: insets.bottom }]}>
-            <Text style={styles.footerText}>Média nos atendimentos</Text>
-            <View style={styles.verticalDivider} />
-            <RenderStars stars_length={user.rating || 0} />
-        </View>
+
     </>
 }
 
