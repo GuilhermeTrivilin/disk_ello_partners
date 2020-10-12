@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native'
 
 import SwitchButton from '~/components/buttons/Switch'
@@ -7,33 +7,55 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Divider from '~/components/Divider'
 import ServiceInfoModal from '~/components/modals/ServiceInfoModal'
-
-import { shadow } from '~/commons'
+import ChangePriceModal from '~/components/modals/ChangePriceModal'
 import EncircleIcon from './EncircleIcon'
 
-const ServiceCard = () => {
+import { shadow } from '~/commons'
+import { updateUserService } from '~/services/services'
+import { showToast } from '~/helpers/showToast'
+
+const ServiceCard = ({ service }) => {
+
+    const {
+        id,
+        status,
+        sub_service: {
+            name,
+            avatar: {
+                url
+            }
+        }
+    } = service
 
     EvilIcons.loadFont()
     AntDesign.loadFont()
     MaterialIcons.loadFont()
 
-    const [attendingService, setAttendingService] = useState(false)
+    const [serviceStatus, setServiceStatus] = useState(false)
     const [infoModal, setInfoModal] = useState(false)
+    const [changePriceModal, setChangePriceModal] = useState(false)
+
+    useEffect(() => { setServiceStatus(status === 'active') }, [])
+
+    const changeServiceStatus = async () => {
+        const response = await updateUserService(id, { serviceStatus: !serviceStatus })
+
+        if (response) return setServiceStatus(response.status === 'active')
+        showToast("Houve um erro ao completar sua solicitação.")
+    }
 
     return <View style={[styles.container, shadow]}>
         <View style={styles.imageWrapper}>
-            <Image
-                source={require("~/assets/services_images/massage.png")}
-            />
+            <Image source={{ uri: url }} />
         </View>
 
         <View style={styles.informationsView}>
             <View>
-                <Text style={styles.title}>Massagem</Text>
+                <Text style={styles.title}>{name}</Text>
                 <Divider />
             </View>
 
-            <Text style={styles.text}>Você teve um total de 0 atendimentos neste serviço.</Text>
+            {/* <Text style={styles.text}>Você teve um total de 0 atendimentos neste serviço.</Text> */}
 
             <View style={styles.buttonsRow}>
                 <EncircleIcon color="red">
@@ -44,24 +66,25 @@ const ServiceCard = () => {
                     />
                 </EncircleIcon>
 
-                <AntDesign
+                {/* <AntDesign
                     name='infocirlce'
                     size={22}
                     color='#198de6'
                     onPress={() => setInfoModal(true)}
-                />
+                /> */}
 
                 <EncircleIcon color="darkgreen">
                     <MaterialIcons
                         name="attach-money"
                         size={20}
                         color="#FFF"
+                        onPress={() => setChangePriceModal(true)}
                     />
                 </EncircleIcon>
 
                 <SwitchButton
-                    isActive={attendingService}
-                    onChange={setAttendingService}
+                    isActive={serviceStatus}
+                    onChange={changeServiceStatus}
                 />
             </View>
         </View>
@@ -69,6 +92,12 @@ const ServiceCard = () => {
         <ServiceInfoModal
             visible={infoModal}
             closeModal={() => setInfoModal(false)}
+        />
+
+        <ChangePriceModal
+            visible={changePriceModal}
+            closeModal={() => setChangePriceModal(false)}
+            service={service}
         />
     </View>
 }
@@ -79,6 +108,7 @@ const styles = StyleSheet.create({
         margin: 20,
         borderRadius: 10,
         flexDirection: "row",
+        paddingVertical: 10
     },
     title: {
         fontSize: 20,

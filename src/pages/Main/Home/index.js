@@ -1,11 +1,33 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, StyleSheet, FlatList } from 'react-native'
 
 import Header from '../../../components/Header'
 import Footer from './components/Footer'
 import ServiceCard from './components/ServiceCard'
 
+import { getUserServices } from '~/services/services'
+import { useGlobalState } from '~/states/ContextProvider'
+
 export default function Home({ navigation, route }) {
+
+    const { user } = useGlobalState()
+
+    const [servicesList, setServicesList] = useState([])
+
+    useEffect(() => { services() }, [])
+
+    const services = async () => {
+        const servicesList = await getUserServices(user.id)
+        setServicesList(servicesList)
+    }
+
+    const renderContent = <View style={styles.content}>
+        <FlatList
+            data={servicesList}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => <ServiceCard service={item} />}
+        />
+    </View>
 
     return <View style={styles.container}>
         <Header
@@ -14,9 +36,7 @@ export default function Home({ navigation, route }) {
             title='Meus serviços'
         />
 
-        <View style={styles.content}>
-            <ServiceCard />
-        </View>
+        {renderContent}
 
         <Footer />
     </View>
