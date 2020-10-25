@@ -4,14 +4,14 @@ import { View, StyleSheet, Text } from 'react-native'
 import { shadow } from '~/commons'
 import SwitchButton from '~/components/buttons/Switch'
 
-const Footer = () => {
+const Footer = ({ quantityServices }) => {
 
     const [attending, setAttending] = useState(false)
 
     const SwitchView = () => <View style={styles.switchView}>
         <Text style={styles.text}>Atendendo</Text>
 
-        <SwitchButton 
+        <SwitchButton
             isActive={attending}
             onChange={setAttending}
         />
@@ -20,7 +20,7 @@ const Footer = () => {
     const ServicesView = () => <View style={styles.servicesView}>
         <Text style={styles.text}>Serviços disponíveis</Text>
         <View style={styles.servicesQuantityView}>
-            <Text style={styles.servicesQuantityText}>10</Text>
+            <Text style={styles.servicesQuantityText}>{quantityServices}</Text>
         </View>
     </View>
 

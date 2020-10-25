@@ -11,7 +11,8 @@ import { colors, shadow } from '~/commons'
 const Header = ({
     navigation,
     route,
-    title
+    title,
+    addToServicesList
 }) => {
 
     const [modalAddService, setModalAddService] = useState(false)
@@ -47,6 +48,7 @@ const Header = ({
         <NewServiceModal
             visible={modalAddService}
             closeModal={() => setModalAddService(false)}
+            addToServicesList={addToServicesList}
         />
     </View>
 }

@@ -26,6 +26,8 @@ export default function Home({ navigation, route }) {
         setServicesList(newList)
     }
 
+    const addToServicesList = (service) => setServicesList([...servicesList, service])
+
     const renderContent = <View style={styles.content}>
         <FlatList
             data={servicesList}
@@ -42,11 +44,12 @@ export default function Home({ navigation, route }) {
             route={route}
             navigation={navigation}
             title='Meus serviços'
+            addToServicesList={addToServicesList}
         />
 
         {renderContent}
 
-        <Footer />
+        <Footer quantityServices={servicesList.length} />
     </View>
 }
 

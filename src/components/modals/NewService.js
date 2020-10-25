@@ -12,7 +12,7 @@ import { getServices, registerService } from '~/services/services'
 import { useGlobalState } from '~/states/ContextProvider'
 import { showToast } from '~/helpers/showToast'
 
-const NewServiceModal = ({ visible, closeModal }) => {
+const NewServiceModal = ({ visible, closeModal, addToServicesList }) => {
     const { user } = useGlobalState()
 
     const [selectedSubService, setSelectedSubService] = useState(null)
@@ -49,6 +49,7 @@ const NewServiceModal = ({ visible, closeModal }) => {
         if (!response) return showToast("Houve um erro ao completar sua solicitação.")
 
         if (response) {
+            addToServicesList(response)
             closeModal()
             showToast("Serviço adicionado com sucesso!")
         }
