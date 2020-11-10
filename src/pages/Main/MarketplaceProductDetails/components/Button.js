@@ -3,17 +3,23 @@ import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
 import { colors } from '~/commons'
 
 const Button = ({ icon, text, command }) => {
+
     return <TouchableOpacity
         style={styles.container}
         onPress={command}
     >
-        {icon}
+        <View style={styles.icon}>
+            {icon}
+        </View>
+
         <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
 }
 
 const styles = StyleSheet.create({
     container: {
+        justifyContent: 'center',
+        alignItems: 'center',
         borderWidth: 1,
         borderColor: colors.orange,
         padding: 10,
@@ -26,10 +32,11 @@ const styles = StyleSheet.create({
     text: {
         fontWeight: 'bold',
         color: colors.orange,
-        fontSize: 20,
-        flex: 1,
-        textAlign: 'center'
+        fontSize: 20
     },
+    icon: {
+        flex: 0.5
+    }
 })
 
 export default Button

@@ -33,6 +33,7 @@ import MarketplaceRequest from './pages/Main/MarketplaceRequest'
 import MarketplaceProducts from './pages/Main/MarketplaceProducts'
 import MarketplaceProductDetails from './pages/Main/MarketplaceProductDetails'
 import MarketplaceProductsComments from './pages/Main/MarketplaceProductsComments'
+import MarketplaceProductPayment from './pages/Main/MarketplaceProductPayment'
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -41,6 +42,7 @@ const Connected = () => {
     return (
         <Drawer.Navigator
             drawerContent={(props) => <DrawerContent {...props} />}
+            initialRouteName="MarketplaceHome"
         >
             <Drawer.Screen name='Home' component={Home} />
             <Drawer.Screen name='ContactUs' component={ContactUs} />
@@ -77,6 +79,7 @@ export default function Routes() {
                     <Stack.Screen name='MarketplaceProducts' component={MarketplaceProducts} />
                     <Stack.Screen name='MarketplaceProductDetails' component={MarketplaceProductDetails} />
                     <Stack.Screen name='MarketplaceProductsComments' component={MarketplaceProductsComments} />
+                    <Stack.Screen name='MarketplaceProductPayment' component={MarketplaceProductPayment} />
                 </Stack.Navigator>
             </NavigationContainer>
         </View>

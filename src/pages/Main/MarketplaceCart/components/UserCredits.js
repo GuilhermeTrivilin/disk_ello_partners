@@ -3,17 +3,18 @@ import { View, Text, StyleSheet } from 'react-native'
 
 import { colors, shadow } from '~/commons'
 import { CheckBox } from 'react-native-elements'
+import { useGlobalState } from '~/states/ContextProvider'
 
-const UserCredits = () => {
+const UserCredits = ({ useCredits, setUseCredits }) => {
 
-    const [useCredits, setUseCredits] = useState(false)
+    const { user } = useGlobalState()
 
     return <View
         style={styles.container}
     >
         <View style={styles.rowView}>
             <Text style={styles.bold}>Meus créditos: </Text>
-            <Text> R$0,00</Text>
+            <Text>{user.credits}</Text>
         </View>
 
         <View style={styles.rowView}>

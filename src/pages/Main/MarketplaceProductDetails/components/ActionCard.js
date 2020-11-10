@@ -7,8 +7,8 @@ import OrangeButton from '~/components/buttons/Orange'
 import { shadow } from '~/commons'
 import { formatBRL } from '~/helpers/formatCurrency'
 
-const ActionCard = ({ price, amount, setAmount }) => {
-    
+const ActionCard = ({ price, amount, setAmount, handleAddToCart }) => {
+
     AntDesign.loadFont()
 
     const [favorited, setFavorited] = useState(false)
@@ -36,6 +36,7 @@ const ActionCard = ({ price, amount, setAmount }) => {
             <OrangeButton
                 text={`COLOCAR NO CARRINHO (${formatBRL(amount * price)})`}
                 fontSize={13}
+                command={handleAddToCart}
             />
 
             <AntDesign

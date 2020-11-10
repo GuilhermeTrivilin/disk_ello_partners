@@ -6,24 +6,48 @@ import RenderStars from '~/components/RenderStars'
 import ActionCard from './components/ActionCard'
 import Button from './components/Button'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import AvaliationModal from './components/AvaliationModal'
 
 import { colors } from '~/commons'
+import AvaliationModal from './components/AvaliationModal'
+import { avaliateProduct } from '~/services/products'
+import { showToast } from '~/helpers/showToast'
+import { addToCart } from '~/services/cart'
+import { useGlobalState } from '~/states/ContextProvider'
 
 export default function MarketplaceProductDetails({ navigation, route }) {
+
+    const { user } = useGlobalState()
 
     const {
         name,
         price,
         rating,
         description,
-        avatar: { url }
+        avatar: { url },
+        id
     } = route.params.item
 
     const [amount, setAmount] = useState(0)
     const [avaliationModal, setAvaliationModal] = useState(false)
 
     FontAwesome.loadFont()
+
+    const handleAvaliate = async (stars) => {
+        await avaliateProduct({ product_id: id, value: stars })
+        showToast("Avaliação feita com sucesso.")
+    }
+
+    const handleAddToCart = async () => {
+        const response = await addToCart({
+            quantity: amount,
+            partner_cart_id: user.id,
+            product_id: id,
+        })
+
+        response.success
+            ? showToast("Adicionado ao carrinho com sucesso")
+            : showToast("Houve um problema, tente mais tarde")
+    }
 
     return (
         <MarketplaceLayout
@@ -47,16 +71,18 @@ export default function MarketplaceProductDetails({ navigation, route }) {
                     amount={amount}
                     setAmount={setAmount}
                     price={price}
+                    handleAddToCart={handleAddToCart}
                 />
 
                 <Text style={styles.bold}>INFORMAÇÕES DO PRODUTO:</Text>
                 <Text style={styles.text}>{description}</Text>
 
-                <Button
+                {/* <Button
                     icon={<FontAwesome name='comment' size={25} color={colors.orange} />}
                     text='COMENTÁRIOS DO PRODUTO'
                     command={() => navigation.navigate('MarketplaceProductsComments')}
-                />
+                /> */}
+
                 <Button
                     icon={<FontAwesome name='edit' size={25} color={colors.orange} />}
                     text='AVALIE O PRODUTO'
@@ -67,6 +93,8 @@ export default function MarketplaceProductDetails({ navigation, route }) {
             <AvaliationModal
                 visible={avaliationModal}
                 closeModal={() => setAvaliationModal(false)}
+                name={name}
+                handleAvaliate={handleAvaliate}
             />
         </MarketplaceLayout>
     )

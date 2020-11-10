@@ -3,47 +3,20 @@ import { View, StyleSheet, Text, TouchableOpacity, FlatList, Image } from 'react
 
 import InitialModal from './components/InitialModal'
 import MarketplaceLayout from '~/components/MarketplaceLayout'
-
-const optionsList = [
-    {
-        category: "creditos",
-        image: require('~/assets/marketplace/app_credits.png')
-    },
-    {
-        category: "planos",
-        image: require('~/assets/marketplace/plans.png')
-    },
-    {
-        category: "cabelereiro",
-        image: require('~/assets/marketplace/hair_stylist.png')
-    },
-    {
-        category: "manicure",
-        image: require('~/assets/marketplace/manicure.png')
-    },
-    {
-        category: "aplique",
-        image: require('~/assets/marketplace/appliques.png')
-    },
-    {
-        category: "trancas",
-        image: require('~/assets/marketplace/braids.png')
-    },
-    {
-        category: "podologo",
-        image: require('~/assets/marketplace/podiatrist.png')
-    },
-    {
-        category: "sobranchela",
-        image: require('~/assets/marketplace/eyebrow.png')
-    },
-    {
-        category: "estetica",
-        image: require('~/assets/marketplace/aesthetic.png')
-    },
-]
+import { categories } from './values/categories'
 
 export default function MarketplaceHome({ navigation }) {
+
+    const Button = ({ item }) => {
+
+        return <TouchableOpacity
+            onPress={() => navigation.navigate('MarketplaceProducts', {
+                category: item.category
+            })}
+        >
+            <Image source={item.image_path} style={styles.image} />
+        </TouchableOpacity>
+    }
 
     return (
         <MarketplaceLayout
@@ -55,13 +28,9 @@ export default function MarketplaceHome({ navigation }) {
                 <Text style={styles.text}>Escolha os produtos nas seções abaixo!</Text>
 
                 <FlatList
-                    data={optionsList}
+                    data={categories}
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => <TouchableOpacity
-                        onPress={() => navigation.navigate('MarketplaceProducts', { category: item.category })}
-                    >
-                        <Image source={item.image} style={styles.image} />
-                    </TouchableOpacity>}
+                    renderItem={({ item }) => <Button item={item} />}
                     showsVerticalScrollIndicator={false}
                     style={{ marginBottom: 70 }}
                 />

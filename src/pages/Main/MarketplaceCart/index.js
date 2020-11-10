@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 
 import MarketplaceLayout from '~/components/MarketplaceLayout'
@@ -7,16 +7,67 @@ import UserCredits from './components/UserCredits'
 import CartCounter from '~/components/CartCounter'
 import OrangeButton from '~/components/buttons/Orange'
 
-const TEMP_PRODUCT = [
-    {
-        name: 'Forever Liss - Máscara de Barbosa Hidratação Profunda 950g',
-        image: { uri: 'https://www.mukiranabeauty.com.br/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forever-liss-desmaia-cabelo-mascara-anti-volume-e-frizz-950g.jpg' },
-        price: 19.99
-    }
-]
+import { removeFromCart, showCartItems } from '~/services/cart'
+import { useIsFocused } from '@react-navigation/native'
+import { showToast } from '~/helpers/showToast'
 
 export default function MarketplaceCart({ navigation }) {
 
+    const [cartListItems, setCartListItems] = useState([])
+    const [useCredits, setUseCredits] = useState(false)
+
+    const isFocused = useIsFocused()
+
+    useEffect(() => { cartItems() }, [useIsFocused])
+
+    const cartItems = async () => {
+        const response = await showCartItems()
+        response.success && setCartListItems(getOnlyProducts(response.data))
+    }
+
+    const getOnlyProducts = (list) => list.map(item => item.product)
+
+    const handleRemoveItem = async (itemId) => {
+        const response = await removeFromCart(itemId)
+
+        if (response.success) {
+            showToast("Removido com sucesso.")
+            setCartListItems(removeItemFromList(itemId))
+        } else {
+            showToast("Ocorreu um problema, tente novamente mais tarde.")
+        }
+    }
+
+    const removeItemFromList = (selectedId) => cartListItems.filter(({ id }) => id !== selectedId)
+
+    const calculateTotal = () => {
+        if (cartListItems.length === 0) return 0
+
+        let valotTotal = 0
+        cartListItems.forEach(item => { valotTotal = valotTotal + item.price })
+        return valotTotal
+    }
+
+    const renderFlatListFooter = <View style={{ marginBottom: 10 }} >
+        <CartCounter quantity={cartListItems.length} totalValue={calculateTotal()} />
+        {/* <OrangeButton
+        text='TERMINAR DE COMPRAR'
+        style={styles.buttons}
+    />
+    <OrangeButton
+        text='FORMAS DE PAGAMENTO'
+        style={styles.buttons}
+    />
+    <OrangeButton
+        text='ENDEREÇO'
+        style={styles.buttons}
+    /> */}
+        <OrangeButton
+            text='PAGAR'
+            style={styles.buttons}
+            command={() => navigation.navigate("MarketplaceProductPayment", { totalValue: calculateTotal() })}
+        />
+    </View>
 
     return (
         <MarketplaceLayout
@@ -25,34 +76,17 @@ export default function MarketplaceCart({ navigation }) {
             hasGoBack={false}
         >
             <View style={styles.container}>
-
                 <FlatList
-                    data={TEMP_PRODUCT}
+                    data={cartListItems}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) => <ProductCard
                         item={item}
                         buttonText='DETALHES'
                         buttonCommand={() => { }}
+                        handleRemoveItem={handleRemoveItem}
                     />}
+                    ListFooterComponent={renderFlatListFooter}
                 />
-
-                <View>
-                    <UserCredits />
-                    <CartCounter quantity={1} totalValue={120} />
-                    <OrangeButton
-                        text='TERMINAR DE COMPRAR'
-                        style={styles.buttons}
-                    />
-                    <OrangeButton
-                        text='FORMAS DE PAGAMENTO'
-                        style={styles.buttons}
-                    />
-                    <OrangeButton
-                        text='ENDEREÇO'
-                        style={styles.buttons}
-                    />
-                </View>
-
             </View>
         </MarketplaceLayout>
     )
@@ -65,6 +99,7 @@ const styles = StyleSheet.create({
     },
     buttons: {
         width: '75%',
-        marginVertical: 7
+        marginVertical: 15,
+        height: 50
     }
 })

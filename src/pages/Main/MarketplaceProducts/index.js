@@ -9,10 +9,10 @@ export default function MarketplaceProducts({ navigation, route }) {
 
     const [productsList, setProductsList] = useState([])
 
-    useEffect(() => { getCategoryProducts() }, [route])
-    
-    const getCategoryProducts = async() => {
-        const response = await getProducts(route.params?.category)
+    useEffect(() => { route?.params?.category && products() }, [])
+
+    const products = async () => {
+        const response = await getProducts(route.params.category)
         setProductsList(response)
     }
 

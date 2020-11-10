@@ -20,7 +20,7 @@ const Header = ({
     Entypo.loadFont()
     AntDesign.loadFont()
 
-    const renderIcon = route.name === 'Home' ?
+    const renderIcon = route?.name === 'Home' ?
         <AntDesign
             name='pluscircle'
             size={22}

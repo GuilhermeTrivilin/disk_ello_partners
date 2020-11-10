@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Modal, Text } from 'react-native'
-import RenderStars from '~/components/RenderStars'
-import { TextInput } from 'react-native-gesture-handler'
-import { colors } from '~/commons'
-import OrangeButton from '~/components/buttons/Orange'
 
-const AvaliationModal = ({ visible, closeModal }) => {
+import StarRating from 'react-native-star-rating';
+import OrangeButton from '~/components/buttons/Orange'
+import { showToast } from '~/helpers/showToast';
+
+const AvaliationModal = ({ visible, closeModal, name, handleAvaliate }) => {
+
+    const [starsQuantity, setStarsQuantity] = useState(0)
+
+    const handleConfirm = () => {
+        if (starsQuantity === 0) return showToast("A nota mínima é 1.")
+
+        closeModal()
+        setTimeout(() => handleAvaliate(starsQuantity), 1500)
+    }
 
     return <Modal
         visible={visible}
@@ -15,30 +24,39 @@ const AvaliationModal = ({ visible, closeModal }) => {
         <View style={styles.background}>
             <View style={styles.content}>
                 <Text style={styles.text}>
-                    <Text>Quantas estrelas você dá para esse</Text>
-                    <Text style={styles.bold}> produto?</Text>
+                    <Text>Avalie o produto </Text>
+                    <Text style={styles.bold}>{name}</Text>
                 </Text>
 
-                <RenderStars stars_length={3} size={25} />
+                <StarRating
+                    disabled={false}
+                    maxStars={5}
+                    rating={starsQuantity}
+                    selectedStar={setStarsQuantity}
+                    starSize={25}
+                    containerStyle={styles.starsWrapper}
+                    starStyle={styles.star}
+                />
 
-                <Text style={styles.text}>Fale um pouco do produto</Text>
+                {/* <Text style={styles.text}>Fale um pouco do produto</Text>
 
                 <View style={styles.viewInput}>
                     <TextInput
                         style={styles.input}
                     />
-                </View>
+                </View> */}
 
                 <View style={styles.buttonsView}>
-                    <OrangeButton 
-                    text='CANCELAR' 
-                    style={styles.button}
-                    command={closeModal} 
+                    <OrangeButton
+                        text='CANCELAR'
+                        style={styles.button}
+                        command={closeModal}
                     />
-                    <OrangeButton 
-                    text='ENVIAR' 
-                    style={styles.button} 
-                    command={() => {}}
+
+                    <OrangeButton
+                        text='ENVIAR'
+                        style={styles.button}
+                        command={handleConfirm}
                     />
                 </View>
             </View>
