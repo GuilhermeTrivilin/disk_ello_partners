@@ -88,7 +88,7 @@ const OrderCard = ({ order, handleAcceptOrder, handleRejectOrder }) => {
 
                 <Text>
                     <Text style={styles.label}>Valor: </Text>
-                    <Text>{formatBRL(total_value)}</Text>
+                    <Text>{formatBRL(total_value || 0)}</Text>
                 </Text>
 
             </View>

@@ -11,7 +11,7 @@ export const registerService = async (body) => {
 }
 
 export const getUserServices = async (user_id) => {
-    const response = await get(`${user_id}/service`)
+    const response = await get(`${user_id}/partner_services`)
     if (response.success) return response.data
 }
 

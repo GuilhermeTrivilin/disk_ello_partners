@@ -35,8 +35,9 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     qrCode: {
-        width: Dimensions.get('window').width * 0.5,
-        height: Dimensions.get('window').width * 0.5,
+        width: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').width * 0.7,
+        alignSelf: 'center'
     },
     closeButton: {
         width: '50%', 

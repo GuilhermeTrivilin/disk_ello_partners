@@ -42,7 +42,6 @@ const Connected = () => {
     return (
         <Drawer.Navigator
             drawerContent={(props) => <DrawerContent {...props} />}
-            initialRouteName="MarketplaceHome"
         >
             <Drawer.Screen name='Home' component={Home} />
             <Drawer.Screen name='ContactUs' component={ContactUs} />

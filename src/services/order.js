@@ -12,6 +12,7 @@ export const getFinishedOrders = async() => {
 
 export const acceptOrder = async (order_id) => {
     const response = await get(`${order_id}/accept_order_service`)
+    console.log('resposta', response)
     if(response.success) return response.data
 }
 
