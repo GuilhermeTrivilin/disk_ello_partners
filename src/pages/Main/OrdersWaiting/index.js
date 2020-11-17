@@ -15,7 +15,7 @@ export default function OrdersWaiting({ navigation, route }) {
 
     const orders = async () => {
         const response = await getWaitingOrders()
-        setWaitingOrdersList(response)
+        setWaitingOrdersList(response.filter(item => item.id == 43))
     }
 
     const handleAcceptOrder = async (order_id) => {

@@ -6,13 +6,13 @@ import RoundedButton from '~/components/buttons/Rounded'
 import QrCodeModal from './QrCodeModal'
 
 const QrCodeButton = ({ 
-    action,
+    status,
     qrCode
  }) => {
 
     const [qrCodeModal, setQrCodeModal] = useState(false)
 
-    const renderActionText = action === 'start' 
+    const renderActionText = status === 'accepted' 
         ? "Iniciar serviço"
         : "Finalizar serviço"
 

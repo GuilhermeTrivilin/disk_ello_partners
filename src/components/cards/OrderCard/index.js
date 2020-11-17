@@ -25,7 +25,6 @@ const OrderCard = ({ order, handleAcceptOrder, handleRejectOrder }) => {
         status,
         total_value,
         client,
-        start_qr_code,
         finish_qr_code,
     } = order
 
@@ -38,15 +37,11 @@ const OrderCard = ({ order, handleAcceptOrder, handleRejectOrder }) => {
         handleRejectOrder={() => handleRejectOrder(id)}
     />
 
-    const renderStartQrCode = status === 'accepted' && <QrCodeButton 
-        action="start"
-        qrCode={start_qr_code}
-    />
-
-    const renderFinishQrCode = status === 'in_progress' && <QrCodeButton 
-        action="finish"
+    const renderQrCodeButton = (status === 'accepted' || status === "in_progress") && <QrCodeButton 
+        status={status}
         qrCode={finish_qr_code}
     />
+
 
     return <View style={[styles.container, shadow]}>
         <View style={styles.infosWrapper}>
@@ -95,8 +90,7 @@ const OrderCard = ({ order, handleAcceptOrder, handleRejectOrder }) => {
         </View>
 
         {renderManageButtons}
-        {renderStartQrCode}
-        {renderFinishQrCode}
+        {renderQrCodeButton}
 
         <Image
             source={path.logo}
