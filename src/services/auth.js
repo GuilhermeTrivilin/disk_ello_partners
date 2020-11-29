@@ -2,9 +2,6 @@ import { post, get, setDefaultHeaders } from '~/services/http'
 import { getToken, deleteToken } from './manageToken'
 
 export const registerPartner = async (data) => {
-    console.log("####################")
-    console.log("####################")
-    console.log(buildPartnerFormData(data))
     const response = await post(`partners`, buildPartnerFormData(data))
     if(response.success) return response.data
 }
