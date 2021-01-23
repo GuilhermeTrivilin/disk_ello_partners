@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     logo: {
-        width: '100%',
+        width: '90%',
         resizeMode: 'contain',
     },
     imageView: {

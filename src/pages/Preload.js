@@ -60,11 +60,11 @@ export default function Preload({ navigation }) {
             <StatusBar backgroundColor={colors.red} barStyle='dark-content' />
 
             <View style={styles.container}>
-                <View style={styles.imageView}>
                     <Image
                         style={styles.image}
                         source={image.logo}
                     />
+                <View style={styles.imageView}>
 
                     <ActivityIndicator size="large" color={colors.green} style={{marginTop: 30}} />
                 </View>
@@ -80,4 +80,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    image: {
+        resizeMode: 'contain',
+        width: '90%'
+    }
 })
