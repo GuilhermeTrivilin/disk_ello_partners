@@ -28,6 +28,14 @@ const buildPartnerFormData = (data) => {
     if(data?.expedition_date) formData.append("partner[partner_document_attributes][expedition_date]", data.expedition_date)
     if(data?.dispatching_agency) formData.append("partner[partner_document_attributes][dispatching_agency]", data.dispatching_agency)
     if(data?.mother_name) formData.append("partner[partner_document_attributes][mother_name]", data.mother_name)
+
+    "partner_payment_information_attributes": {
+        "card_number": "4111111111111111",
+        "card_holder_name": "Morpheus Fishburne",
+        "card_expiration_date": "1123",
+        "card_cvv": "123",
+        "payment_type": 0
+    }
     
     return formData
 }
