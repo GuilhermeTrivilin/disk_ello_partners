@@ -55,8 +55,7 @@ const errorObject = (error) => {
 
 const errorsResponse = (error) => {
   try {
-    const response = JSON.parse(error.request.response);
-    return response.errors;
+    return JSON.parse(error.request.response);
   } catch {
     return { error: "undefinied" };
   }

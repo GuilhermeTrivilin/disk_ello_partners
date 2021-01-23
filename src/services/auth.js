@@ -3,6 +3,7 @@ import { getToken, deleteToken } from './manageToken'
 
 export const registerPartner = async (data) => {
     const response = await post(`partners`, buildPartnerFormData(data))
+    console.log(response)
     if(response.success) return response.data
 }
 
@@ -23,6 +24,7 @@ const buildPartnerFormData = (data) => {
     if(data?.street) formData.append("partner[partner_address_attributes][street]", data.street)
     if(data?.street_number) formData.append("partner[partner_address_attributes][street_number]", data.street_number)
     if(data?.zipcode) formData.append("partner[partner_address_attributes][zipcode]", data.zipcode)
+    if(data?.zipcode) formData.append("partner[partner_address_attributes][country]", "BR")
     
     if(data?.rg_number) formData.append("partner[partner_document_attributes][rg_number]", data.rg_number)
     if(data?.expedition_date) formData.append("partner[partner_document_attributes][expedition_date]", data.expedition_date)
@@ -31,7 +33,7 @@ const buildPartnerFormData = (data) => {
 
     if(data?.card_number) formData.append("partner[partner_payment_information_attributes][card_number]", data.card_number)
     if(data?.card_holder_name) formData.append("partner[partner_payment_information_attributes][card_holder_name]", data.card_holder_name)
-    if(data?.card_expiration_date) formData.append("partner[partner_payment_information_attributes][card_expiration_date]", data.card_expiration_date)
+    if(data?.card_expiration_date) formData.append("partner[partner_payment_information_attributes][card_expiration_date]", data.card_expiration_date.replace(/[^a-zA-Z0-9 ]/g, ""))
     if(data?.card_cvv) formData.append("partner[partner_payment_information_attributes][card_cvv]", data.card_cvv)
     if(data?.payment_type) formData.append("partner[partner_payment_information_attributes][payment_type]", "0")
     
