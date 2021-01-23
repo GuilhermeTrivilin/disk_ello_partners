@@ -29,13 +29,11 @@ const buildPartnerFormData = (data) => {
     if(data?.dispatching_agency) formData.append("partner[partner_document_attributes][dispatching_agency]", data.dispatching_agency)
     if(data?.mother_name) formData.append("partner[partner_document_attributes][mother_name]", data.mother_name)
 
-    "partner_payment_information_attributes": {
-        "card_number": "4111111111111111",
-        "card_holder_name": "Morpheus Fishburne",
-        "card_expiration_date": "1123",
-        "card_cvv": "123",
-        "payment_type": 0
-    }
+    if(data?.card_number) formData.append("partner[partner_payment_information_attributes][card_number]", data.card_number)
+    if(data?.card_holder_name) formData.append("partner[partner_payment_information_attributes][card_holder_name]", data.card_holder_name)
+    if(data?.card_expiration_date) formData.append("partner[partner_payment_information_attributes][card_expiration_date]", data.card_expiration_date)
+    if(data?.card_cvv) formData.append("partner[partner_payment_information_attributes][card_cvv]", data.card_cvv)
+    if(data?.payment_type) formData.append("partner[partner_payment_information_attributes][payment_type]", "0")
     
     return formData
 }
