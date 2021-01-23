@@ -18,6 +18,7 @@ import RegisterThirdStep from './pages/Auth/Register/ThirdStep'
 import RegisterFourthStep from './pages/Auth/Register/FourthStep'
 import RegisterFifthStep from './pages/Auth/Register/FifthStep'
 import RegisterSixthStep from './pages/Auth/Register/SixthStep'
+import RegisterSeventhStep from './pages/Auth/Register/SeventhStep'
 
 import Home from './pages/Main/Home'
 import ContactUs from './pages/Main/ContactUs'
@@ -70,6 +71,7 @@ export default function Routes() {
                     <Stack.Screen name='RegisterFourthStep' component={RegisterFourthStep} />
                     <Stack.Screen name='RegisterFifthStep' component={RegisterFifthStep} />
                     <Stack.Screen name='RegisterSixthStep' component={RegisterSixthStep} />
+                    <Stack.Screen name='RegisterSeventhStep' component={RegisterSeventhStep} />
                     <Stack.Screen name='Connected' component={Connected} />
                     <Stack.Screen name='MarketplaceCart' component={MarketplaceCart} />
                     <Stack.Screen name='MarketplaceFavorites' component={MarketplaceFavorites} />

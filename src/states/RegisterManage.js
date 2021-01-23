@@ -24,6 +24,11 @@ export const RegisterProvider = ({ children }) => {
     const [dispatching_agency, setDispatching_agency] = useState("")
     const [mother_name, setMother_name] = useState("")
 
+    const [card_number, setCard_number] = useState("")
+    const [card_holder_name, setCard_holder_name] = useState("")
+    const [card_expiration_date, setCard_expiration_date] = useState("")
+    const [card_cvv, setCard_cvv] = useState("")
+
     return <RegisterContext.Provider value={{
         name,
         birth_date,
@@ -59,6 +64,14 @@ export const RegisterProvider = ({ children }) => {
         setExpedition_date,
         setDispatching_agency,
         setMother_name,
+        card_number,
+        setCard_number,
+        card_holder_name,
+        setCard_holder_name,
+        card_expiration_date,
+        setCard_expiration_date,
+        card_cvv,
+        setCard_cvv,
     }}>
         {children}
     </RegisterContext.Provider>
@@ -101,6 +114,14 @@ export const useRegisterProvider = () => {
         setExpedition_date,
         setDispatching_agency,
         setMother_name,
+        card_number,
+        setCard_number,
+        card_holder_name,
+        setCard_holder_name,
+        card_expiration_date,
+        setCard_expiration_date,
+        card_cvv,
+        setCard_cvv,
     } = context
 
     return {
@@ -138,5 +159,13 @@ export const useRegisterProvider = () => {
         setExpedition_date,
         setDispatching_agency,
         setMother_name,
+        card_number,
+        setCard_number,
+        card_holder_name,
+        setCard_holder_name,
+        card_expiration_date,
+        setCard_expiration_date,
+        card_cvv,
+        setCard_cvv,
     }
 }

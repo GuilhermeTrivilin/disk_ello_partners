@@ -8,94 +8,24 @@ import RegisterLayout from '~/components/FormLayout'
 import { useRegisterProvider } from '~/states/RegisterManage'
 import { maskOptions } from '~/values/maskOptions'
 import { showToast } from '~/helpers/showToast'
-import { registerPartner } from '~/services/auth'
-import { useGlobalState } from '~/states/ContextProvider'
-import { saveToken } from '~/services/manageToken'
-import { setDefaultHeaders } from '~/services/http'
-import { CommonActions } from '@react-navigation/native'
 import { isEmpty } from '~/helpers/validateFields'
 
 export default function SixthStep({ navigation }) {
 
     const {
-        name,
-        birth_date,
-        cpf,
-        email,
-        phone,
-        password,
-        avatar,
-        city,
-        neighborhood,
-        state,
-        street,
-        street_number,
-        zipcode,
-        rg_number,
-        expedition_date,
-        dispatching_agency,
-        mother_name,
-
         setRg_number,
         setExpedition_date,
         setDispatching_agency,
         setMother_name,
+        rg_number,
+        expedition_date,
+        dispatching_agency,
+        mother_name,
     } = useRegisterProvider()
 
-    const { setLoading, setUser } = useGlobalState()
-
-    const handleNext = async () => {
+    const handleNext = () => {
         if (isEmpty([rg_number, expedition_date, dispatching_agency, mother_name])) return showToast("Preencha todos os campos.")
-
-        setLoading(true)
-        const response = await registerPartner({
-            name,
-            birth_date,
-            cpf,
-            email,
-            phone,
-            password,
-            avatar,
-            city,
-            neighborhood,
-            state,
-            street,
-            street_number,
-            zipcode,
-            rg_number,
-            expedition_date,
-            dispatching_agency,
-            mother_name,
-        })
-        setLoading(false)
-
-        if (response?.errors) return showResponseErrors(response.errors)
-        if (!response) return showToast("Houve um erro ao completar sua solicitação.")
-
-        if (response) {
-            await saveToken(response.token)
-            await setDefaultHeaders(response.token)
-            setUser(response.partner)
-
-            return navigation.dispatch(
-                CommonActions.reset({
-                    index: 0,
-                    routes: [{ name: 'Preload' }],
-                })
-            );
-        }
-    }
-
-    const showResponseErrors = (errors) => {
-        let displayedError = false
-        const arrayKeys = Object.keys(errors)
-
-        arrayKeys.forEach(item => {
-            if (displayedError) return
-
-            showToast(errors[item][0])
-            displayedError = true
-        })
+        navigation.navigate("RegisterSeventhStep")
     }
 
     return (
