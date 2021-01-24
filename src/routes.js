@@ -19,6 +19,7 @@ import RegisterFourthStep from './pages/Auth/Register/FourthStep'
 import RegisterFifthStep from './pages/Auth/Register/FifthStep'
 import RegisterSixthStep from './pages/Auth/Register/SixthStep'
 import RegisterSeventhStep from './pages/Auth/Register/SeventhStep'
+import ForgotPassword from './pages/Auth/ForgotPassword'
 
 import Home from './pages/Main/Home'
 import ContactUs from './pages/Main/ContactUs'
@@ -61,7 +62,7 @@ export default function Routes() {
     return (
         <View style={{ paddingTop: insets.top, flex: 1 }}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName='Preload' screenOptions={{ headerShown: false }} >
+                <Stack.Navigator initialRouteName='PreLoad' screenOptions={{ headerShown: false }} >
                     <Stack.Screen name='Preload' component={Preload} />
                     <Stack.Screen name='Start' component={Start} />
                     <Stack.Screen name='Login' component={Login} />
@@ -81,6 +82,7 @@ export default function Routes() {
                     <Stack.Screen name='MarketplaceProductDetails' component={MarketplaceProductDetails} />
                     <Stack.Screen name='MarketplaceProductsComments' component={MarketplaceProductsComments} />
                     <Stack.Screen name='MarketplaceProductPayment' component={MarketplaceProductPayment} />
+                    <Stack.Screen name='ForgotPassword' component={ForgotPassword} />
                 </Stack.Navigator>
             </NavigationContainer>
         </View>

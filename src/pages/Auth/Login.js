@@ -12,6 +12,8 @@ import { setDefaultHeaders } from '~/services/http'
 import { CommonActions } from '@react-navigation/native'
 import { showToast } from '~/helpers/showToast'
 import { useGlobalState } from '~/states/ContextProvider'
+import { TouchableOpacity } from 'react-native'
+import { Text } from 'react-native'
 
 const path = {
     logo: require('~/assets/logo-01.png')
@@ -76,6 +78,11 @@ export default function Login({ navigation }) {
                         value={password}
                         secureTextEntry={true}
                     />
+
+                    <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
+                        <Text>Esqueci minha senha</Text>
+                    </TouchableOpacity>
+
 
                 </View>
 
