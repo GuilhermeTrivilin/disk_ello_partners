@@ -75,7 +75,7 @@ const BasicInfos = () => {
                 hasMask
             />
             <RoundedInput
-                label="Data de aniversário"
+                label="Aniversário"
                 type="datetime"
                 options={maskOptions.date}
                 value={birth_date}
