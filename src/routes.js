@@ -62,7 +62,7 @@ export default function Routes() {
     return (
         <View style={{ paddingTop: insets.top, flex: 1 }}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName='PreLoad' screenOptions={{ headerShown: false }} >
+                <Stack.Navigator initialRouteName='Preload' screenOptions={{ headerShown: false }} >
                     <Stack.Screen name='Preload' component={Preload} />
                     <Stack.Screen name='Start' component={Start} />
                     <Stack.Screen name='Login' component={Login} />
