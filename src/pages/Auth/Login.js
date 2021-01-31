@@ -77,6 +77,7 @@ export default function Login({ navigation }) {
                         onChangeText={setPassword}
                         value={password}
                         secureTextEntry={true}
+                        isPassword
                     />
 
                     <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
