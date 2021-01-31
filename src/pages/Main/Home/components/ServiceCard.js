@@ -40,15 +40,17 @@ const ServiceCard = ({ service, removeFromServices }) => {
     const changeServiceStatus = async () => {
         const response = await updateUserService(id, { serviceStatus: !serviceStatus })
 
-        if (response) return setServiceStatus(response.status === 'active')
-        showToast("Houve um erro ao completar sua solicitação.")
+        if (!response) {
+            setServiceStatus(!serviceStatus)
+            showToast("Houve um erro ao completar sua solicitação.")
+        }
     }
-    
-    const handleDeleteService = async() => {
+
+    const handleDeleteService = async () => {
         const response = await destroyUserService(id)
 
-        if(!response || response?.errors) return showToast('Houve um erro ao completar sua solicitação.')
-        if(response) {
+        if (!response || response?.errors) return showToast('Houve um erro ao completar sua solicitação.')
+        if (response) {
             removeFromServices(id)
             showToast("Serviço removido com sucesso.")
         }
@@ -95,7 +97,10 @@ const ServiceCard = ({ service, removeFromServices }) => {
 
                 <SwitchButton
                     isActive={serviceStatus}
-                    onChange={changeServiceStatus}
+                    command={() => {
+                        setServiceStatus(!serviceStatus)
+                        changeServiceStatus()
+                    }}
                 />
             </View>
         </View>

@@ -13,7 +13,7 @@ const Footer = ({ quantityServices }) => {
 
         <SwitchButton
             isActive={attending}
-            onChange={setAttending}
+            command={() => setAttending(!attending)}
         />
     </View>
 

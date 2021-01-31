@@ -1,31 +1,44 @@
 import React from 'react'
+import {TouchableOpacity, View, StyleSheet} from 'react-native'
 
-import { StyleSheet } from 'react-native'
-import { Switch } from 'react-native-switch'
+const SwitchButton = ({
+    isActive,
+    command
+}) => {
 
-const SwitchButton = ({ isActive, onChange }) => {
+    const renderCircle = (buttonStatus) => buttonStatus === !!isActive && <View style={styles.circle} />
 
-    return <Switch
-        value={isActive}
-        onValueChange={onChange}
-        circleSize={20}
-        backgroundActive={'green'}
-        backgroundInactive={'red'}
-        circleActiveColor={'#fff'}
-        circleInActiveColor={'#fff'}
-        renderActiveText={false}
-        renderInActiveText={false}
-        innerCircleStyle={styles.switchButton}
-    />
+    return <TouchableOpacity
+        style={[styles.wrapper, { backgroundColor: isActive ? 'green' : 'red' }]}
+        onPress={command}
+    >
+        <View style={styles.circleWrapper}>
+            {renderCircle(false)}
+        </View>
+
+        <View style={styles.circleWrapper}>
+            {renderCircle(true)}
+        </View>
+    </TouchableOpacity>
 }
 
 const styles = StyleSheet.create({
-    switchButton: {
-        alignItems: "center",
-        justifyContent: "center",
+    wrapper: {
+        width: 50,
+        height: 25,
         borderWidth: 1,
-        borderColor: '#e1e1e1'
+        flexDirection: 'row',
+        borderRadius: 20
     },
+    circleWrapper: {
+        flex: 1
+    },
+    circle: {
+        backgroundColor: '#c3c3c3',
+        width: '100%',
+        height: '100%',
+        borderRadius: 20,
+    }
 })
 
 export default SwitchButton
