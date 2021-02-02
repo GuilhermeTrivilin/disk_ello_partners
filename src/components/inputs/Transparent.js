@@ -42,6 +42,7 @@ const TransparentInput = ({
                     style={[styles.input, styleInput]}
                     editable={!disabled}
                     {...props}
+                    secureTextEntry={isPassword && !showPassword}
                 />
                 {renderPasswordIcon}
             </View>

@@ -23,9 +23,9 @@ const ServiceCard = ({ service, removeFromServices }) => {
             name,
             avatar: {
                 url
-            }
-        }
-    } = service
+            } = {}
+        } = {}
+    } = service || {}
 
     EvilIcons.loadFont()
     AntDesign.loadFont()
@@ -57,10 +57,6 @@ const ServiceCard = ({ service, removeFromServices }) => {
     }
 
     return <View style={[styles.container, shadow]}>
-        <View style={styles.imageWrapper}>
-            <Image source={{ uri: url }} />
-        </View>
-
         <View style={styles.informationsView}>
             <View>
                 <Text style={styles.title}>{name}</Text>

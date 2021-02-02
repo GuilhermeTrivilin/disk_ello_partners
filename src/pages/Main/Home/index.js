@@ -7,7 +7,6 @@ import ServiceCard from './components/ServiceCard'
 
 import { getUserServices } from '~/services/services'
 import { useGlobalState } from '~/states/ContextProvider'
-import SwitchButton from '~/components/buttons/Switch'
 
 export default function Home({ navigation, route }) {
 
@@ -19,6 +18,7 @@ export default function Home({ navigation, route }) {
 
     const services = async () => {
         const servicesList = await getUserServices(user.id)
+        console.log(servicesList)
         setServicesList(servicesList)
     }
 
