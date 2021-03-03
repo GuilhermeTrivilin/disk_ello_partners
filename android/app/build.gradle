@@ -132,8 +132,8 @@ android {
         applicationId "com.disk_ello_partners"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 18
-        versionName "0.1.8"
+        versionCode 19
+        versionName "0.1.9"
         multiDexEnabled true
     }
     splits {

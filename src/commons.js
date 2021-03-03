@@ -18,5 +18,7 @@ export const shadow = {
     elevation: 3,
 }
 
-export const server = 'https://disk-ello-homolog.herokuapp.com/api/v1/partner'
-export const baseURL = 'https://disk-ello-homolog.herokuapp.com'
+// export const server = 'https://diks-ello-api.herokuapp.com/api/v1/partner'
+// export const baseURL = 'https://diks-ello-api.herokuapp.com'
+export const server = 'http://10.0.2.2:3007/api/v1/partner'
+export const baseURL = 'http://10.0.2.2:3007'
