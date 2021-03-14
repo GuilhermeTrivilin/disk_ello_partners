@@ -130,7 +130,7 @@ android {
 
     defaultConfig {
         applicationId "com.disk_ello_partners"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 16
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 19
         versionName "0.1.9"
