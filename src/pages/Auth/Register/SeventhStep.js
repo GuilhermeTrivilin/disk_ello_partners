@@ -110,7 +110,7 @@ export default function SeventhStep({ navigation }) {
             <View style={styles.textView}>
                 <Text style={styles.text}>Hora de pagar sua</Text>
                 <Text style={[styles.text, styles.bold]}>INSCRIÇÃO!</Text>
-                <Text style={styles.subTitle}>Apenas R$97,00</Text>
+                <Text style={styles.subTitle}>Apenas R$1.397,00</Text>
             </View>
 
             <View style={styles.inputView}>
